@@ -70,3 +70,5 @@ jobs:
           git add translation/ru_manifest.jsonl
           git diff --cached --quiet || git commit -m "Translate SMT IV records 2124-3023"
           git push
+
+# trigger
