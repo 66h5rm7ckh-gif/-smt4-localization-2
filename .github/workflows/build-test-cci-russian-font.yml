@@ -1,6 +1,9 @@
 name: Build SMT IV test CCI with Russian font
 
 on:
+  push:
+    paths:
+      - ".github/workflows/build-test-cci-russian-font.yml"
   workflow_dispatch:
     inputs:
       release_tag:
@@ -85,19 +88,19 @@ jobs:
         run: |
           set -e
           CXI_ARGS=(
-  -ctf cxi work/game-russian.cxi
-  --header work/extracted/ncchheader.bin
-  --exh work/extracted/exheader.bin
-  --exefs work/extracted/exefs.bin
-  --romfs work/romfs-russian.bin
-  --plain work/extracted/plain.bin
-)
-if [ -s work/extracted/logo.bin ]; then
-  CXI_ARGS+=(--logo work/extracted/logo.bin)
-else
-  echo "No logo region extracted; creating CXI without --logo."
-fi
-.3dstool/3dstool "${CXI_ARGS[@]}"
+            -ctf cxi work/game-russian.cxi
+            --header work/extracted/ncchheader.bin
+            --exh work/extracted/exheader.bin
+            --exefs work/extracted/exefs.bin
+            --romfs work/romfs-russian.bin
+            --plain work/extracted/plain.bin
+          )
+          if [ -s work/extracted/logo.bin ]; then
+            CXI_ARGS+=(--logo work/extracted/logo.bin)
+          else
+            echo "No logo region extracted; creating CXI without --logo."
+          fi
+          .3dstool/3dstool "${CXI_ARGS[@]}"
           test -s work/game-russian.cxi
 
       - name: Rebuild CCI
@@ -113,7 +116,18 @@ fi
           set -e
           rm -rf work/verify && mkdir -p work/verify
           .3dstool/3dstool -xvt0f cci work/verify/game.cxi work/Shin.Megami.Tensei.IV.Russian.Test.cci --header work/verify/ncsdheader.bin
-          .3dstool/3dstool -xvtf cxi work/verify/game.cxi --header work/verify/ncchheader.bin --exh work/verify/exheader.bin --exefs work/verify/exefs.bin --romfs work/verify/romfs.bin --plain work/verify/plain.bin --logo work/verify/logo.bin
+          CXI_VERIFY_ARGS=(
+            -xvtf cxi work/verify/game.cxi
+            --header work/verify/ncchheader.bin
+            --exh work/verify/exheader.bin
+            --exefs work/verify/exefs.bin
+            --romfs work/verify/romfs.bin
+            --plain work/verify/plain.bin
+          )
+          if [ -s work/verify/logo.bin ]; then
+            CXI_VERIFY_ARGS+=(--logo work/verify/logo.bin)
+          fi
+          .3dstool/3dstool "${CXI_VERIFY_ARGS[@]}"
           .3dstool/3dstool -xvtf romfs work/verify/romfs.bin --romfs-dir work/verify/romfs
           VERIFIED="$(find work/verify/romfs -type f -name 'rodin_12_12.bcfnt' -print -quit)"
           test -n "$VERIFIED"
