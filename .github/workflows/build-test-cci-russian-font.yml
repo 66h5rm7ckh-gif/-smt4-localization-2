@@ -11,12 +11,6 @@ on:
         required: true
         default: "v0.1"
         type: string
-      font_run_id:
-        description: "Successful Russian font build run ID"
-        required: true
-        default: "35351385091"
-        type: string
-
 permissions:
   contents: read
   actions: read
@@ -40,30 +34,14 @@ jobs:
           test -s work/input/Shin.Megami.Tensei.IV.Eng.cci
           sha256sum work/input/Shin.Megami.Tensei.IV.Eng.cci
 
-      - name: Download Russian font
-        env:
-          GH_TOKEN: ${{ github.token }}
-          INPUT_FONT_RUN_ID: ${{ inputs.font_run_id }}
+      - name: Prepare font build
         run: |
           set -e
+          sudo apt-get update
+          sudo apt-get install -y python3-pip fonts-dejavu
+          python3 -m pip install --upgrade pillow pypng
+          git clone --depth 1 https://github.com/ObsidianX/3dstools.git work/3dstools
           mkdir -p work/font
-          FONT_RUN_ID="$INPUT_FONT_RUN_ID"
-          if [ -z "$FONT_RUN_ID" ]; then
-            FONT_WORKFLOW_SHA="$(git log -1 --format='%H' -- .github/workflows/build-russian-rodin-font.yml)"
-            echo "Waiting for successful Russian-font build at $FONT_WORKFLOW_SHA"
-            for i in $(seq 1 60); do
-              FONT_RUN_ID="$(gh run list --workflow build-russian-rodin-font.yml --commit "$FONT_WORKFLOW_SHA" --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
-              if [ -n "$FONT_RUN_ID" ]; then break; fi
-              sleep 10
-            done
-          fi
-          test -n "$FONT_RUN_ID"
-          echo "Using Russian font workflow run: $FONT_RUN_ID"
-          gh run download "$FONT_RUN_ID" -n smt4-rodin-12-12-russian-font -D work/font
-          FONT="$(find work/font -type f -name 'rodin_12_12_ru.bcfnt' -print -quit)"
-          test -n "$FONT"
-          if [ "$FONT" != "work/font/rodin_12_12_ru.bcfnt" ]; then cp "$FONT" work/font/rodin_12_12_ru.bcfnt; fi
-          ls -lh work/font/rodin_12_12_ru.bcfnt
 
       - name: Install 3DS tools
         run: |
@@ -82,6 +60,47 @@ jobs:
           set -e
           chmod +x tools/extract_cci.sh
           tools/extract_cci.sh work/input/Shin.Megami.Tensei.IV.Eng.cci work/extracted "$PWD/.3dstool"
+
+      - name: Build Russian font locally
+        run: |
+          set -e
+          cp work/extracted/romfs/font/rodin_12_12.bcfnt work/font/rodin_12_12.bcfnt
+          cd work/font
+          python3 ../3dstools/bcfnt.py -x -y -f rodin_12_12.bcfnt
+          cd ../..
+          python3 - <<'PY'
+          import json, math, shutil
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+          root=Path("work/font"); m=json.loads((root/"rodin_12_12_manifest.json").read_text())
+          ti=m["textureInfo"]; gm=m["glyphMap"]; gw=m["glyphWidths"]
+          ru="".join(dict.fromkeys("ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"))
+          aliases="ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん"
+          alias=dict(zip(ru,aliases)); missing=[c for c in ru if c not in gm]
+          cols,rows=ti["sheetInfo"]["cols"],ti["sheetInfo"]["rows"]; cw,ch=ti["glyph"]["width"],ti["glyph"]["height"]; sw,sh=ti["sheetInfo"]["width"],ti["sheetInfo"]["height"]; cap=cols*rows
+          old=int(ti["sheetCount"]); new=old+math.ceil(len(missing)/cap); ti["sheetCount"]=new
+          fp=next((x for x in ["/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf","/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"] if Path(x).exists()),None)
+          if not fp: raise SystemExit("No Cyrillic-capable TTF found")
+          font=ImageFont.truetype(fp,size=max(8,ch-2)); maxidx=max(map(int,gw)) if gw else -1
+          for n in range(old): shutil.copy2(root/f"rodin_12_12_sheet{n}.png",root/f"rodin_12_12_ru_sheet{n}.png")
+          for sn in range(old,new):
+            img=Image.new("RGBA",(sw,sh),(0,0,0,0)); draw=ImageDraw.Draw(img)
+            for local in range(cap):
+              n=(sn-old)*cap+local
+              if n>=len(missing): continue
+              c=missing[n]; idx=maxidx+1+n; gm[c]=idx; gm[alias[c]]=idx
+              box=draw.textbbox((0,0),c,font=font); tw,th=box[2]-box[0],box[3]-box[1]
+              x=(local%cols)*cw+max(0,(cw-tw)//2)-box[0]; y=(local//cols)*ch+max(0,(ch-th)//2)-box[1]
+              draw.text((x,y),c,font=font,fill=(255,255,255,255)); gw[str(idx)]={"left":0,"glyph":min(cw,max(1,tw)),"char":min(cw,max(1,tw+1))}
+            img.save(root/f"rodin_12_12_ru_sheet{sn}.png")
+          m["glyphMap"]=gm; m["glyphWidths"]=gw
+          (root/"rodin_12_12_ru_manifest.json").write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding="utf-8")
+          print("added Russian glyphs:",len(missing),"new sheet count:",new)
+          PY
+          cd work/font
+          python3 ../3dstools/bcfnt.py -c -y -f rodin_12_12_ru.bcfnt
+          test -s rodin_12_12_ru.bcfnt
+          ls -lh rodin_12_12_ru.bcfnt
 
       - name: Replace Russian font
         run: |
