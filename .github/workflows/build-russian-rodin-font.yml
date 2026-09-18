@@ -95,7 +95,7 @@ jobs:
 
           ru = "ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"
           ru = "".join(dict.fromkeys(ru))
-          aliases = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさしすせそたちつてとなにぬねのはひふへほ"
+          aliases = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん"
           assert len(aliases) >= len(ru), "not enough Shift-JIS placeholder characters"
           alias_map = dict(zip(ru, aliases))
           missing = [c for c in ru if c not in glyph_map]
