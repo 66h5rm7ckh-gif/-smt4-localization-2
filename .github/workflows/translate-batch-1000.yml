@@ -86,3 +86,5 @@ jobs:
           git add translation/ru_manifest.jsonl
           git commit -m "Translate and insert 1000 SMT IV text entries"
           git push
+
+# trigger batch
