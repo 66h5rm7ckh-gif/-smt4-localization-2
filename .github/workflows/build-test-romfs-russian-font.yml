@@ -1,0 +1,77 @@
+name: Build SMT IV test ROMFS with Russian font
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "ROMFS extraction run ID"
+        required: true
+        default: "35303156446"
+      font_run_id:
+        description: "Russian font build run ID"
+        required: true
+        default: "35351385091"
+
+jobs:
+  build-test-romfs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download source ROMFS
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/source work/font
+          gh run download "${{ inputs.source_run_id }}" -n smt4-romfs -D work/source
+
+      - name: Download Russian font
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "${{ inputs.font_run_id }}" -n smt4-rodin-12-12-russian-font -D work/font
+          find work/font -maxdepth 4 -type f -print
+
+      - name: Replace rodin_12_12 and validate
+        run: |
+          set -e
+          FONT="$(find work/font -type f -name 'rodin_12_12_ru.bcfnt' -print -quit)"
+          test -n "$FONT"
+          ROMFS_ROOT="$(find work/source -type f -name 'rodin_12_12.bcfnt' -printf '%h\n' -quit)"
+          test -n "$ROMFS_ROOT"
+          cp "$FONT" "$ROMFS_ROOT/rodin_12_12.bcfnt"
+          test -s "$ROMFS_ROOT/rodin_12_12.bcfnt"
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          p = next(Path("work/source").rglob("rodin_12_12.bcfnt"))
+          d = p.read_bytes()
+          assert d[:4] in (b"CFNT", b"CFNU"), d[:4]
+          size = struct.unpack_from("<I", d, 0x0C)[0]
+          assert size == len(d), (size, len(d))
+          print("TEST FONT:", p)
+          print("SIZE:", len(d))
+          print("MAGIC:", d[:4].decode("ascii"))
+          print("HEADER_SIZE_FIELD:", size)
+          PY
+
+      - name: Create test ROMFS archive
+        run: |
+          set -e
+          tar -C work/source -czf smt4-romfs-russian-font-test.tar.gz .
+          sha256sum smt4-romfs-russian-font-test.tar.gz | tee smt4-romfs-russian-font-test.sha256
+          du -h smt4-romfs-russian-font-test.tar.gz
+
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-romfs-russian-font-test
+          path: |
+            smt4-romfs-russian-font-test.tar.gz
+            smt4-romfs-russian-font-test.sha256
+          retention-days: 14
