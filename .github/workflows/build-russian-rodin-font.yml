@@ -1,6 +1,9 @@
 name: Analyze and build Russian Rodin 12x12 font
 
 on:
+  push:
+    paths:
+      - ".github/workflows/build-russian-rodin-font.yml"
   workflow_dispatch:
     inputs:
       source_run_id:
@@ -92,6 +95,9 @@ jobs:
 
           ru = "ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"
           ru = "".join(dict.fromkeys(ru))
+          aliases = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさしすせそたちつてとなにぬねのはひふへほ"
+          assert len(aliases) >= len(ru), "not enough Shift-JIS placeholder characters"
+          alias_map = dict(zip(ru, aliases))
           missing = [c for c in ru if c not in glyph_map]
 
           cols = ti["sheetInfo"]["cols"]
@@ -140,6 +146,7 @@ jobs:
                   ch = missing[n]
                   idx = max_idx + 1 + n
                   glyph_map[ch] = idx
+                  glyph_map[alias_map[ch]] = idx
                   box = draw.textbbox((0,0), ch, font=font)
                   tw, th = box[2]-box[0], box[3]-box[1]
                   x = (local % cols) * cell_w + max(0, (cell_w-tw)//2) - box[0]
@@ -157,6 +164,7 @@ jobs:
 
           print(f"original glyphs: {max_idx+1}")
           print(f"added Russian glyphs: {len(missing)}")
+          print("SJIS aliases: " + ", ".join(f"{r}->{alias_map[r]}" for r in ru))
           print(f"new sheet count: {new_count}")
           PY
 
