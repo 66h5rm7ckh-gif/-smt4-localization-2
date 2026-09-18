@@ -23,7 +23,6 @@ jobs:
     name: Build test CCI
     runs-on: ubuntu-latest
     timeout-minutes: 120
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -34,10 +33,7 @@ jobs:
         run: |
           set -e
           mkdir -p work/input
-          gh release download "${{ inputs.release_tag }}" \
-            --repo "${{ github.repository }}" \
-            --pattern 'Shin.Megami.Tensei.IV.Eng.cci' \
-            --dir work/input
+          gh release download "${{ inputs.release_tag }}" --repo "${{ github.repository }}" --pattern 'Shin.Megami.Tensei.IV.Eng.cci' --dir work/input
           test -s work/input/Shin.Megami.Tensei.IV.Eng.cci
           sha256sum work/input/Shin.Megami.Tensei.IV.Eng.cci
 
@@ -47,25 +43,21 @@ jobs:
         run: |
           set -e
           mkdir -p work/font
-          gh run download "${{ inputs.font_run_id }}" \
-            -n smt4-rodin-12-12-russian-font \
-            -D work/font
+          gh run download "${{ inputs.font_run_id }}" -n smt4-rodin-12-12-russian-font -D work/font
           FONT="$(find work/font -type f -name 'rodin_12_12_ru.bcfnt' -print -quit)"
           test -n "$FONT"
-          cp "$FONT" work/font/rodin_12_12_ru.bcfnt
+          if [ "$FONT" != "work/font/rodin_12_12_ru.bcfnt" ]; then cp "$FONT" work/font/rodin_12_12_ru.bcfnt; fi
           ls -lh work/font/rodin_12_12_ru.bcfnt
 
       - name: Install 3DS tools
         run: |
           set -e
           mkdir -p .3dstool
-          curl -L --fail --retry 3 \
-            -o .3dstool/3dstool.tar.gz \
-            https://github.com/dnasdw/3dstool/releases/download/v1.2.6/3dstool_linux_x86_64.tar.gz
+          curl -L --fail --retry 3 -o .3dstool/3dstool.tar.gz https://github.com/dnasdw/3dstool/releases/download/v1.2.6/3dstool_linux_x86_64.tar.gz
           tar -xzf .3dstool/3dstool.tar.gz -C .3dstool
           TOOL="$(find .3dstool -type f -name 3dstool -print -quit)"
           test -n "$TOOL"
-          cp "$TOOL" .3dstool/3dstool
+          if [ "$TOOL" != ".3dstool/3dstool" ]; then cp "$TOOL" .3dstool/3dstool; fi
           chmod +x .3dstool/3dstool
           .3dstool/3dstool --help | head -40
 
@@ -73,10 +65,7 @@ jobs:
         run: |
           set -e
           chmod +x tools/extract_cci.sh
-          tools/extract_cci.sh \
-            work/input/Shin.Megami.Tensei.IV.Eng.cci \
-            work/extracted \
-            "$PWD/.3dstool"
+          tools/extract_cci.sh work/input/Shin.Megami.Tensei.IV.Eng.cci work/extracted "$PWD/.3dstool"
 
       - name: Replace Russian font
         run: |
@@ -84,39 +73,24 @@ jobs:
           TARGET="$(find work/extracted/romfs -type f -name 'rodin_12_12.bcfnt' -print -quit)"
           test -n "$TARGET"
           cp work/font/rodin_12_12_ru.bcfnt "$TARGET"
-          echo "Replaced: $TARGET"
           stat -c '%s bytes' "$TARGET"
 
       - name: Build RomFS
         run: |
           set -e
-          .3dstool/3dstool -ctf romfs \
-            work/romfs-russian.bin \
-            --romfs-dir work/extracted/romfs
+          .3dstool/3dstool -ctf romfs work/romfs-russian.bin --romfs-dir work/extracted/romfs
           test -s work/romfs-russian.bin
-          stat -c '%s bytes' work/romfs-russian.bin
 
       - name: Build CXI
         run: |
           set -e
-          .3dstool/3dstool -ctf cxi \
-            work/game-russian.cxi \
-            --header work/extracted/ncchheader.bin \
-            --exh work/extracted/exheader.bin \
-            --exefs work/extracted/exefs.bin \
-            --romfs work/romfs-russian.bin \
-            --plain work/extracted/plain.bin \
-            --logo work/extracted/logo.bin
+          .3dstool/3dstool -ctf cxi work/game-russian.cxi --header work/extracted/ncchheader.bin --exh work/extracted/exheader.bin --exefs work/extracted/exefs.bin --romfs work/romfs-russian.bin --plain work/extracted/plain.bin --logo work/extracted/logo.bin
           test -s work/game-russian.cxi
-          stat -c '%s bytes' work/game-russian.cxi
 
       - name: Rebuild CCI
         run: |
           set -e
-          .3dstool/3dstool -ctf cci \
-            work/Shin.Megami.Tensei.IV.Russian.Test.cci \
-            --header work/extracted/ncsdheader.bin \
-            --partition0 work/game-russian.cxi
+          .3dstool/3dstool -ctf cci work/Shin.Megami.Tensei.IV.Russian.Test.cci --header work/extracted/ncsdheader.bin --partition0 work/game-russian.cxi
           test -s work/Shin.Megami.Tensei.IV.Russian.Test.cci
           stat -c '%s bytes' work/Shin.Megami.Tensei.IV.Russian.Test.cci
           sha256sum work/Shin.Megami.Tensei.IV.Russian.Test.cci | tee work/cci.sha256
@@ -124,27 +98,14 @@ jobs:
       - name: Verify rebuilt CCI
         run: |
           set -e
-          rm -rf work/verify
-          mkdir -p work/verify
-          .3dstool/3dstool -xvt0f cci \
-            work/verify/game.cxi \
-            work/Shin.Megami.Tensei.IV.Russian.Test.cci \
-            --header work/verify/ncsdheader.bin
-          .3dstool/3dstool -xvtf cxi \
-            work/verify/game.cxi \
-            --header work/verify/ncchheader.bin \
-            --exh work/verify/exheader.bin \
-            --exefs work/verify/exefs.bin \
-            --romfs work/verify/romfs.bin \
-            --plain work/verify/plain.bin \
-            --logo work/verify/logo.bin
-          .3dstool/3dstool -xvtf romfs \
-            work/verify/romfs.bin \
-            --romfs-dir work/verify/romfs
+          rm -rf work/verify && mkdir -p work/verify
+          .3dstool/3dstool -xvt0f cci work/verify/game.cxi work/Shin.Megami.Tensei.IV.Russian.Test.cci --header work/verify/ncsdheader.bin
+          .3dstool/3dstool -xvtf cxi work/verify/game.cxi --header work/verify/ncchheader.bin --exh work/verify/exheader.bin --exefs work/verify/exefs.bin --romfs work/verify/romfs.bin --plain work/verify/plain.bin --logo work/verify/logo.bin
+          .3dstool/3dstool -xvtf romfs work/verify/romfs.bin --romfs-dir work/verify/romfs
           VERIFIED="$(find work/verify/romfs -type f -name 'rodin_12_12.bcfnt' -print -quit)"
           test -n "$VERIFIED"
           cmp work/font/rodin_12_12_ru.bcfnt "$VERIFIED"
-          echo "Verified rebuilt CCI contains the exact Russian rodin_12_12 font."
+          echo "Verified rebuilt CCI contains the exact Russian font."
           sha256sum "$VERIFIED"
 
       - name: Upload CCI/CXI/RomFS
