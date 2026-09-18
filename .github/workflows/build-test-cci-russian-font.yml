@@ -238,6 +238,8 @@ jobs:
           яも
           EOF
           cp work/Moonbeam/dic-russian.txt work/Moonbeam/dic.txt
+          # Moonbeam resolves dic.txt from the runner working directory, so place a copy there too.
+          cp work/Moonbeam/dic.txt dic.txt
           (cd work/Moonbeam && mono Moonbeam.exe -i "../../$MBM.xml")
           mv "$MBM.xml.mbm" "$MBM"
 
