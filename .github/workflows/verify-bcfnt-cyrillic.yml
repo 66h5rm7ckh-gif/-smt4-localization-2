@@ -84,7 +84,7 @@ jobs:
               if finf < 0:
                   continue
               cmap_off = u32(data, finf+0x18)
-              cmap = parse_cmap(data, cmap_off, set())
+              cmap = parse_cmap(data, cmap_off - 8, set())
               present = sorted(c for c in russian if c in cmap)
               missing = sorted(c for c in russian if c not in cmap)
               russian_names = "".join(chr(c) for c in present)
@@ -102,14 +102,6 @@ jobs:
           Path("research/smt4-bcfnt-cyrillic.txt").write_text("\n".join(lines), encoding="utf-8")
           print("\n".join(lines))
           PY
-
-      - name: Commit verification report
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/smt4-bcfnt-cyrillic.txt
-          git diff --cached --quiet || git commit -m "research: record BCFNT Cyrillic CMAP verification"
-          git push
 
       - name: Upload verification report
         uses: actions/upload-artifact@v4
