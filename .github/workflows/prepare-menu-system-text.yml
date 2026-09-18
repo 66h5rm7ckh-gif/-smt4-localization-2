@@ -1,0 +1,118 @@
+name: Prepare SMT IV Menu and System Text
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "GitHub Actions run ID containing smt4-english-text-corpus"
+        required: true
+        default: "35306353868"
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download English corpus
+        uses: actions/download-artifact@v5
+        with:
+          name: smt4-english-text-corpus
+          path: input
+          run-id: ${{ inputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract corpus
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          tar -xzf input/smt4-english-text-corpus.tar.gz -C work
+          test -d work/corpus
+
+      - name: Select menu and system text
+        shell: python
+        run: |
+          import json, re
+          from pathlib import Path
+
+          root = Path("work/corpus")
+          out = Path("work/menu_system_candidates.jsonl")
+          rows = []
+
+          # File/path hints plus common UI/system phrases.
+          path_hints = (
+              "menu", "msg", "message", "status", "shop", "save", "load",
+              "terminal", "system", "option", "config", "battle", "result",
+              "compendium", "bible", "app", "quest"
+          )
+          phrase_hints = (
+              "save", "load", "quit", "continue", "cancel", "confirm",
+              "yes", "no", "return", "back", "equip", "items", "skills",
+              "status", "map", "menu", "options", "settings", "buy", "sell",
+              "fuse", "fusion", "compendium", "record", "register",
+              "challenge quest", "accept", "decline", "retry", "delete",
+              "new game", "continue game", "system", "language"
+          )
+
+          def is_candidate(rel, source):
+              low_path = rel.lower()
+              low = re.sub(r"\[[^\]]+\]", " ", source.lower())
+              low = re.sub(r"\s+", " ", low)
+              return any(h in low_path for h in path_hints) or any(
+                  re.search(r"\b" + re.escape(p) + r"\b", low)
+                  for p in phrase_hints
+              )
+
+          for f in sorted(root.rglob("*.txt")):
+              rel = str(f.relative_to(root))
+              lines = f.read_text(encoding="utf-8", errors="replace").splitlines()
+              current_id = None
+              current = []
+              def flush():
+                  if current_id is None:
+                      return
+                  source = "\n".join(current).strip()
+                  if source and source != "[END]" and is_candidate(rel, source):
+                      codes = sorted(set(re.findall(r"\[[^\]]+\]", source)))
+                      rows.append({
+                          "file": rel, "id": current_id, "source": source,
+                          "control_codes": codes
+                      })
+              for line in lines:
+                  m = re.match(r"^\s*(\d+)\s*:\s?(.*)$", line)
+                  if m:
+                      flush()
+                      current_id = m.group(1)
+                      current = [m.group(2)]
+                  elif current_id is not None:
+                      current.append(line)
+              flush()
+
+          # Deduplicate exact file/id pairs while preserving order.
+          seen = set()
+          with out.open("w", encoding="utf-8") as fp:
+              for row in rows:
+                  key = (row["file"], row["id"])
+                  if key not in seen:
+                      seen.add(key)
+                      fp.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+          print(f"Candidates: {len(seen)}")
+          print(f"Output: {out}")
+
+      - name: Package candidates
+        run: |
+          tar -czf smt4-menu-system-candidates.tar.gz -C work menu_system_candidates.jsonl
+          ls -lh smt4-menu-system-candidates.tar.gz
+
+      - name: Upload menu/system candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-menu-system-candidates
+          path: smt4-menu-system-candidates.tar.gz
+          retention-days: 14
+          compression-level: 9
