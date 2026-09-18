@@ -231,25 +231,77 @@ jobs:
           .3dstool/3dstool "${CXI_ARGS[@]}"
           test -s work/game-russian.cxi
 
-      - name: Install MakeROM
+      - name: Apply sample Russian dialogue translations
         run: |
           set -e
-          mkdir -p .makerom
-          curl -L --fail --retry 3 -o .makerom/makerom.zip https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.19.0/makerom-v0.19.0-ubuntu_x86_64.zip
-          unzip -q .makerom/makerom.zip -d .makerom
-          MAKEROM="$(find .makerom -type f -name makerom -print -quit)"
-          test -n "$MAKEROM"
-          if [ "$MAKEROM" != ".makerom/makerom" ]; then cp "$MAKEROM" .makerom/makerom; fi
-          chmod +x .makerom/makerom
-          .makerom/makerom -help | head -30
+          python3 - <<'PY'
+          import json, re, struct
+          from pathlib import Path
 
-      - name: Build CIA for real 3DS installation
-        run: |
-          set -e
-          .makerom/makerom -f cia -o work/Shin.Megami.Tensei.IV.Russian.Test.cia -target t -ignoresign -i work/game-russian.cxi:0:0
-          test -s work/Shin.Megami.Tensei.IV.Russian.Test.cia
-          stat -c '%s bytes' work/Shin.Megami.Tensei.IV.Russian.Test.cia
-          sha256sum work/Shin.Megami.Tensei.IV.Russian.Test.cia | tee work/cia.sha256
+          ROOT=Path("work/extracted/romfs")
+          ru="ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"
+          ru="".join(dict.fromkeys(ru))
+          aliases="ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん"
+          alias=dict(zip(ru,aliases))
+
+          def sj(s): return s.encode("shift_jis")
+          def enc(t):
+            o=bytearray(); i=0
+            while i<len(t):
+              if i==0 and t.startswith("("):
+                e=t.find(") ",i)
+                if e>0:
+                  o+=b"\xf0\x12"+sj("".join(alias.get(x,x) for x in t[1:e]))+b"\0\0"; i=e+2; continue
+              if t.startswith("[END]",i): o+=b"\xff\xff"; i+=5; continue
+              if t.startswith("[->]",i): o+=b"\xf0\x02"; i+=4; continue
+              if t[i]=="\n": o+=b"\xf0\x01"; i+=1; continue
+              if t[i]=="[":
+                e=t.find("]",i); tag=t[i+1:e]; p=tag.split()
+                if tag.startswith("Color:0x"):
+                  o+=b"\xf0\x04"+struct.pack("<H",int(tag[8:],16))
+                elif len(p)==2 and p[0] in {"11","41","42","51","52","53","54","55","56","57","58","70","71","72","73","74","75","77","78","79","7a","7b","7c","7d"}:
+                  if p[0]=="7b":
+                    a,b=[int(x.strip(",")) for x in p[1:]]; o+=b"\xf0\x7b"+struct.pack("<II",a,b)
+                  elif p[0] in {"7c"}:
+                    o+=b"\xf0"+bytes([int(p[0],16)])+struct.pack("<I",int(p[1]))
+                  else:
+                    o+=b"\xf0"+bytes([int(p[0],16)])+struct.pack("<H",int(p[1]))
+                elif tag=="Flynn": o+=b"\xf0\x43\0\0"
+                elif len(p)==2 and p[0]=="Ally": o+=b"\xf0\x43"+struct.pack("<H",int(p[1]))
+                elif len(p)==2 and p[0] in {"Item","Skill","Amount","Demon","Demon name","Demon race"}:
+                  mp={"Item":0x72,"Skill":0x77,"Amount":0x78,"Demon":0x73,"Demon name":0x73,"Demon race":0x75}
+                  o+=b"\xf0"+bytes([mp[" ".join(p[:-1])]])+struct.pack("<H",int(p[-1]))
+                else: raise ValueError("unsupported tag "+tag)
+                i=e+1; continue
+              ch=alias.get(t[i],t[i]); o+=sj(ch); i+=1
+            return bytes(o)
+
+          def patch(path,repl):
+            d=path.read_bytes(); count=struct.unpack_from("<I",d,0x10)[0]; toff=struct.unpack_from("<I",d,0x14)[0]
+            recs=[]
+            for n in range(count):
+              r=bytearray(d[toff+n*16:toff+n*16+16]); eid,ln,off=struct.unpack_from("<III",r,0)
+              payload=d[off:off+ln] if ln and off else b""
+              if eid in repl: payload=repl[eid]
+              struct.pack_into("<I",r,4,len(payload)); recs.append((r,payload))
+            out=bytearray(d[:toff]); table=bytearray(); blob=bytearray(); cur=toff+count*16
+            for r,p in recs:
+              if cur%4: blob+=b"\0"*(4-cur%4); cur+=4-cur%4
+              struct.pack_into("<I",r,8,cur); table+=r; blob+=p; cur+=len(p)
+            out+=table+blob; struct.pack_into("<I",out,0x0c,len(out)); path.write_bytes(out)
+
+          grouped={}
+          for line in Path("translation/ru_manifest.jsonl").read_text(encoding="utf-8").splitlines():
+            if not line.strip(): continue
+            x=json.loads(line)
+            if x.get("status")=="translated": grouped.setdefault(x["file"],{})[int(x["id"])]=x["translation"]
+          files=entries=0
+          for txt,repl in grouped.items():
+            p=ROOT/(txt[:-4]+".mbm")
+            if not p.exists(): raise SystemExit(f"Missing MBM: {p}")
+            patch(p,{k:enc(v) for k,v in repl.items()}); files+=1; entries+=len(repl)
+          print(f"Translated MBM files: {files}; entries: {entries}")
+          PY
 
       - name: Make emulator-ready decrypted CXI
         run: |
