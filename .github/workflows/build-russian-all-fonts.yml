@@ -41,19 +41,16 @@ jobs:
           from pathlib import Path
           from PIL import Image, ImageDraw, ImageFont
 
-          ROMFS = Path("work/romfs")
-          OUT = Path("work/russian-fonts")
+          ROOT = Path.cwd()
+          ROMFS = ROOT / "work/romfs"
+          OUT = ROOT / "work/russian-fonts"
+          TOOL = ROOT / "work/3dstools/bcfnt.py"
           OUT.mkdir(parents=True, exist_ok=True)
           names = [
-              "demo_font",
-              "gmaru_9_9",
-              "rodin_6_6",
-              "rodin_12_12",
-              "rodin_14_14",
-              "rodin_16_16",
+              "demo_font", "gmaru_9_9", "rodin_6_6",
+              "rodin_12_12", "rodin_14_14", "rodin_16_16",
           ]
-          ru = "ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"
-          ru = "".join(dict.fromkeys(ru))
+          ru = "".join(dict.fromkeys("ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"))
 
           ttf_candidates = [
               "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
@@ -64,7 +61,7 @@ jobs:
               raise SystemExit("No Cyrillic-capable TTF found")
 
           for name in names:
-              src = ROMFS / "font" / (name + ".bcfnt")
+              src = ROMFS / "font" / f"{name}.bcfnt"
               if not src.exists():
                   raise SystemExit(f"Missing source font: {src}")
 
@@ -72,12 +69,11 @@ jobs:
               d.mkdir(parents=True, exist_ok=True)
               shutil.copy2(src, d / src.name)
 
-              subprocess.run(
-                  ["python3", str(Path.cwd() / "work/3dstools/bcfnt.py"), "-x", "-y", "-f", src.name],
-                  cwd=d, check=True
-              )
+              subprocess.run(["python3", str(TOOL), "-x", "-y", "-f", src.name], cwd=d, check=True)
 
               manifest = json.loads((d / f"{name}_manifest.json").read_text(encoding="utf-8"))
+              original_gm = dict(manifest["glyphMap"])
+              original_widths = dict(manifest["glyphWidths"])
               gm = manifest["glyphMap"]
               widths = manifest["glyphWidths"]
               ti = manifest["textureInfo"]
@@ -92,25 +88,15 @@ jobs:
 
               missing = [c for c in ru if c not in gm]
               max_idx = max((int(k) for k in widths), default=-1)
-
-              # Place new glyphs immediately after the existing glyph table.
-              # If the final original sheet has spare cells, use them; otherwise
-              # append additional sheets. This keeps glyph index == sheet cell index.
               first_new = max_idx + 1
               needed_end = first_new + len(missing) - 1
               required_count = max(old_count, math.ceil((needed_end + 1) / capacity))
 
-              # Copy all original sheets to the output basename expected by bcfnt.py.
               for i in range(old_count):
                   shutil.copy2(d / f"{name}_sheet{i}.png", d / f"{name}_ru_sheet{i}.png")
-
-              # Create any additional sheets.
               for i in range(old_count, required_count):
-                  Image.new("RGBA", (sheet_w, sheet_h), (0, 0, 0, 0)).save(
-                      d / f"{name}_ru_sheet{i}.png"
-                  )
+                  Image.new("RGBA", (sheet_w, sheet_h), (0, 0, 0, 0)).save(d / f"{name}_ru_sheet{i}.png")
 
-              # Open only sheets that receive new glyphs.
               touched = {}
               for n, ch in enumerate(missing):
                   idx = first_new + n
@@ -121,8 +107,6 @@ jobs:
                       touched[sheet_no] = Image.open(p).convert("RGBA")
                   img = touched[sheet_no]
                   draw = ImageDraw.Draw(img)
-
-                  # Keep glyphs readable at the actual cell size.
                   size = max(5, int(cell_h * 0.88))
                   font = ImageFont.truetype(ttf, size=size)
                   box = draw.textbbox((0, 0), ch, font=font)
@@ -132,7 +116,6 @@ jobs:
                   x = x0 + max(0, (cell_w - tw) // 2) - box[0]
                   y = y0 + max(0, (cell_h - th) // 2) - box[1]
                   draw.text((x, y), ch, font=font, fill=(255, 255, 255, 255))
-
                   glyph_w = min(cell_w, max(1, tw))
                   char_w = min(cell_w, max(1, tw + 1))
                   widths[str(idx)] = {"left": 0, "glyph": glyph_w, "char": char_w}
@@ -145,30 +128,44 @@ jobs:
               manifest["glyphWidths"] = widths
               manifest["textureInfo"]["sheetCount"] = required_count
               (d / f"{name}_ru_manifest.json").write_text(
-                  json.dumps(manifest, ensure_ascii=False, indent=2),
-                  encoding="utf-8"
+                  json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
               )
 
               subprocess.run(
-                  ["python3", str(Path.cwd() / "work/3dstools/bcfnt.py"), "-c", "-y", "-f", f"{name}_ru.bcfnt"],
+                  ["python3", str(TOOL), "-c", "-y", "-f", f"{name}_ru.bcfnt"],
                   cwd=d, check=True
               )
 
-              # Re-extract the rebuilt font and verify every Cyrillic codepoint.
               verify = d / "verify"
+              if verify.exists():
+                  shutil.rmtree(verify)
               verify.mkdir()
+              rebuilt_path = d / f"{name}_ru.bcfnt"
               subprocess.run(
-                  ["python3", str(Path.cwd() / "work/3dstools/bcfnt.py"), "-x", "-y", "-f", f"{name}_ru.bcfnt"],
+                  ["python3", str(TOOL), "-x", "-y", "-f", str(rebuilt_path.resolve())],
                   cwd=verify, check=True
               )
+
               rebuilt = json.loads((verify / f"{name}_ru_manifest.json").read_text(encoding="utf-8"))
               rebuilt_map = rebuilt["glyphMap"]
               absent = [c for c in ru if c not in rebuilt_map]
               if absent:
                   raise SystemExit(f"{name}: missing Cyrillic after rebuild: {absent}")
 
-              # Structural checks.
-              data = (d / f"{name}_ru.bcfnt").read_bytes()
+              for ch, old_idx in original_gm.items():
+                  if rebuilt_map.get(ch) != old_idx:
+                      raise SystemExit(f"{name}: existing glyph index changed for {ch!r}: {old_idx} -> {rebuilt_map.get(ch)}")
+              if rebuilt["textureInfo"]["glyph"] != manifest["textureInfo"]["glyph"]:
+                  raise SystemExit(f"{name}: glyph cell dimensions changed")
+              if rebuilt["textureInfo"]["sheetInfo"] != manifest["textureInfo"]["sheetInfo"]:
+                  raise SystemExit(f"{name}: sheet dimensions/grid changed")
+              if int(rebuilt["textureInfo"]["sheetCount"]) < old_count:
+                  raise SystemExit(f"{name}: sheet count decreased")
+              for k, v in original_widths.items():
+                  if rebuilt["glyphWidths"].get(k) != v:
+                      raise SystemExit(f"{name}: existing glyph width changed at index {k}")
+
+              data = rebuilt_path.read_bytes()
               if data[:4] != b"CFNT":
                   raise SystemExit(f"{name}: invalid CFNT magic")
               import struct
@@ -176,7 +173,7 @@ jobs:
               if declared != len(data):
                   raise SystemExit(f"{name}: invalid declared file size")
 
-              print(f"{name}: cell={cell_w}x{cell_h}, old_glyphs={len(widths)-len(missing)}, added={len(missing)}, sheets={required_count}, size={len(data)}")
+              print(f"{name}: cell={cell_w}x{cell_h}, old_glyphs={len(original_widths)}, added={len(missing)}, sheets={required_count}, size={len(data)}")
 
           print("ALL SIX RUSSIAN FONTS BUILT AND VERIFIED")
           PY
