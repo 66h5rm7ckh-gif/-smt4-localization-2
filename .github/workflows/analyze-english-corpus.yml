@@ -1,0 +1,185 @@
+name: Analyze SMT IV English Corpus
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "GitHub Actions run ID containing smt4-english-text-corpus"
+        required: true
+        default: "35306353868"
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download English corpus artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: smt4-english-text-corpus
+          path: input
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.source_run_id }}
+
+      - name: Extract corpus
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          tar -xzf input/smt4-english-text-corpus.tar.gz -C work
+          test -d work/corpus
+
+      - name: Analyze corpus
+        shell: python
+        run: |
+          import csv, json, re
+          from pathlib import Path
+          from collections import Counter, defaultdict
+
+          root = Path("work/corpus")
+          report = Path("work/analysis")
+          report.mkdir(parents=True, exist_ok=True)
+
+          files = sorted(root.rglob("*.txt"))
+
+          def category(p):
+              s = str(p.relative_to(root)).lower()
+              for key, label in [
+                  ("event/quest/", "quests"),
+                  ("event/", "events"),
+                  ("battle/", "battle"),
+                  ("mikado/", "mikado"),
+                  ("map/", "maps"),
+                  ("shop/", "shops"),
+                  ("item/", "items"),
+                  ("status/", "status"),
+                  ("terminal/", "terminal"),
+                  ("addon/", "addon"),
+                  ("bible/", "bible"),
+                  ("saveLoadER/".lower(), "save/load"),
+                  ("clear_save/", "save/clear"),
+              ]:
+                  if key in s:
+                      return label
+              return "other"
+
+          def is_control_only(s):
+              x = re.sub(r'\[[^\]]+\]', '', s).strip()
+              return not x
+
+          controls = Counter()
+          cats = Counter()
+          cat_bytes = Counter()
+          cat_lines = Counter()
+          cat_entries = Counter()
+          manifest = []
+          duplicate = defaultdict(list)
+
+          for f in files:
+              rel = str(f.relative_to(root))
+              text = f.read_text(encoding="utf-8", errors="replace")
+              lines = text.splitlines()
+              c = category(f)
+              cats[c] += 1
+              cat_bytes[c] += len(text.encode("utf-8"))
+              cat_lines[c] += len(lines)
+              entries = 0
+              current_id = ""
+              current = []
+              def flush():
+                  nonlocal current, current_id
+                  if current_id != "":
+                      source = "\n".join(current).strip()
+                      codes = sorted(set(re.findall(r'\[[^\]]+\]', source)))
+                      manifest.append({
+                          "file": rel, "category": c, "id": current_id,
+                          "source": source, "control_codes": codes
+                      })
+                      if source:
+                          normalized = re.sub(r'\s+', ' ', source).strip().lower()
+                          normalized = re.sub(r'\[[^\]]+\]', '', normalized).strip()
+                          if normalized:
+                              duplicate[normalized].append((rel, current_id))
+                  current = []
+                  current_id = ""
+
+              for line in lines:
+                  m = re.match(r'^\s*(\d+)\s*:\s?(.*)$', line)
+                  if m:
+                      flush()
+                      current_id = m.group(1)
+                      current = [m.group(2)]
+                      entries += 1
+                      continue
+                  if line.strip() == "[END]":
+                      current.append(line)
+                      continue
+                  if current_id != "":
+                      current.append(line)
+                  for tag in re.findall(r'\[[^\]]+\]', line):
+                      controls[tag] += 1
+              flush()
+              cat_entries[c] += entries
+
+          with (report/"category_summary.tsv").open("w", newline="", encoding="utf-8") as out:
+              w=csv.writer(out, delimiter="\t")
+              w.writerow(["category","files","bytes","lines","entries"])
+              for c in sorted(cats):
+                  w.writerow([c,cats[c],cat_bytes[c],cat_lines[c],cat_entries[c]])
+
+          with (report/"translation_manifest.jsonl").open("w", encoding="utf-8") as out:
+              for x in manifest:
+                  out.write(json.dumps(x, ensure_ascii=False)+"\n")
+
+          with (report/"control_code_inventory.tsv").open("w", newline="", encoding="utf-8") as out:
+              w=csv.writer(out, delimiter="\t")
+              w.writerow(["control_code","count"])
+              for k,v in controls.most_common():
+                  w.writerow([k,v])
+
+          dup_groups=[(k,v) for k,v in duplicate.items() if len(v)>1]
+          with (report/"duplicate_groups.tsv").open("w", newline="", encoding="utf-8") as out:
+              w=csv.writer(out, delimiter="\t")
+              w.writerow(["normalized_text","occurrences","locations"])
+              for k,v in sorted(dup_groups, key=lambda x:(-len(x[1]),x[0])):
+                  w.writerow([k,len(v)," | ".join(f"{a}#{b}" for a,b in v)])
+
+          # Human-readable overview and safe translation targets.
+          text_entries=[x for x in manifest if x["source"].replace("[END]","").strip()]
+          technical=sum(1 for x in text_entries if is_control_only(x["source"]))
+          summary = [
+              "SMT IV ENGLISH CORPUS ANALYSIS",
+              "================================",
+              f"Corpus files: {len(files)}",
+              f"Parsed numbered entries: {len(manifest)}",
+              f"Entries with non-empty source: {len(text_entries)}",
+              f"Control-only entries: {technical}",
+              f"Duplicate text groups: {len(dup_groups)}",
+              "",
+              "Categories:",
+          ]
+          for c in sorted(cats):
+              summary.append(f"- {c}: {cats[c]} files, {cat_entries[c]} entries")
+          summary += [
+              "",
+              "Files:",
+              "- category_summary.tsv",
+              "- translation_manifest.jsonl",
+              "- control_code_inventory.tsv",
+              "- duplicate_groups.tsv",
+              "",
+              "The manifest preserves file path, numeric entry ID, source text and control codes.",
+              "It is intended as the basis for later English -> Russian translation and validation.",
+          ]
+          (report/"summary.txt").write_text("\n".join(summary)+"\n", encoding="utf-8")
+
+      - name: Package analysis
+        run: |
+          tar -czf smt4-corpus-analysis.tar.gz -C work analysis
+          ls -lh smt4-corpus-analysis.tar.gz
+
+      - name: Upload analysis artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-corpus-analysis
+          path: smt4-corpus-analysis.tar.gz
+          retention-days: 14
