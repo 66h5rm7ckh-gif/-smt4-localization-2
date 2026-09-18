@@ -39,7 +39,7 @@ jobs:
         run: |
           set -e
           mkdir -p work/input
-          gh release download "${{ inputs.release_tag }}" --repo "${{ github.repository }}" --pattern 'Shin.Megami.Tensei.IV.Eng.cci' --dir work/input
+          gh release download "${{ inputs.release_tag || 'v0.1' }}" --repo "${{ github.repository }}" --pattern 'Shin.Megami.Tensei.IV.Eng.cci' --dir work/input
           test -s work/input/Shin.Megami.Tensei.IV.Eng.cci
           sha256sum work/input/Shin.Megami.Tensei.IV.Eng.cci
 
@@ -299,16 +299,12 @@ jobs:
           echo "Verified rebuilt CCI contains the exact Russian font."
           sha256sum "$VERIFIED"
 
-      - name: Upload CCI/CXI/RomFS
+      - name: Upload emulator CCI only
         uses: actions/upload-artifact@v4
         with:
-          name: smt4-russian-test-cci
+          name: smt4-russian-emulator-cci
           path: |
             work/Shin.Megami.Tensei.IV.Russian.Test.cci
-            work/game-russian.cxi
-            work/romfs-russian.bin
             work/cci.sha256
-            work/Shin.Megami.Tensei.IV.Russian.Test.cia
-            work/cia.sha256
           retention-days: 14
-          compression-level: 0
+          compression-level: 6
