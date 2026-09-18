@@ -1,6 +1,9 @@
 name: Build Russian Cyrillic fonts for all SMT IV BCFNTs
 
 on:
+  push:
+    paths:
+      - ".github/workflows/build-russian-all-fonts.yml"
   workflow_dispatch:
     inputs:
       source_run_id:
