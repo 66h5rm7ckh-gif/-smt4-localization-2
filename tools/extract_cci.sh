@@ -39,149 +39,77 @@ log "Size: $SIZE bytes"
 log "SHA256: $SHA256"
 
 # ------------------------------------------------------------
-# Check build dependencies
+# Download official prebuilt 3dstool
 # ------------------------------------------------------------
 
-for cmd in cmake make git; do
-  if ! command -v "$cmd" >/dev/null 2>&1; then
-    echo "ERROR: required command not found: $cmd" >&2
-    exit 3
+THREEDSTOOL="$TOOL_DIR/3dstool"
+
+if [[ ! -x "$THREEDSTOOL" ]]; then
+
+  log "Downloading official 3dstool v1.2.6..."
+
+  ARCHIVE="$TOOL_DIR/3dstool_linux_x86_64.tar.gz"
+
+  curl \
+    -L \
+    --fail \
+    --retry 3 \
+    -o "$ARCHIVE" \
+    "https://github.com/dnasdw/3dstool/releases/download/v1.2.6/3dstool_linux_x86_64.tar.gz"
+
+  log "Extracting 3dstool..."
+
+  tar \
+    -xzf "$ARCHIVE" \
+    -C "$TOOL_DIR"
+
+  # The archive normally contains a file named "3dstool".
+  # If it was extracted into a subdirectory, find it.
+
+  if [[ -f "$TOOL_DIR/3dstool" ]]; then
+    chmod +x "$TOOL_DIR/3dstool"
+
+  else
+
+    FOUND=""
+
+    while IFS= read -r candidate; do
+      if [[ -f "$candidate" ]]; then
+        FOUND="$candidate"
+        break
+      fi
+    done < <(
+      find "$TOOL_DIR" \
+        -type f \
+        -name "3dstool" \
+        -print
+    )
+
+    if [[ -z "$FOUND" ]]; then
+      echo "ERROR: 3dstool binary was not found after extracting archive." >&2
+      echo >&2
+      echo "Contents of TOOL_DIR:" >&2
+      find "$TOOL_DIR" -maxdepth 3 -type f -print >&2 || true
+      exit 6
+    fi
+
+    mv "$FOUND" "$THREEDSTOOL"
+    chmod +x "$THREEDSTOOL"
   fi
-done
 
-# ------------------------------------------------------------
-# Build 3dstool
-# ------------------------------------------------------------
-
-SOURCE_DIR="$TOOL_DIR/src"
-BUILD_DIR="$TOOL_DIR/build"
-
-if [[ ! -d "$SOURCE_DIR/.git" ]]; then
-  log "Downloading 3dstool source..."
-
-  rm -rf "$SOURCE_DIR"
-
-  git clone \
-    --depth 1 \
-    https://github.com/dnasdw/3dstool.git \
-    "$SOURCE_DIR"
-else
-  log "3dstool source already exists."
 fi
 
-rm -rf "$BUILD_DIR"
-mkdir -p "$BUILD_DIR"
-
-log "Configuring 3dstool with CMake..."
-
-set +e
-
-cmake \
-  -S "$SOURCE_DIR" \
-  -B "$BUILD_DIR" \
-  -DUSE_DEP=OFF \
-  -DBUILD64=ON \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
-  > "$OUT/cmake-configure.log" 2>&1
-
-CMAKE_STATUS=$?
-
-set -e
-
-if [[ $CMAKE_STATUS -ne 0 ]]; then
-  echo "ERROR: CMake configuration failed." >&2
-  echo "See cmake-configure.log." >&2
-
-  {
-    echo
-    echo "cmake_configure_status=$CMAKE_STATUS"
-  } >> "$OUT/input-info.txt"
-
-  exit 4
-fi
-
-log "CMake configuration completed."
-
-log "Building 3dstool..."
-
-set +e
-
-cmake \
-  --build "$BUILD_DIR" \
-  --config Release \
-  --parallel 2 \
-  > "$OUT/cmake-build.log" 2>&1
-
-BUILD_STATUS=$?
-
-set -e
-
-if [[ $BUILD_STATUS -ne 0 ]]; then
-  echo "ERROR: 3dstool compilation failed." >&2
-  echo "See cmake-build.log." >&2
-
-  {
-    echo
-    echo "cmake_build_status=$BUILD_STATUS"
-  } >> "$OUT/input-info.txt"
-
-  exit 5
-fi
-
-log "Compilation finished."
-
 # ------------------------------------------------------------
-# Find produced 3dstool binary
+# Verify 3dstool
 # ------------------------------------------------------------
 
-log "Searching for 3dstool binary..."
-
-THREEDSTOOL=""
-
-while IFS= read -r candidate; do
-  if [[ -x "$candidate" ]]; then
-    THREEDSTOOL="$candidate"
-    break
-  fi
-done < <(
-  find "$BUILD_DIR" \
-    -type f \
-    \( -name "3dstool" -o -name "3dstool.exe" \) \
-    -print
-)
-
-if [[ -z "$THREEDSTOOL" ]]; then
-  echo "ERROR: 3dstool binary was not produced." >&2
-  echo >&2
-  echo "Files found inside build directory:" >&2
-
-  find "$BUILD_DIR" -maxdepth 5 -type f -print \
-    | sort >&2 || true
-
-  {
-    echo
-    echo "binary_found=no"
-    echo "cmake_build_status=$BUILD_STATUS"
-  } >> "$OUT/input-info.txt"
-
+if [[ ! -x "$THREEDSTOOL" ]]; then
+  echo "ERROR: 3dstool binary is missing or not executable." >&2
   exit 6
 fi
 
 log "3dstool found:"
 log "$THREEDSTOOL"
-
-{
-  echo
-  echo "binary_found=yes"
-  echo "binary_path=$THREEDSTOOL"
-} >> "$OUT/input-info.txt"
-
-# ------------------------------------------------------------
-# Test 3dstool
-# ------------------------------------------------------------
-
-log "Testing 3dstool..."
 
 set +e
 
@@ -196,7 +124,7 @@ set -e
 echo "3dstool_help_status=$HELP_STATUS" >> "$OUT/input-info.txt"
 
 if [[ $HELP_STATUS -ne 0 ]]; then
-  echo "WARNING: 3dstool --help returned status $HELP_STATUS"
+  echo "WARNING: 3dstool --help returned $HELP_STATUS"
 fi
 
 # ------------------------------------------------------------
@@ -222,15 +150,10 @@ echo "cci_extract_status=$CCI_STATUS" >> "$OUT/input-info.txt"
 
 if [[ $CCI_STATUS -ne 0 || ! -s "$OUT/game.cxi" ]]; then
 
-  echo "CCI partition extraction failed." >&2
+  echo "ERROR: CCI partition extraction failed." >&2
   echo "See cci-extract.log." >&2
 
-  if [[ -s "$OUT/cci-extract.log" ]]; then
-    echo
-    echo "----- 3dstool CCI output -----"
-    cat "$OUT/cci-extract.log"
-    echo "------------------------------"
-  fi
+  cat "$OUT/cci-extract.log" || true
 
   exit 7
 fi
@@ -270,15 +193,10 @@ echo "cxi_extract_status=$CXI_STATUS" >> "$OUT/input-info.txt"
 
 if [[ $CXI_STATUS -ne 0 || ! -s "$OUT/romfs.bin" ]]; then
 
-  echo "CXI extraction did not produce romfs.bin." >&2
+  echo "ERROR: CXI extraction did not produce romfs.bin." >&2
   echo "See cxi-extract.log." >&2
 
-  if [[ -s "$OUT/cxi-extract.log" ]]; then
-    echo
-    echo "----- 3dstool CXI output -----"
-    cat "$OUT/cxi-extract.log"
-    echo "------------------------------"
-  fi
+  cat "$OUT/cxi-extract.log" || true
 
   exit 8
 fi
@@ -286,7 +204,7 @@ fi
 log "CXI extracted successfully."
 
 # ------------------------------------------------------------
-# Extract RomFS directory
+# Extract RomFS
 # ------------------------------------------------------------
 
 log "Extracting RomFS directory..."
@@ -307,15 +225,10 @@ echo "romfs_extract_status=$ROMFS_STATUS" >> "$OUT/input-info.txt"
 
 if [[ $ROMFS_STATUS -ne 0 ]]; then
 
-  echo "RomFS extraction failed." >&2
+  echo "ERROR: RomFS extraction failed." >&2
   echo "See romfs-extract.log." >&2
 
-  if [[ -s "$OUT/romfs-extract.log" ]]; then
-    echo
-    echo "----- 3dstool RomFS output -----"
-    cat "$OUT/romfs-extract.log"
-    echo "--------------------------------"
-  fi
+  cat "$OUT/romfs-extract.log" || true
 
   exit 9
 fi
