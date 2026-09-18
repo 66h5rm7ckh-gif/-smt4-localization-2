@@ -114,7 +114,7 @@ jobs:
         run: |
           set -e
           sudo apt-get update
-          sudo apt-get install -y mono-mcs
+          sudo apt-get install -y mono-devel
           git clone --depth 1 https://github.com/TraduSquare/Moonbeam.git work/Moonbeam
           cd work/Moonbeam/Moonbeam
           # Moonbeam uses C# tuple deconstruction, which the Ubuntu Mono compiler rejects.
