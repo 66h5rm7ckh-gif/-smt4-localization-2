@@ -146,7 +146,7 @@ jobs:
                   y = (local // cols) * cell_h + max(0, (cell_h-th)//2) - box[1]
                   draw.text((x,y), ch, font=font, fill=(255,255,255,255))
                   glyph_w[str(idx)] = {"left": 0, "glyph": min(cell_w, max(1, tw)), "char": min(cell_w, max(1, tw+1))}
-              img.save(root / f"rodin_12_12_sheet{sheet_no}.png")
+              img.save(root / f"rodin_12_12_ru_sheet{sheet_no}.png")
 
           # If no missing glyphs, preserve original manifest/sheets.
           m["glyphMap"] = glyph_map
