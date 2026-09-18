@@ -156,10 +156,11 @@ jobs:
           root = tree.getroot()
           replacements = {
               5: [("Who are you...?", "Кто ты...?"), ("State your name!", "Назови своё имя!")],
-              7: [("Hahaha. He has spoken!", "Ха-ха-ха! Он заговорил!"), ("Your life is now irrevocably changed.", "Твоя жизнь отныне навсегда изменилась.")],
+              7: [("Hahaha.", "Ха-ха-ха!"), ("He has spoken!", "Он заговорил!"), ("Your life is now irrevocably changed.", "Твоя жизнь отныне навсегда изменилась.")],
               8: [("The choices you make will no longer", "Твой выбор больше не будет"), ("bear only on you.", "касаться только тебя.")],
               9: [("What you do... will create a world...", "Твои поступки... создадут новый мир...")],
           }
+          found = set()
           for entry in root.findall("entry"):
               eid = int(entry.attrib["id"])
               if eid not in replacements:
@@ -167,10 +168,18 @@ jobs:
               target = entry.find("target")
               text = target.text or ""
               for src, dst in replacements[eid]:
-                  if src not in text:
-                      raise SystemExit(f"Entry {eid}: source fragment not found: {src!r}")
-                  text = text.replace(src, dst)
+                  if src in text:
+                      text = text.replace(src, dst)
+                      found.add((eid, src))
               target.text = text
+          required = {(eid, src) for eid, pairs in replacements.items() for src, _ in pairs}
+          missing = required - found
+          if missing:
+              for eid, src in sorted(missing):
+                  entry = root.find(f"./entry[@id='{eid}']")
+                  target = entry.find("target") if entry is not None else None
+                  print(f"Entry {eid} target: {(target.text if target is not None else '')!r}")
+              raise SystemExit("Sample source fragments missing: " + repr(sorted(missing)))
           tree.write(p, encoding="utf-8", xml_declaration=True)
           PY
           cp work/Moonbeam/dic.txt work/Moonbeam/dic-russian.txt
