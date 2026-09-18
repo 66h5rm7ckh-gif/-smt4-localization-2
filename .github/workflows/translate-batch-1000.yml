@@ -1,7 +1,9 @@
 name: Translate batch 1024-2023
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/translate-batch-1000.yml"
 
 permissions:
   contents: write
