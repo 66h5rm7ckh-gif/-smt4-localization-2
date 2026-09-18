@@ -1,0 +1,171 @@
+name: Analyze SMT IV BCFNT fonts
+
+on:
+  push:
+    paths:
+      - ".github/workflows/analyze-bcfnt.yml"
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "GitHub Actions run ID containing smt4-romfs"
+        required: true
+        default: "35303156446"
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download extracted ROMFS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id || '35303156446' }}
+        run: |
+          mkdir -p work
+          gh run download "$SOURCE_RUN_ID" -n smt4-romfs -D work/romfs-artifact
+          find work/romfs-artifact -type f | head
+
+      - name: Analyze BCFNT files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+
+          root = Path("work/romfs-artifact")
+          files = sorted(root.rglob("*.bcfnt"))
+          out = Path("research/smt4-bcfnt-analysis.txt")
+          out.parent.mkdir(parents=True, exist_ok=True)
+
+          def u16(b,o,e):
+              return struct.unpack_from(e+"H",b,o)[0]
+          def u32(b,o,e):
+              return struct.unpack_from(e+"I",b,o)[0]
+
+          lines = [
+              "SMT IV BCFNT ANALYSIS",
+              "",
+              f"BCFNT files found: {len(files)}",
+              ""
+          ]
+
+          for p in files:
+              rel = p.relative_to(root).as_posix()
+              data = p.read_bytes()
+              lines.append("=" * 72)
+              lines.append(rel)
+              lines.append(f"size={len(data)} bytes")
+              if len(data) < 0x34 or data[:4] not in (b"CFNT", b"CFNU"):
+                  lines.append("STATUS: unsupported/invalid CFNT header")
+                  lines.append("")
+                  continue
+
+              bom = u16(data,4,"<")
+              endian = "<" if bom == 0xFEFF else ">" if bom == 0xFFFE else None
+              if endian is None:
+                  lines.append(f"STATUS: unknown BOM 0x{bom:04X}")
+                  lines.append("")
+                  continue
+
+              version = u32(data,8,endian)
+              blocks = u32(data,0x10,endian)
+              finf = 0x14
+              if data[finf:finf+4] != b"FINF":
+                  lines.append("STATUS: FINF not found at expected offset")
+                  lines.append("")
+                  continue
+
+              enc = data[finf+0x0F]
+              height = data[finf+0x1C]
+              width = data[finf+0x1D]
+              ascent = data[finf+0x1E]
+              tglp_off = u32(data,finf+0x10,endian)
+              cwdh_off = u32(data,finf+0x14,endian)
+              cmap_off = u32(data,finf+0x18,endian)
+
+              lines.append(f"magic={data[:4].decode('ascii',errors='replace')} endian={'LE' if endian=='<' else 'BE'} version=0x{version:08X} blocks={blocks}")
+              lines.append(f"font_height={height} font_width={width} ascent={ascent} encoding={enc}")
+              lines.append(f"TGLP=0x{tglp_off:X} CWDH=0x{cwdh_off:X} CMAP=0x{cmap_off:X}")
+
+              if tglp_off and tglp_off+0x20 <= len(data) and data[tglp_off:tglp_off+4] == b"TGLP":
+                  cell_w = data[tglp_off+8]
+                  cell_h = data[tglp_off+9]
+                  baseline = data[tglp_off+10]
+                  max_w = data[tglp_off+11]
+                  sheets = u16(data,tglp_off+0x10,endian)
+                  fmt = u16(data,tglp_off+0x12,endian)
+                  cols = u16(data,tglp_off+0x14,endian)
+                  rows = u16(data,tglp_off+0x16,endian)
+                  sw = u16(data,tglp_off+0x18,endian)
+                  sh = u16(data,tglp_off+0x1A,endian)
+                  lines.append(f"TGLP cell={cell_w}x{cell_h} baseline={baseline} max_char_width={max_w} sheets={sheets} format={fmt} grid={cols}x{rows} sheet={sw}x{sh}")
+
+              if cmap_off and cmap_off+0x14 <= len(data) and data[cmap_off:cmap_off+4] == b"CMAP":
+                  pos = cmap_off
+                  cmap_no = 0
+                  while pos and pos+0x14 <= len(data) and cmap_no < 64:
+                      if data[pos:pos+4] != b"CMAP":
+                          break
+                      size = u32(data,pos+4,endian)
+                      begin = u16(data,pos+8,endian)
+                      end = u16(data,pos+10,endian)
+                      method = u16(data,pos+12,endian)
+                      nxt = u32(data,pos+0x10,endian)
+                      lines.append(f"CMAP[{cmap_no}] range=U+{begin:04X}-U+{end:04X} method={method} size={size} next=0x{nxt:X}")
+                      if method == 0:
+                          if pos+0x16 <= len(data):
+                              idx = u16(data,pos+0x14,endian)
+                              lines.append(f"  direct_index_offset={idx}")
+                      elif method == 1:
+                          count = end-begin+1
+                          vals=[]
+                          base=pos+0x14
+                          for i in range(min(count,512)):
+                              if base+2*i+2 > len(data): break
+                              vals.append(u16(data,base+2*i,endian))
+                          if vals:
+                              lines.append(f"  table_entries={count} first={vals[:16]}")
+                      elif method == 2:
+                          npos=pos+0x14
+                          count=0
+                          samples=[]
+                          while npos+4 <= len(data) and npos < pos+size:
+                              c=u16(data,npos,endian); idx=u16(data,npos+2,endian)
+                              samples.append((c,idx)); count+=1; npos+=4
+                              if count >= 32: break
+                          lines.append(f"  scan_entries_at_least={count} samples={samples[:16]}")
+                      cmap_no += 1
+                      if not nxt or nxt == pos: break
+                      pos = nxt
+
+              # Scan UTF-16LE/BE text-looking codepoints in CMAP-ish area as a secondary clue.
+              found = []
+              for cp in range(0x0400,0x0500):
+                  needle = struct.pack(endian+"H", cp)
+                  if needle in data:
+                      found.append(cp)
+              lines.append("cyrillic_codepoints_present_as_raw_u16=" + (",".join(f"U+{x:04X}" for x in found[:64]) if found else "none"))
+              lines.append("")
+
+          out.write_text("\n".join(lines)+"\n", encoding="utf-8")
+          print(out.read_text(encoding="utf-8")[:12000])
+          PY
+
+      - name: Commit analysis report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/smt4-bcfnt-analysis.txt
+          git diff --cached --quiet || git commit -m "research: analyze SMT IV BCFNT fonts"
+          git push
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-bcfnt-analysis
+          path: research/smt4-bcfnt-analysis.txt
+          retention-days: 14
