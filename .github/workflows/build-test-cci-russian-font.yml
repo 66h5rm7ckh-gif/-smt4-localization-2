@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - ".github/workflows/build-test-cci-russian-font.yml"
+  workflow_run:
+    workflows: ["Analyze and build Russian Rodin 12x12 font"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       release_tag:
@@ -77,6 +80,120 @@ jobs:
           test -n "$TARGET"
           cp work/font/rodin_12_12_ru.bcfnt "$TARGET"
           stat -c '%s bytes' "$TARGET"
+
+      - name: Install MBM translator
+        run: |
+          set -e
+          sudo apt-get update
+          sudo apt-get install -y mono-devel
+          git clone --depth 1 https://github.com/TraduSquare/Moonbeam.git work/Moonbeam
+          xbuild /p:Configuration=Release work/Moonbeam/Moonbeam.sln
+          MOONBEAM="$(find work/Moonbeam -type f -name 'Moonbeam.exe' -path '*/bin/Release/*' -print -quit)"
+          test -n "$MOONBEAM"
+          cp "$MOONBEAM" work/Moonbeam/Moonbeam.exe
+
+      - name: Inject first Russian dialogue sample
+        run: |
+          set -e
+          MBM="work/extracted/romfs/event/e001/e001.mbm"
+          test -s "$MBM"
+          mono work/Moonbeam/Moonbeam.exe -e "$MBM"
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          p = Path("work/extracted/romfs/event/e001/e001.mbm.xml")
+          tree = ET.parse(p)
+          root = tree.getroot()
+          replacements = {
+              5: [("Who are you...?", "Кто ты...?"), ("State your name!", "Назови своё имя!")],
+              7: [("Hahaha. He has spoken!", "Ха-ха-ха! Он заговорил!"), ("Your life is now irrevocably changed.", "Твоя жизнь отныне навсегда изменилась.")],
+              8: [("The choices you make will no longer", "Твой выбор больше не будет"), ("bear only on you.", "касаться только тебя.")],
+              9: [("What you do... will create a world...", "Твои поступки... создадут новый мир...")],
+          }
+          for entry in root.findall("entry"):
+              eid = int(entry.attrib["id"])
+              if eid not in replacements:
+                  continue
+              target = entry.find("target")
+              text = target.text or ""
+              for src, dst in replacements[eid]:
+                  if src not in text:
+                      raise SystemExit(f"Entry {eid}: source fragment not found: {src!r}")
+                  text = text.replace(src, dst)
+              target.text = text
+          tree.write(p, encoding="utf-8", xml_declaration=True)
+          PY
+          cp work/Moonbeam/dic.txt work/Moonbeam/dic-russian.txt
+          cat >> work/Moonbeam/dic-russian.txt <<'EOF'
+          Аあ
+          Бぃ
+          Вい
+          Гぅ
+          Дう
+          Еぇ
+          Ёえ
+          Жぉ
+          Зお
+          Иか
+          Йが
+          Кき
+          Лぎ
+          Мく
+          Нぐ
+          Оけ
+          Пげ
+          Рこ
+          Сご
+          Тさ
+          Уざ
+          Фし
+          Хじ
+          Цす
+          Чず
+          Шせ
+          Щぜ
+          Ъそ
+          Ыぞ
+          Ьた
+          Эだ
+          Юち
+          Яぢ
+          аっ
+          бつ
+          вづ
+          гて
+          дで
+          еと
+          жど
+          зな
+          иに
+          йぬ
+          кね
+          лの
+          мは
+          нば
+          оぱ
+          пひ
+          рび
+          сぴ
+          тふ
+          уぶ
+          фぷ
+          хへ
+          цべ
+          чぺ
+          шほ
+          щぼ
+          ъぽ
+          ыま
+          ьみ
+          эむ
+          юめ
+          яも
+          EOF
+          cp work/Moonbeam/dic-russian.txt work/Moonbeam/dic.txt
+          mono work/Moonbeam/Moonbeam.exe -i "$MBM.xml"
+          mv "$MBM.xml.mbm" "$MBM"
 
       - name: Build RomFS
         run: |
