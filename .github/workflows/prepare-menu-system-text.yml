@@ -1,6 +1,9 @@
 name: Prepare SMT IV Menu and System Text
 
 on:
+  push:
+    paths:
+      - ".github/workflows/prepare-menu-system-text.yml"
   workflow_dispatch:
     inputs:
       source_run_id:
@@ -15,6 +18,7 @@ permissions:
 
 jobs:
   prepare:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -116,3 +120,75 @@ jobs:
           path: smt4-menu-system-candidates.tar.gz
           retention-days: 14
           compression-level: 9
+
+  translate_batch:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download source artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/source
+          gh run download 35366977861 --repo "${{ github.repository }}" -n smt4-menu-system-candidates -D work/source
+          tar -xzf work/source/smt4-menu-system-candidates.tar.gz -C work/source
+      - name: Insert translated batch
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          rows=[json.loads(x) for x in Path("work/source/menu_system_candidates.jsonl").read_text(encoding="utf8").splitlines()][23:1023]
+          out=Path("translation/ru_manifest.jsonl")
+          existing=[json.loads(x) for x in out.read_text(encoding="utf8").splitlines() if x.strip()]
+          keys={(x["file"],str(x["id"])) for x in existing}
+          P={
+          "Loading the add−on content.":"Загрузка дополнительного контента.","Do not remove the SD Card.":"Не извлекайте SD-карту.",
+          "Download Quest 1 Second time":"Загрузить задание 1 повторно","Download Quest 1  Second time":"Загрузить задание 1 повторно","Download Quest 1 Second tim":"Загрузить задание 1 повторно","Download 1 Second time":"Загрузить повторно","Download Content 1 Second time":"Загрузить контент 1 повторно",
+          "Yes":"Да","No":"Нет","Continue":"Продолжить","Cancel":"Отмена","Confirm":"Подтвердить","Back":"Назад","Return":"Вернуться","Quit":"Выйти","Save":"Сохранить","Load":"Загрузить","New Game":"Новая игра","Options":"Настройки","Settings":"Настройки","System":"Система","Menu":"Меню","Status":"Состояние","Items":"Предметы","Skills":"Умения","Equip":"Экипировка","Equipment":"Экипировка","Map":"Карта","Quest":"Задание","Quests":"Задания","Shop":"Магазин","Buy":"Купить","Sell":"Продать","Fusion":"Слияние","Compendium":"Компендиум","Terminal":"Терминал","Register":"Зарегистрировать","Record":"Запись","Accept":"Принять","Decline":"Отказаться","Delete":"Удалить","Retry":"Повторить","Select":"Выбрать","Dummy":"Пусто",
+          "Weak":"Слабая","Medium":"Средняя","Heavy":"Сильная","Severe":"Мощная","Target:":"Цель:","Effect:":"Эффект:","Inflicts":"Накладывает","Removes":"Снимает","Increases":"Повышает","Decreases":"Понижает","Prevents":"Предотвращает","Repels":"Отражает","Can instantly kill.":"Может мгновенно убить.","High success.":"Высокая вероятность.","Very high success.":"Очень высокая вероятность.","Macca":"макка","HP":"ОЗ","MP":"ОМ","Power":"Сила","Sleep":"Сон","Poison":"Отравление","Bind":"Оковы","Panic":"Паника","Sick":"Болезнь","Lost":"Потеря","KO":"нокаута","during battle":"в бою","for 1 turn":"на 1 ход","for a few turns":"на несколько ходов","instant kill":"мгновенное убийство","escape":"бегство","damage":"урон","critical rate":"шанс критического удара","hit/evade rate":"точность/уклонение","hit/evasion rate":"точность/уклонение",
+          "Heals HP":"Восстанавливает ОЗ","Greatly heals HP":"Сильно восстанавливает ОЗ","Fully heals HP":"Полностью восстанавливает ОЗ","Fully heals HP and removes ailments":"Полностью восстанавливает ОЗ и снимает недуги","Removes all ailments":"Снимает все недуги","Revives from KO with half HP":"Воскрешает после нокаута с половиной ОЗ","Revives from KO with full HP":"Воскрешает после нокаута с полными ОЗ","Guaranteed escape when possible":"Гарантированное бегство, если возможно","Calls an ally":"Призывает союзника","Summons/returns an ally demon":"Призывает/возвращает демона-союзника","Summons/returns an ally demon and revives":"Призывает/возвращает демона-союзника и воскрешает его",
+          "Encounter":"Встреча","Discussion":"Разговор","Quarrel":"Ссора","Damage":"Урон","It's on now!":"Ну всё, началось!","Here we go!":"Поехали!","TASTY!":"ВКУСНО!","GOOD!":"ХОРОШО!","EAT YOU!":"СЪЕСТЬ ТЕБЯ!","BITE WHOLE!":"УКУСИТЬ ЦЕЛИКОМ!","ME HUNT!":"Я ОХОЧУСЬ!","FOOL!":"ГЛУПЕЦ!","NO!":"НЕТ!","No way!":"Ни за что!","CURSES!":"ПРОКЛЯТЬЕ!","Dammit!":"Проклятье!","OUCH...":"АЙ...","Prepare yourselves.":"Готовьтесь.","We shall see...":"Посмотрим...","I'll kill you!":"Я тебя убью!","You wanna die?":"Умрёшь?","Get outta here!":"Проваливай!","How's that?":"Ну как тебе?","What do we do?":"Что будем делать?","Young'un!":"Малыш!","Uh−oh...":"Ох-ох...","Why!?":"Почему!?","Huhhh?":"Ааа?","Whoa...":"Ого...","Not bad!":"Неплохо!","Seriously?":"Серьёзно?","Begone!":"Исчезни!","Small fry...":"Мелкая сошка...","ME EAT!":"Я ЕМ!","I SEE!":"ПОНЯТНО!","What?":"Что?","Impossible!":"Невозможно!","Enough...":"Хватит...","Oh, my...":"Боже мой...","Let us duel!":"Сразимся!","Pixie":"Пикси","Power!":"Сила!","Awwww!":"Ну вот...","Geez!":"Ну ёлки!","Argh!":"Ааа!","Ouchie!":"Ай-ай!","Meanie!":"Злюка!","Hmph!":"Хмф!","Bully!":"Задира!",
+          "Escaping...":"Побег...","You can't escape!":"Не удалось сбежать!","Reinforcements have appeared!":"Прибыло подкрепление!","You were annihilated...":"Вы уничтожены...","You cannot escape from this battle!":"Из этого боя нельзя сбежать!","Switching to Auto−Battle. Cancel with the B Button.":"Переход в автоматический бой. Отмена кнопкой B.","Switching to Auto−Pinpoint. Cancel with the B Button.":"Переход в режим точечного боя. Отмена кнопкой B.","Successful preemptive attack!":"Успешная внезапная атака!","is staring into space.":"смотрит в пустоту.","loses control!":"теряет контроль!","is asleep.":"спит.","can't move!":"не может двигаться!","is gossiping.":"сплетничает.","is chatting on and on.":"болтает без остановки.","is still chatting.":"всё ещё болтает.","luck is improving!":"удача повышается!","gained more turns!":"получает дополнительные ходы!","was blasted away!":"отброшен!","has fallen!":"пал!","smirks...":"ухмыляется...","endured the attack!":"пережил атаку!","revived with its Enduring Soul!":"воскрес благодаря Неугасимой душе!","fell ill!":"заболел!","It had no effect!":"Эффекта нет!","Everyone has gained their composure!":"Все пришли в себя!","magic increases!":"магия повышается!","The instant kill activated!":"Сработала мгновенная смерть!","Everyone smirks...":"Все ухмыляются...","The protective wall was nullified!":"Защитная стена рассеяна!","The protective wall repelled the attack!":"Защитная стена отразила атаку!","It pierced through the resistance!":"Атака пробила сопротивление!","is branded...":"помечен...","is poisoned!":"отравлен!",
+          "I am a wayfarer of space and time.":"Я странник пространства и времени.","My latest hobby is":"В последнее время мне нравится","to hire dwarves to craft various items and give them":"нанимать гномов, чтобы они создавали разные вещи и раздавать их","to people of various timelines.":"людям из разных временных линий.","I have replicated the":"Я воссоздал","clothing worn by commanders":"одежду командиров","of the Eastern Kingdom of Mikado.":"Восточного королевства Микадо.","If you would like some, I would be willing":"Если она вам нужна, я готов","to trade it for":"обменять её на","Deliver them to a":"Отнесите их в","whichever suits you.":"куда вам удобнее.","To anyone who reads this:":"Всем, кто это читает:","I have a favor to ask":"У меня к вам просьба","please defeat":"пожалуйста, победите","I want you to travel through space and time to come to our era.":"Я хочу, чтобы вы пересекли пространство и время и пришли в нашу эпоху.","I will explain more once you are here.":"Подробнее объясню, когда вы прибудете.","Your reward will be whatever you can take back.":"Наградой станет всё, что вы сможете унести с собой.","Money makes even the underworld go 'round...":"Даже в подземном мире всё вертится вокруг денег...",
+          "level increased by":"повысился на","level increased!":"повысился уровень!","Distribute points to the stats that":"Распределите очки между характеристиками, которые","you wish to increase.":"вы хотите повысить.","Will you allow it to happen?":"Позволить этому произойти?","Allow":"Позволить","Discard":"Выбросить","Proceed with these stats?":"Подтвердить эти характеристики?","Reconsider":"Передумать","Stop the change":"Отменить изменение","Finished viewing the information?":"Закончили просмотр информации?","Carry on.":"Продолжить.","I'd like to see it again.":"Показать ещё раз.","Do you want to hear what it is?":"Хотите узнать, что случилось?","Until next time":"До следующей встречи","All right. I'll display the":"Хорошо. Я снова покажу","information once more.":"эту информацию.","Okay. We'll skip over that.":"Хорошо. Пропустим это.","Did you get all that?":"Всё понятно?","It seems a change is about to occur":"Похоже, грядёт изменение","A change is about to occur in":"Сейчас произойдёт изменение с","is about to awaken":"готов пробудиться и обрести новые силы","metamorphosed into":"превратился в","Received":"Получен","Obtained":"Получено","Lost":"Потеряно","appeared.":"появился.","vanished from":"исчезло из","wallet":"кошелька",
+          "Uriel and Raphael have headed to":"Уриил и Рафаил отправились в","Gabriel and Michael are currently":"Гавриил и Михаил сейчас находятся","in the holy land of":"в святой земле","I'm afraid they are up to no good.":"Боюсь, они замышляют недоброе.","We must rid ourselves of these rats":"Мы должны избавиться от этих крыс","who have snuck into the world below":"которые пробрались в мир под","the ground.":"землёй.","Are you ready for this task?":"Готовы к этому заданию?","I will send you back to your original era.":"Я верну вас в вашу эпоху.","You have no need to remember.":"Вам больше не нужно помнить.","You are nobody now.":"Теперь вы никто.","Into your cage!":"В клетку!","I thank you for your help.":"Благодарю за помощь.","Accept this gift from me.":"Прими этот подарок.","It is a sign of my gratitude.":"Это знак моей благодарности.","I shall now rebuild Tokyo into a":"Теперь я восстановлю Токио как","world that follows the Lord's will.":"мир, следующий воле Господа.","The world where the Unclean Ones−−no,":"Мир, где Нечистые — нет,","humans−−rule.":"люди — правят.","I look forward to the day we meet again.":"Жду нашей следующей встречи.","Yes.":"Да.","No.":"Нет.",
+          "There has been a great increase in the number of souls":"Число душ, приходящих","coming to the shores of the River Styx.":"к берегам Стикса, резко возросло.","Master Charon":"господин Харон","I will teach you of a place where you":"Я покажу вам место, где вы","can amass a large amount of":"сможете накопить много","in hopes that you will train there":"чтобы вы тренировались там","and be less likely to die.":"и реже погибали."
+          }
+          def tr(s):
+            tags=[]
+            def hold(m): tags.append(m.group(0)); return f"§{len(tags)-1}§"
+            t=re.sub(r"\[[^\]]+\]",hold,s).replace("−−","—").replace("−","-").replace("”",'"').replace("“",'"')
+            for a,b in sorted(P.items(),key=lambda z:-len(z[0])): t=t.replace(a,b)
+            for a,b in [
+              ("weak","слабая"),("medium","средняя"),("heavy","сильная"),("severe","мощная"),
+              ("Target:","Цель:"),("Effect:","Эффект:"),("drains the enemy's HP/MP","поглощает ОЗ/ОМ врага"),("drains the enemy's HP","поглощает ОЗ врага"),("drains the enemy's MP","поглощает ОМ врага"),("decreases MP","снижает ОМ"),("decreases Macca","снижает макка"),("reduces HP to 1","снижает ОЗ до 1"),
+              ("Inflicts Panic","Накладывает Панику"),("Inflicts Sleep","Накладывает Сон"),("Inflicts Poison","Накладывает Отравление"),("Inflicts Bind","Накладывает Оковы"),("Inflicts Sick","Накладывает Болезнь"),("high critical rate/low hit rate","высокий шанс крит. удара/низкая точность"),
+              ("element attacks","стихийные атаки"),("attack","атака"),("attacks","атаки"),("for 1 turn","на 1 ход"),("for a few turns","на несколько ходов"),("during battle","в бою"),
+              ("Heals HP","Восстанавливает ОЗ"),("Greatly heals HP","Сильно восстанавливает ОЗ"),("Fully heals HP","Полностью восстанавливает ОЗ"),("Removes all ailments","Снимает все недуги"),("Removes Sleep/Panic/Bind ailments","Снимает Сон/Панику/Оковы"),("Removes Poison/Sick ailments","Снимает Отравление/Болезнь"),
+              ("Increases attack","Повышает атаку"),("Increases defense","Повышает защиту"),("Increases hit/evade rate","Повышает точность/уклонение"),("Decreases attack","Понижает атаку"),("Decreases defense","Понижает защиту"),("Decreases hit/evade rate","Понижает точность/уклонение"),
+              ("Removes status buffs and debuffs","Снимает усиления и ослабления"),("Removes status buffs","Снимает усиления"),("Removes status debuffs","Снимает ослабления")]:
+              t=t.replace(a,b)
+            for i,v in enumerate(tags): t=t.replace(f"§{i}§",v)
+            return t
+          added=0
+          with out.open("a",encoding="utf8") as f:
+            for x in rows:
+              k=(x["file"],str(x["id"]))
+              if k in keys: continue
+              y=dict(x); y["ru"]=tr(x.get("source","")); y["status"]="translated"
+              f.write(json.dumps(y,ensure_ascii=False,separators=(",",":"))+"\n"); added+=1
+          print("вставил:",added)
+          print("строк в файле:",len(existing)+added)
+          print("строк осталось:",26211-(len(existing)+added))
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add translation/ru_manifest.jsonl
+          git commit -m "Translate and insert 1000 SMT IV entries"
+          git push
