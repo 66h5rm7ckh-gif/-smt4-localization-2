@@ -14,6 +14,10 @@ log() {
 log "Input: $CCI"
 log "Output: $OUT"
 
+# ------------------------------------------------------------
+# Check input
+# ------------------------------------------------------------
+
 if [[ ! -f "$CCI" ]]; then
   echo "ERROR: CCI file not found: $CCI" >&2
   exit 2
@@ -34,40 +38,170 @@ SHA256=$(sha256sum "$CCI" | awk '{print $1}')
 log "Size: $SIZE bytes"
 log "SHA256: $SHA256"
 
-if ! command -v cmake >/dev/null 2>&1; then
-  echo "ERROR: cmake is required" >&2
-  exit 3
-fi
+# ------------------------------------------------------------
+# Check build dependencies
+# ------------------------------------------------------------
 
-if [[ ! -x "$TOOL_DIR/build/3dstool" ]]; then
-  log "Building 3dstool..."
+for cmd in cmake make git; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "ERROR: required command not found: $cmd" >&2
+    exit 3
+  fi
+done
 
-  rm -rf "$TOOL_DIR/src"
+# ------------------------------------------------------------
+# Build 3dstool
+# ------------------------------------------------------------
 
-  git clone --depth 1 \
+SOURCE_DIR="$TOOL_DIR/src"
+BUILD_DIR="$TOOL_DIR/build"
+
+if [[ ! -d "$SOURCE_DIR/.git" ]]; then
+  log "Downloading 3dstool source..."
+
+  rm -rf "$SOURCE_DIR"
+
+  git clone \
+    --depth 1 \
     https://github.com/dnasdw/3dstool.git \
-    "$TOOL_DIR/src"
-
-  cmake \
-    -S "$TOOL_DIR/src" \
-    -B "$TOOL_DIR/build" \
-    -DUSE_DEP=OFF \
-    -DBUILD64=ON
-
-  cmake \
-    --build "$TOOL_DIR/build" \
-    --parallel 2
+    "$SOURCE_DIR"
+else
+  log "3dstool source already exists."
 fi
 
-THREEDSTOOL="$TOOL_DIR/build/3dstool"
+rm -rf "$BUILD_DIR"
+mkdir -p "$BUILD_DIR"
 
-if [[ ! -x "$THREEDSTOOL" ]]; then
-  echo "ERROR: 3dstool binary was not produced" >&2
+log "Configuring 3dstool with CMake..."
+
+set +e
+
+cmake \
+  -S "$SOURCE_DIR" \
+  -B "$BUILD_DIR" \
+  -DUSE_DEP=OFF \
+  -DBUILD64=ON \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+  > "$OUT/cmake-configure.log" 2>&1
+
+CMAKE_STATUS=$?
+
+set -e
+
+if [[ $CMAKE_STATUS -ne 0 ]]; then
+  echo "ERROR: CMake configuration failed." >&2
+  echo "See cmake-configure.log." >&2
+
+  {
+    echo
+    echo "cmake_configure_status=$CMAKE_STATUS"
+  } >> "$OUT/input-info.txt"
+
   exit 4
 fi
 
-"$THREEDSTOOL" --help \
-  > "$OUT/3dstool-help.txt" 2>&1 || true
+log "CMake configuration completed."
+
+log "Building 3dstool..."
+
+set +e
+
+cmake \
+  --build "$BUILD_DIR" \
+  --config Release \
+  --parallel 2 \
+  > "$OUT/cmake-build.log" 2>&1
+
+BUILD_STATUS=$?
+
+set -e
+
+if [[ $BUILD_STATUS -ne 0 ]]; then
+  echo "ERROR: 3dstool compilation failed." >&2
+  echo "See cmake-build.log." >&2
+
+  {
+    echo
+    echo "cmake_build_status=$BUILD_STATUS"
+  } >> "$OUT/input-info.txt"
+
+  exit 5
+fi
+
+log "Compilation finished."
+
+# ------------------------------------------------------------
+# Find produced 3dstool binary
+# ------------------------------------------------------------
+
+log "Searching for 3dstool binary..."
+
+THREEDSTOOL=""
+
+while IFS= read -r candidate; do
+  if [[ -x "$candidate" ]]; then
+    THREEDSTOOL="$candidate"
+    break
+  fi
+done < <(
+  find "$BUILD_DIR" \
+    -type f \
+    \( -name "3dstool" -o -name "3dstool.exe" \) \
+    -print
+)
+
+if [[ -z "$THREEDSTOOL" ]]; then
+  echo "ERROR: 3dstool binary was not produced." >&2
+  echo >&2
+  echo "Files found inside build directory:" >&2
+
+  find "$BUILD_DIR" -maxdepth 5 -type f -print \
+    | sort >&2 || true
+
+  {
+    echo
+    echo "binary_found=no"
+    echo "cmake_build_status=$BUILD_STATUS"
+  } >> "$OUT/input-info.txt"
+
+  exit 6
+fi
+
+log "3dstool found:"
+log "$THREEDSTOOL"
+
+{
+  echo
+  echo "binary_found=yes"
+  echo "binary_path=$THREEDSTOOL"
+} >> "$OUT/input-info.txt"
+
+# ------------------------------------------------------------
+# Test 3dstool
+# ------------------------------------------------------------
+
+log "Testing 3dstool..."
+
+set +e
+
+"$THREEDSTOOL" \
+  --help \
+  > "$OUT/3dstool-help.txt" 2>&1
+
+HELP_STATUS=$?
+
+set -e
+
+echo "3dstool_help_status=$HELP_STATUS" >> "$OUT/input-info.txt"
+
+if [[ $HELP_STATUS -ne 0 ]]; then
+  echo "WARNING: 3dstool --help returned status $HELP_STATUS"
+fi
+
+# ------------------------------------------------------------
+# Extract CCI partition 0
+# ------------------------------------------------------------
 
 log "Extracting CCI partition 0..."
 
@@ -80,36 +214,38 @@ set +e
   --header "$OUT/ncsdheader.bin" \
   > "$OUT/cci-extract.log" 2>&1
 
-STATUS=$?
+CCI_STATUS=$?
 
 set -e
 
-if [[ $STATUS -ne 0 || ! -s "$OUT/game.cxi" ]]; then
+echo "cci_extract_status=$CCI_STATUS" >> "$OUT/input-info.txt"
 
-  {
-    echo "cci_extract_status=$STATUS"
+if [[ $CCI_STATUS -ne 0 || ! -s "$OUT/game.cxi" ]]; then
 
-    if [[ -s "$OUT/game.cxi" ]]; then
-      echo "partition0_present=yes"
-    else
-      echo "partition0_present=no"
-    fi
+  echo "CCI partition extraction failed." >&2
+  echo "See cci-extract.log." >&2
 
-  } >> "$OUT/input-info.txt"
+  if [[ -s "$OUT/cci-extract.log" ]]; then
+    echo
+    echo "----- 3dstool CCI output -----"
+    cat "$OUT/cci-extract.log"
+    echo "------------------------------"
+  fi
 
-  echo "CCI partition extraction failed."
-  echo "See cci-extract.log."
-
-  exit $STATUS
+  exit 7
 fi
 
 {
-  echo "cci_extract_status=0"
+  echo "partition0_present=yes"
   echo "partition0_size=$(stat -c '%s' "$OUT/game.cxi")"
   echo "ncsd_header_size=$(stat -c '%s' "$OUT/ncsdheader.bin")"
 } >> "$OUT/input-info.txt"
 
 log "CCI partition 0 extracted."
+
+# ------------------------------------------------------------
+# Extract CXI
+# ------------------------------------------------------------
 
 log "Extracting CXI components..."
 
@@ -126,19 +262,32 @@ set +e
   --romfs "$OUT/romfs.bin" \
   > "$OUT/cxi-extract.log" 2>&1
 
-STATUS=$?
+CXI_STATUS=$?
 
 set -e
 
-echo "cxi_extract_status=$STATUS" >> "$OUT/input-info.txt"
+echo "cxi_extract_status=$CXI_STATUS" >> "$OUT/input-info.txt"
 
-if [[ $STATUS -ne 0 || ! -s "$OUT/romfs.bin" ]]; then
-  echo "CXI extraction did not produce romfs.bin."
-  echo "See cxi-extract.log."
-  exit $STATUS
+if [[ $CXI_STATUS -ne 0 || ! -s "$OUT/romfs.bin" ]]; then
+
+  echo "CXI extraction did not produce romfs.bin." >&2
+  echo "See cxi-extract.log." >&2
+
+  if [[ -s "$OUT/cxi-extract.log" ]]; then
+    echo
+    echo "----- 3dstool CXI output -----"
+    cat "$OUT/cxi-extract.log"
+    echo "------------------------------"
+  fi
+
+  exit 8
 fi
 
-log "CXI extracted."
+log "CXI extracted successfully."
+
+# ------------------------------------------------------------
+# Extract RomFS directory
+# ------------------------------------------------------------
 
 log "Extracting RomFS directory..."
 
@@ -150,17 +299,32 @@ set +e
   --romfs-dir "$OUT/romfs" \
   > "$OUT/romfs-extract.log" 2>&1
 
-STATUS=$?
+ROMFS_STATUS=$?
 
 set -e
 
-echo "romfs_extract_status=$STATUS" >> "$OUT/input-info.txt"
+echo "romfs_extract_status=$ROMFS_STATUS" >> "$OUT/input-info.txt"
 
-if [[ $STATUS -ne 0 ]]; then
-  echo "RomFS extraction failed."
-  echo "See romfs-extract.log."
-  exit $STATUS
+if [[ $ROMFS_STATUS -ne 0 ]]; then
+
+  echo "RomFS extraction failed." >&2
+  echo "See romfs-extract.log." >&2
+
+  if [[ -s "$OUT/romfs-extract.log" ]]; then
+    echo
+    echo "----- 3dstool RomFS output -----"
+    cat "$OUT/romfs-extract.log"
+    echo "--------------------------------"
+  fi
+
+  exit 9
 fi
+
+log "RomFS extracted successfully."
+
+# ------------------------------------------------------------
+# Generate manifest
+# ------------------------------------------------------------
 
 log "Generating RomFS manifest..."
 
@@ -182,3 +346,5 @@ log "RomFS files: $ROMFS_COUNT"
 log "RomFS size: $ROMFS_SIZE bytes"
 
 log "Extraction complete."
+
+exit 0
