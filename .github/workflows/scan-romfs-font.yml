@@ -1,0 +1,62 @@
+name: Scan SMT IV ROMFS for fonts
+
+on:
+  push:
+    paths:
+      - ".github/workflows/scan-romfs-font.yml"
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "GitHub Actions run ID containing smt4-romfs"
+        required: true
+        default: "35303156446"
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download extracted ROMFS artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id || '35303156446' }}
+        run: |
+          mkdir -p work/romfs
+          gh run download "$SOURCE_RUN_ID" -R "$GITHUB_REPOSITORY" -n smt4-romfs -D work/romfs
+          du -sh work/romfs
+      - name: Scan for font and glyph resources
+        run: |
+          mkdir -p work/font-scan
+          find work/romfs -type f | sort > work/font-scan/all_files.txt
+          {
+            echo "SMT IV FONT / GLYPH SCAN"
+            echo
+            echo "Likely font/glyph paths:"
+            grep -Ei '/(font|fonts|glyph|charset|char|unicode|locale|fontdata)(/|$)|\.(bcfnt|bffnt|ttf|otf|fnt|bfnt|fntbin|bin)$' work/font-scan/all_files.txt || true
+            echo
+            echo "Files containing font-like names:"
+            grep -Ei 'font|glyph|charset|unicode|kanji|sjis|shift.?jis|text' work/font-scan/all_files.txt || true
+            echo
+            echo "File extension counts:"
+            awk -F. 'NF>1 {print tolower($NF)}' work/font-scan/all_files.txt | sort | uniq -c | sort -nr | head -80
+          } > work/font-scan/report.txt
+          cat work/font-scan/report.txt
+      - name: Commit scan report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p research
+          cp work/font-scan/report.txt research/smt4-font-scan.txt
+          git add research/smt4-font-scan.txt
+          git diff --cached --quiet || git commit -m "research: scan SMT IV ROMFS for font resources"
+          git push
+      - name: Upload scan report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-font-scan
+          path: work/font-scan/report.txt
+          retention-days: 14
