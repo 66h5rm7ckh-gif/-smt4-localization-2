@@ -1,0 +1,199 @@
+name: Build Russian Cyrillic fonts for all SMT IV BCFNTs
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "GitHub Actions run ID containing smt4-romfs"
+        required: true
+        default: "35303156446"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download extracted ROMFS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          mkdir -p work
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name smt4-romfs --dir work/romfs
+          find work/romfs/font -maxdepth 1 -type f -name '*.bcfnt' -print | sort
+
+      - name: Install font tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip fonts-dejavu fonts-liberation
+          python3 -m pip install --upgrade pillow pypng
+          git clone --depth 1 https://github.com/ObsidianX/3dstools.git work/3dstools
+
+      - name: Build all six Russian BCFNTs
+        run: |
+          python3 - <<'PY'
+          import json, math, shutil, subprocess
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+
+          ROMFS = Path("work/romfs")
+          OUT = Path("work/russian-fonts")
+          OUT.mkdir(parents=True, exist_ok=True)
+          names = [
+              "demo_font",
+              "gmaru_9_9",
+              "rodin_6_6",
+              "rodin_12_12",
+              "rodin_14_14",
+              "rodin_16_16",
+          ]
+          ru = "ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"
+          ru = "".join(dict.fromkeys(ru))
+
+          ttf_candidates = [
+              "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+              "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
+          ]
+          ttf = next((p for p in ttf_candidates if Path(p).exists()), None)
+          if not ttf:
+              raise SystemExit("No Cyrillic-capable TTF found")
+
+          for name in names:
+              src = ROMFS / "font" / (name + ".bcfnt")
+              if not src.exists():
+                  raise SystemExit(f"Missing source font: {src}")
+
+              d = OUT / name
+              d.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, d / src.name)
+
+              subprocess.run(
+                  ["python3", "work/3dstools/bcfnt.py", "-x", "-y", "-f", src.name],
+                  cwd=d, check=True
+              )
+
+              manifest = json.loads((d / f"{name}_manifest.json").read_text(encoding="utf-8"))
+              gm = manifest["glyphMap"]
+              widths = manifest["glyphWidths"]
+              ti = manifest["textureInfo"]
+              cols = int(ti["sheetInfo"]["cols"])
+              rows = int(ti["sheetInfo"]["rows"])
+              capacity = cols * rows
+              cell_w = int(ti["glyph"]["width"])
+              cell_h = int(ti["glyph"]["height"])
+              sheet_w = int(ti["sheetInfo"]["width"])
+              sheet_h = int(ti["sheetInfo"]["height"])
+              old_count = int(ti["sheetCount"])
+
+              missing = [c for c in ru if c not in gm]
+              max_idx = max((int(k) for k in widths), default=-1)
+
+              # Place new glyphs immediately after the existing glyph table.
+              # If the final original sheet has spare cells, use them; otherwise
+              # append additional sheets. This keeps glyph index == sheet cell index.
+              first_new = max_idx + 1
+              needed_end = first_new + len(missing) - 1
+              required_count = max(old_count, math.ceil((needed_end + 1) / capacity))
+
+              # Copy all original sheets to the output basename expected by bcfnt.py.
+              for i in range(old_count):
+                  shutil.copy2(d / f"{name}_sheet{i}.png", d / f"{name}_ru_sheet{i}.png")
+
+              # Create any additional sheets.
+              for i in range(old_count, required_count):
+                  Image.new("RGBA", (sheet_w, sheet_h), (0, 0, 0, 0)).save(
+                      d / f"{name}_ru_sheet{i}.png"
+                  )
+
+              # Open only sheets that receive new glyphs.
+              touched = {}
+              for n, ch in enumerate(missing):
+                  idx = first_new + n
+                  sheet_no = idx // capacity
+                  local = idx % capacity
+                  p = d / f"{name}_ru_sheet{sheet_no}.png"
+                  if sheet_no not in touched:
+                      touched[sheet_no] = Image.open(p).convert("RGBA")
+                  img = touched[sheet_no]
+                  draw = ImageDraw.Draw(img)
+
+                  # Keep glyphs readable at the actual cell size.
+                  size = max(5, int(cell_h * 0.88))
+                  font = ImageFont.truetype(ttf, size=size)
+                  box = draw.textbbox((0, 0), ch, font=font)
+                  tw, th = box[2] - box[0], box[3] - box[1]
+                  x0 = (local % cols) * cell_w
+                  y0 = (local // cols) * cell_h
+                  x = x0 + max(0, (cell_w - tw) // 2) - box[0]
+                  y = y0 + max(0, (cell_h - th) // 2) - box[1]
+                  draw.text((x, y), ch, font=font, fill=(255, 255, 255, 255))
+
+                  glyph_w = min(cell_w, max(1, tw))
+                  char_w = min(cell_w, max(1, tw + 1))
+                  widths[str(idx)] = {"left": 0, "glyph": glyph_w, "char": char_w}
+                  gm[ch] = idx
+
+              for sheet_no, img in touched.items():
+                  img.save(d / f"{name}_ru_sheet{sheet_no}.png")
+
+              manifest["glyphMap"] = gm
+              manifest["glyphWidths"] = widths
+              manifest["textureInfo"]["sheetCount"] = required_count
+              (d / f"{name}_ru_manifest.json").write_text(
+                  json.dumps(manifest, ensure_ascii=False, indent=2),
+                  encoding="utf-8"
+              )
+
+              subprocess.run(
+                  ["python3", "work/3dstools/bcfnt.py", "-c", "-y", "-f", f"{name}_ru.bcfnt"],
+                  cwd=d, check=True
+              )
+
+              # Re-extract the rebuilt font and verify every Cyrillic codepoint.
+              verify = d / "verify"
+              verify.mkdir()
+              subprocess.run(
+                  ["python3", "../../3dstools/bcfnt.py", "-x", "-y", "-f", f"{name}_ru.bcfnt"],
+                  cwd=verify, check=True
+              )
+              rebuilt = json.loads((verify / f"{name}_ru_manifest.json").read_text(encoding="utf-8"))
+              rebuilt_map = rebuilt["glyphMap"]
+              absent = [c for c in ru if c not in rebuilt_map]
+              if absent:
+                  raise SystemExit(f"{name}: missing Cyrillic after rebuild: {absent}")
+
+              # Structural checks.
+              data = (d / f"{name}_ru.bcfnt").read_bytes()
+              if data[:4] != b"CFNT":
+                  raise SystemExit(f"{name}: invalid CFNT magic")
+              import struct
+              declared = struct.unpack_from("<I", data, 0x0C)[0]
+              if declared != len(data):
+                  raise SystemExit(f"{name}: invalid declared file size")
+
+              print(f"{name}: cell={cell_w}x{cell_h}, old_glyphs={len(widths)-len(missing)}, added={len(missing)}, sheets={required_count}, size={len(data)}")
+
+          print("ALL SIX RUSSIAN FONTS BUILT AND VERIFIED")
+          PY
+
+      - name: Package font replacement set
+        run: |
+          mkdir -p work/font-package/font
+          for f in work/russian-fonts/*/*_ru.bcfnt; do
+            base="$(basename "$f" _ru.bcfnt)"
+            cp "$f" "work/font-package/font/$base.bcfnt"
+          done
+          tar -C work/font-package -czf work/smt4-russian-all-fonts.tar.gz font
+          sha256sum work/smt4-russian-all-fonts.tar.gz
+          ls -lh work/font-package/font work/smt4-russian-all-fonts.tar.gz
+
+      - name: Upload all six Russian fonts
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-russian-all-fonts
+          path: |
+            work/smt4-russian-all-fonts.tar.gz
+            work/russian-fonts/*/*_ru.bcfnt
+          retention-days: 14
