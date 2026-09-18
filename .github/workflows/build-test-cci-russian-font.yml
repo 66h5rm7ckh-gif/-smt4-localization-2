@@ -114,12 +114,13 @@ jobs:
         run: |
           set -e
           sudo apt-get update
-          sudo apt-get install -y mono-devel
+          sudo apt-get install -y mono-mcs
           git clone --depth 1 https://github.com/TraduSquare/Moonbeam.git work/Moonbeam
-          xbuild /p:Configuration=Release work/Moonbeam/Moonbeam.sln
-          MOONBEAM="$(find work/Moonbeam -type f -name 'Moonbeam.exe' -path '*/bin/Release/*' -print -quit)"
-          test -n "$MOONBEAM"
-          cp "$MOONBEAM" work/Moonbeam/Moonbeam.exe
+          cd work/Moonbeam
+          mcs -out:Moonbeam.exe -r:System.Core.dll -r:System.Xml.dll -r:System.Xml.Linq.dll -r:System.Data.dll -r:System.Net.Http.dll MBM/MBM.cs MBM/Program.cs MBM/Properties/AssemblyInfo.cs
+          test -s Moonbeam.exe
+          cp MBM/dic.txt dic.txt
+          ls -lh Moonbeam.exe dic.txt
 
       - name: Inject first Russian dialogue sample
         run: |
@@ -224,32 +225,6 @@ jobs:
           (cd work/Moonbeam && mono Moonbeam.exe -i "../../$MBM.xml")
           mv "$MBM.xml.mbm" "$MBM"
 
-      - name: Build RomFS
-        run: |
-          set -e
-          .3dstool/3dstool -ctf romfs work/romfs-russian.bin --romfs-dir work/extracted/romfs
-          test -s work/romfs-russian.bin
-
-      - name: Build CXI
-        run: |
-          set -e
-          CXI_ARGS=(
-            -ctf cxi work/game-russian.cxi
-            --header work/extracted/ncchheader.bin
-            --exh work/extracted/exheader.bin
-            --exefs work/extracted/exefs.bin
-            --romfs work/romfs-russian.bin
-            --plain work/extracted/plain.bin
-            --not-encrypt
-          )
-          if [ -s work/extracted/logo.bin ]; then
-            CXI_ARGS+=(--logo work/extracted/logo.bin)
-          else
-            echo "No logo region extracted; creating CXI without --logo."
-          fi
-          .3dstool/3dstool "${CXI_ARGS[@]}"
-          test -s work/game-russian.cxi
-
       - name: Apply sample Russian dialogue translations
         run: |
           set -e
@@ -321,6 +296,32 @@ jobs:
             patch(p,{k:enc(v) for k,v in repl.items()}); files+=1; entries+=len(repl)
           print(f"Translated MBM files: {files}; entries: {entries}")
           PY
+
+      - name: Build RomFS
+        run: |
+          set -e
+          .3dstool/3dstool -ctf romfs work/romfs-russian.bin --romfs-dir work/extracted/romfs
+          test -s work/romfs-russian.bin
+
+      - name: Build CXI
+        run: |
+          set -e
+          CXI_ARGS=(
+            -ctf cxi work/game-russian.cxi
+            --header work/extracted/ncchheader.bin
+            --exh work/extracted/exheader.bin
+            --exefs work/extracted/exefs.bin
+            --romfs work/romfs-russian.bin
+            --plain work/extracted/plain.bin
+            --not-encrypt
+          )
+          if [ -s work/extracted/logo.bin ]; then
+            CXI_ARGS+=(--logo work/extracted/logo.bin)
+          else
+            echo "No logo region extracted; creating CXI without --logo."
+          fi
+          .3dstool/3dstool "${CXI_ARGS[@]}"
+          test -s work/game-russian.cxi
 
       - name: Make emulator-ready decrypted CXI
         run: |
