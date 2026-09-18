@@ -1,0 +1,13 @@
+{"file":"addon/aoc_msg.txt","id":"1","source":"Yes\nNo\n[END]","translation":"Да\nНет\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"2","source":"An Internet connection is required from\nhere on. Continue?\n[END]","translation":"Далее требуется подключение к Интернету.\nПродолжить?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"3","source":"Quit viewing Add−On Content and\nreturn to the Title Menu?\n[END]","translation":"Закончить просмотр дополнительного контента\nи вернуться в главное меню?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"4","source":"Purchase [Item 1]?\n[END]","translation":"Купить [Item 1]?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"5","source":"Delete [Item 1]?\n[END]","translation":"Удалить [Item 1]?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"6","source":"Download [Item 1] again?\n[END]","translation":"Загрузить [Item 1] снова?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"7","source":"Please do not remove the SD Card.\n[END]","translation":"Пожалуйста, не извлекайте SD-карту.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"8","source":"Deletion complete.\n[END]","translation":"Удаление завершено.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"9","source":"Enter the password?\n[END]","translation":"Ввести пароль?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"10","source":"The password is wrong.\n[END]","translation":"Неверный пароль.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"11","source":"Redeem Download Code\n[END]","translation":"Активировать код загрузки\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"12","source":"If you have a download code, you can enter\nit here. After redeeming the code, a special\npiece of equipment corresponding to the code\nwill be downloaded for free and can be\nequipped through Menu −〉 Equip −〉 Body.\n[END]","translation":"Если у вас есть код загрузки, его можно ввести\nздесь. После активации кода соответствующее\nособое снаряжение будет загружено бесплатно,\nа затем его можно будет экипировать через\nМеню −〉 Экипировка −〉 Тело.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"13","source":"Enter a download code?\n[END]","translation":"Ввести код загрузки?\n[END]","status":"translated"}
