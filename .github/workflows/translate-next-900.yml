@@ -1,0 +1,72 @@
+name: Translate next 900 SMT IV records
+
+on:
+  push:
+    paths:
+      - ".github/workflows/translate-next-900.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download English source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work/source
+          gh run download 35366977861 --repo "${{ github.repository }}" -n smt4-menu-system-candidates -D work/source
+          tar -xzf work/source/smt4-menu-system-candidates.tar.gz -C work/source
+      - name: Translate and insert
+        run: |
+          python3 -m pip install --quiet deep-translator
+          python3 - <<'PY'
+          import json, re, time
+          from pathlib import Path
+          from deep_translator import GoogleTranslator
+          src = [json.loads(x) for x in Path("work/source/menu_system_candidates.jsonl").read_text(encoding="utf8").splitlines()][2123:3023]
+          out = Path("translation/ru_manifest.jsonl")
+          existing = [json.loads(x) for x in out.read_text(encoding="utf8").splitlines() if x.strip()]
+          keys = {(x["file"], str(x["id"])) for x in existing}
+          by_source = {}
+          for x in existing:
+              if x.get("source") and x.get("ru"):
+                  by_source.setdefault(x["source"], x["ru"])
+          tag_re = re.compile(r"\[[^\]]+\]")
+          translator = GoogleTranslator(source="en", target="ru")
+          def tr(s):
+              if s in by_source: return by_source[s]
+              tags=[]
+              def mask(m):
+                  tags.append(m.group(0)); return f" XTAG{len(tags)-1}X "
+              masked=tag_re.sub(mask,s)
+              try: ru=translator.translate(masked)
+              except Exception: ru=masked
+              for i,t in enumerate(tags): ru=ru.replace(f"XTAG{i}X",t)
+              by_source[s]=ru
+              time.sleep(0.15)
+              return ru
+          added=0
+          for x in src:
+              k=(x["file"],str(x["id"]))
+              if k in keys: continue
+              ru=tr(x["source"])
+              y={k:v for k,v in x.items() if k in ("file","id","source","control_codes")}
+              y["ru"]=ru; y["status"]="translated"
+              existing.append(y); keys.add(k); added+=1
+          out.write_text("\n".join(json.dumps(x,ensure_ascii=False,separators=(",",":")) for x in existing)+"\n",encoding="utf8")
+          print("added",added,"total",len(existing))
+          PY
+      - name: Commit translated batch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add translation/ru_manifest.jsonl
+          git diff --cached --quiet || git commit -m "Translate SMT IV records 2124-3023"
+          git push
