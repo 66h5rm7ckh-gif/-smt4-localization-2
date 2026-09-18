@@ -170,3 +170,43 @@
 {"file":"battle/ResultMsg.txt","id":"403","source":"Discard [Color:0x5][Skill 1]?[Color:0x0]\n[END]","control_codes":["[Color:0x0]","[Color:0x5]","[END]","[Skill 1]"],"translation":"Удалить [Color:0x5][Skill 1]?[Color:0x0]\n[END]","status":"translated"}
 {"file":"battle/ResultMsg.txt","id":"404","source":"Yes\nNo\n[END]","control_codes":["[END]"],"translation":"Да\nНет\n[END]","status":"translated"}
 {"file":"battle/ResultMsg.txt","id":"405","source":"Proceed with these stats?\n[END]","control_codes":["[END]"],"translation":"Продолжить с этими характеристиками?\n[END]","status":"translated"}
+{"file":"battle/ResultMsg.txt","id":"500","source":"Finished viewing the information?\n[END]","control_codes":["[END]"],"translation":"Закончить просмотр информации?\n[END]","status":"translated"}
+{"file":"battle/ResultMsg.txt","id":"501","source":"”Carry on.”\n”I'd like to see it again.”\n[END]","control_codes":["[END]"],"translation":"«Продолжить.»\n«Хочу посмотреть ещё раз.»\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"41","source":"All stats lowered!\n[END]","control_codes":["[END]"],"translation":"Все характеристики снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"73","source":"Some of your Macca is gone!\n[END]","control_codes":["[END]"],"translation":"Часть макка потеряна!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"74","source":"Half of your Macca is gone!\n[END]","control_codes":["[END]"],"translation":"Половина макка потеряна!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"77","source":"The illness has worsened!\n[END]","control_codes":["[END]"],"translation":"Болезнь усилилась!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"101","source":"Attack increased!\n[END]","control_codes":["[END]"],"translation":"Атака повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"102","source":"Hit/evasion rate increased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"103","source":"Defense increased!\n[END]","control_codes":["[END]"],"translation":"Защита повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"104","source":"All stats increased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"105","source":"All stat enhancements are removed.\n[END]","control_codes":["[END]"],"translation":"Все усиления характеристик сняты.\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"106","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"107","source":"Hit/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"108","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"109","source":"All stats decreased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"110","source":"All stat decreases are removed.\n[END]","control_codes":["[END]"],"translation":"Все снижения характеристик сняты.\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"111","source":"All stats returned to normal.\n[END]","control_codes":["[END]"],"translation":"Все характеристики восстановлены.\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"112","source":"Attack/defense decreased!\n[END]","control_codes":["[END]"],"translation":"Атака и защита снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"113","source":"Attack/hit rate/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Атака, точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"114","source":"Attack/hit rate/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Атака, точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"115","source":"Defense decreased and attack increased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена, атака повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"117","source":"Magic temporarily increased!\n[END]","control_codes":["[END]"],"translation":"Магия временно повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"121","source":"Physical/gun damage temporarily increased!\n[END]","control_codes":["[END]"],"translation":"Физический и оружейный урон временно повышен!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"122","source":"Magic temporarily greatly increased!\n[END]","control_codes":["[END]"],"translation":"Магия временно значительно повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"123","source":"All stats increased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"138","source":"MAX HP increased!\n[END]","control_codes":["[END]"],"translation":"МАКС. ОЗ повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"139","source":"[Demon name 6] smirks...\n[END]","control_codes":["[Demon name 6]","[END]"],"translation":"[Demon name 6] ухмыляется...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"169","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"201","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"202","source":"Hit/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"206","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"207","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"211","source":"Hit/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"212","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"216","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"217","source":"Hit/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"221","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"223","source":"All stats decreased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"226","source":"Stat enhancements are removed!\n[END]","control_codes":["[END]"],"translation":"Усиления характеристик сняты!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"233","source":"HP regeneration added for the next turn!\n[END]","control_codes":["[END]"],"translation":"На следующий ход добавлена регенерация ОЗ!\n[END]","status":"translated"}
