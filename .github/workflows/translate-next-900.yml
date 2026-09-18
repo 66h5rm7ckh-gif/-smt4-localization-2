@@ -1,4 +1,4 @@
-name: Translate next 1000 SMT IV records
+name: Translate and repair SMT IV Russian manifest
 
 on:
   push:
@@ -23,50 +23,98 @@ jobs:
           mkdir -p work/source
           gh run download 35366977861 --repo "${{ github.repository }}" -n smt4-menu-system-candidates -D work/source
           tar -xzf work/source/smt4-menu-system-candidates.tar.gz -C work/source
-      - name: Translate and insert
+      - name: Translate and repair untranslated records
         run: |
           python3 -m pip install --quiet deep-translator
           python3 - <<'PY'
           import json, re, time
           from pathlib import Path
           from deep_translator import GoogleTranslator
-          src_all = [json.loads(x) for x in Path("work/source/menu_system_candidates.jsonl").read_text(encoding="utf8").splitlines()]
+
           out = Path("translation/ru_manifest.jsonl")
           existing = [json.loads(x) for x in out.read_text(encoding="utf8").splitlines() if x.strip()]
-          keys = {(x["file"], str(x["id"])) for x in existing}
-          src = [x for x in src_all if (x["file"], str(x["id"])) not in keys][:1000]
+
+          tag_re = re.compile(r"\[[^\]]+\]")
+          latin_word_re = re.compile(r"[A-Za-z]{2,}")
+          cyr_re = re.compile(r"[А-Яа-яЁё]")
+          other_script_re = re.compile(r"[ぁ-んァ-ン一-龯]")
+          translator = GoogleTranslator(source="auto", target="ru")
+
           by_source = {}
           for x in existing:
-              if x.get("source") and x.get("ru"):
-                  by_source.setdefault(x["source"], x["ru"])
-          tag_re = re.compile(r"\[[^\]]+\]")
-          translator = GoogleTranslator(source="en", target="ru")
-          def tr(s):
-              if s in by_source: return by_source[s]
+              s, r = x.get("source"), x.get("ru")
+              if s and r and cyr_re.search(r):
+                  by_source.setdefault(s, r)
+
+          def normalize_newlines(s):
+              return s.replace("\\n", "\n")
+
+          def restore_tags(source, ru):
+              tags = tag_re.findall(source)
+              ru_tags = tag_re.findall(ru)
+              if len(tags) == len(ru_tags):
+                  for old, new in zip(ru_tags, tags):
+                      ru = ru.replace(old, new, 1)
+              return ru
+
+          def translate(s):
+              if s in by_source:
+                  return by_source[s]
               tags=[]
               def mask(m):
-                  tags.append(m.group(0)); return f" XTAG{len(tags)-1}X "
+                  i=len(tags)
+                  tags.append(m.group(0))
+                  return f"ZZTAG{i}ZZ"
               masked=tag_re.sub(mask,s)
-              try: ru=translator.translate(masked)
-              except Exception: ru=masked
-              for i,t in enumerate(tags): ru=ru.replace(f"XTAG{i}X",t)
+              try:
+                  ru=translator.translate(masked)
+              except Exception as e:
+                  print("translate error:", repr(s[:120]), repr(e))
+                  return s
+              for i,t in enumerate(tags):
+                  ru=ru.replace(f"ZZTAG{i}ZZ",t)
+              ru=restore_tags(s,ru)
               by_source[s]=ru
-              time.sleep(0.15)
+              time.sleep(0.12)
               return ru
-          added=0
-          for x in src:
-              k=(x["file"],str(x["id"]))
-              ru=tr(x["source"])
-              y={k:v for k,v in x.items() if k in ("file","id","source","control_codes")}
-              y["ru"]=ru; y["status"]="translated"
-              existing.append(y); keys.add(k); added+=1
+
+          changed=0
+          for x in existing:
+              s=str(x.get("source",""))
+              old=str(x.get("ru",""))
+              ru=normalize_newlines(old)
+
+              # Translate only records that are genuinely untranslated:
+              # English/Japanese words with no Cyrillic, or exact source copy.
+              stripped=s.strip()
+              special = stripped in {
+                  "Reserve\n[END]", "Reserve\n[->][END]",
+                  "NOT USED\n[END]", "Dummy\n[END]"
+              }
+              has_translatable_text = bool(latin_word_re.search(s) or other_script_re.search(s))
+              needs = (not ru.strip()) or (ru.strip()==s.strip()) or (
+                  has_translatable_text and not cyr_re.search(ru) and special
+              )
+              # Broader case for ordinary English sentences/phrases, while leaving
+              # all-uppercase technical abbreviations such as HP/MP/EXP untouched.
+              if has_translatable_text and not cyr_re.search(ru):
+                  words=re.findall(r"[A-Za-z]+", s)
+                  if any(len(w)>=2 and (w.islower() or not w.isupper()) for w in words):
+                      needs=True
+              if needs:
+                  ru=translate(s)
+              if ru != old:
+                  x["ru"]=ru
+                  x["status"]="translated"
+                  changed+=1
+
           out.write_text("\n".join(json.dumps(x,ensure_ascii=False,separators=(",",":")) for x in existing)+"\n",encoding="utf8")
-          print("added",added,"total",len(existing))
+          print("changed",changed,"total",len(existing))
           PY
-      - name: Commit translated batch
+      - name: Commit repaired manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add translation/ru_manifest.jsonl
-          git diff --cached --quiet || git commit -m "Translate next 1000 SMT IV records"
+          git diff --cached --quiet || git commit -m "Translate remaining untranslated SMT IV records"
           git push
