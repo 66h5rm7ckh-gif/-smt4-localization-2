@@ -121,6 +121,10 @@ jobs:
           # Patch the two deconstruction foreach loops to plain tuple access before compiling.
           python3 - <<'PY'
           from pathlib import Path
+          p = Path("Program.cs")
+          s = p.read_text(encoding="utf-8-sig")
+          s = s.replace('MBM.LoadDictionary(File.ReadAllLines("dic.txt"));', 'MBM.LoadDictionary(File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dic.txt")));')
+          p.write_text(s, encoding="utf-8")
           p = Path("MBM.cs")
           s = p.read_text(encoding="utf-8-sig")
           s = s.replace("foreach (var (id, bytes) in lst)", "foreach (var item in lst)")
