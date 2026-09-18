@@ -94,6 +94,7 @@ jobs:
             --exefs work/extracted/exefs.bin
             --romfs work/romfs-russian.bin
             --plain work/extracted/plain.bin
+            --not-encrypt
           )
           if [ -s work/extracted/logo.bin ]; then
             CXI_ARGS+=(--logo work/extracted/logo.bin)
@@ -122,6 +123,32 @@ jobs:
           test -s work/Shin.Megami.Tensei.IV.Russian.Test.cia
           stat -c '%s bytes' work/Shin.Megami.Tensei.IV.Russian.Test.cia
           sha256sum work/Shin.Megami.Tensei.IV.Russian.Test.cia | tee work/cia.sha256
+
+      - name: Make emulator-ready decrypted CXI
+        run: |
+          set -e
+          python3 - <<'PY'
+          import hashlib, struct
+          from pathlib import Path
+          cxi=Path("work/game-russian.cxi")
+          exheader=Path("work/extracted/exheader.bin").read_bytes()
+          exefs=Path("work/extracted/exefs.bin").read_bytes()
+          romfs=Path("work/romfs-russian.bin").read_bytes()
+          b=bytearray(cxi.read_bytes())
+          if b[0x100:0x104] != b"NCCH":
+              raise SystemExit("Not an NCCH/CXI")
+          # NCCH hash fields: ExHeader 0x160, ExeFS 0x1C0, RomFS 0x1E0.
+          b[0x160:0x180]=hashlib.sha256(exheader).digest()
+          b[0x1C0:0x1E0]=hashlib.sha256(exefs).digest()
+          b[0x1E0:0x200]=hashlib.sha256(romfs).digest()
+          # NoCrypto flag: NCCH flags byte 0x18F, bit 0x04.
+          b[0x18F] |= 0x04
+          cxi.write_bytes(b)
+          print("NCCH magic:", b[0x100:0x104])
+          print("NoCrypto flag:", hex(b[0x18F]))
+          print("CXI size:", len(b))
+          PY
+          test -s work/game-russian.cxi
 
       - name: Rebuild CCI
         run: |
