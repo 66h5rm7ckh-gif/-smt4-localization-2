@@ -36,7 +36,7 @@ jobs:
           mkdir -p work/font
           cp work/romfs/font/rodin_12_12.bcfnt work/font/
           cd work/font
-          python3 ../3dstools/bcfnt.py -xf rodin_12_12.bcfnt
+          python3 ../3dstools/bcfnt.py -x -y -f rodin_12_12.bcfnt
           cd ../..
           python3 - <<'PY'
           import json, struct
@@ -141,7 +141,9 @@ jobs:
           # If no missing glyphs, preserve original manifest/sheets.
           m["glyphMap"] = glyph_map
           m["glyphWidths"] = glyph_w
-          manifest_path.write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
+          # 3dstools derives the output manifest name from the output BCFNT name.
+          out_manifest = root / "rodin_12_12_ru_manifest.json"
+          out_manifest.write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
 
           print(f"original glyphs: {max_idx+1}")
           print(f"added Russian glyphs: {len(missing)}")
@@ -149,7 +151,7 @@ jobs:
           PY
 
           cd work/font
-          python3 ../3dstools/bcfnt.py -cf rodin_12_12_ru.bcfnt
+          python3 ../3dstools/bcfnt.py -c -y -f rodin_12_12_ru.bcfnt
 
       - name: Validate candidate
         run: |
@@ -181,6 +183,7 @@ jobs:
           path: |
             research/rodin_12_12-analysis.txt
             work/font/rodin_12_12_manifest.json
+            work/font/rodin_12_12_ru_manifest.json
             work/font/rodin_12_12_sheet*.png
             work/font/rodin_12_12_ru.bcfnt
           retention-days: 14
