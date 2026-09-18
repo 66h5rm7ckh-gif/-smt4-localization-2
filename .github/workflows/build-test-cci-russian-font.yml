@@ -116,11 +116,23 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mono-mcs
           git clone --depth 1 https://github.com/TraduSquare/Moonbeam.git work/Moonbeam
-          cd work/Moonbeam
-          mcs -out:Moonbeam.exe -r:System.Core.dll -r:System.Xml.dll -r:System.Xml.Linq.dll -r:System.Data.dll -r:System.Net.Http.dll MBM/MBM.cs MBM/Program.cs MBM/Properties/AssemblyInfo.cs
+          cd work/Moonbeam/Moonbeam
+          # Moonbeam uses C# tuple deconstruction, which the Ubuntu Mono compiler rejects.
+          # Patch the two deconstruction foreach loops to plain tuple access before compiling.
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("MBM.cs")
+          s = p.read_text(encoding="utf-8-sig")
+          s = s.replace("foreach (var (id, bytes) in lst)\\n                {\\n                    bw.Write(new byte[16 * (id - prevId - 1)]);\\n                    bw.Write(id);\\n                    bw.Write(bytes.Length);", "foreach (var item in lst)\\n                {\\n                    bw.Write(new byte[16 * (item.id - prevId - 1)]);\\n                    bw.Write(item.id);\\n                    bw.Write(item.bytes.Length);")
+          s = s.replace("                    prevId = id;\\n                    stringOffset += bytes.Length;", "                    prevId = item.id;\\n                    stringOffset += item.bytes.Length;")
+          s = s.replace("foreach (var (id, bytes) in lst)\\n                    bw.Write(bytes);", "foreach (var item in lst)\\n                    bw.Write(item.bytes);")
+          p.write_text(s, encoding="utf-8")
+          PY
+          mcs -langversion:7 -out:Moonbeam.exe -r:System.Core.dll -r:System.Xml.dll -r:System.Xml.Linq.dll -r:System.Data.dll -r:System.Net.Http.dll MBM.cs Program.cs Properties/AssemblyInfo.cs
           test -s Moonbeam.exe
-          cp MBM/dic.txt dic.txt
-          ls -lh Moonbeam.exe dic.txt
+          cp Moonbeam.exe ../Moonbeam.exe
+          cp dic.txt ../dic.txt
+          ls -lh ../Moonbeam.exe ../dic.txt
 
       - name: Inject first Russian dialogue sample
         run: |
