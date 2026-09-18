@@ -123,9 +123,13 @@ jobs:
           from pathlib import Path
           p = Path("MBM.cs")
           s = p.read_text(encoding="utf-8-sig")
-          s = s.replace("foreach (var (id, bytes) in lst)\\n                {\\n                    bw.Write(new byte[16 * (id - prevId - 1)]);\\n                    bw.Write(id);\\n                    bw.Write(bytes.Length);", "foreach (var item in lst)\\n                {\\n                    bw.Write(new byte[16 * (item.id - prevId - 1)]);\\n                    bw.Write(item.id);\\n                    bw.Write(item.bytes.Length);")
-          s = s.replace("                    prevId = id;\\n                    stringOffset += bytes.Length;", "                    prevId = item.id;\\n                    stringOffset += item.bytes.Length;")
-          s = s.replace("foreach (var (id, bytes) in lst)\\n                    bw.Write(bytes);", "foreach (var item in lst)\\n                    bw.Write(item.bytes);")
+          s = s.replace("foreach (var (id, bytes) in lst)", "foreach (var item in lst)")
+          s = s.replace("bw.Write(new byte[16 * (id - prevId - 1)]);", "bw.Write(new byte[16 * (item.id - prevId - 1)]);")
+          s = s.replace("bw.Write(id);", "bw.Write(item.id);")
+          s = s.replace("bw.Write(bytes.Length);", "bw.Write(item.bytes.Length);")
+          s = s.replace("prevId = id;", "prevId = item.id;")
+          s = s.replace("stringOffset += bytes.Length;", "stringOffset += item.bytes.Length;")
+          s = s.replace("bw.Write(bytes);", "bw.Write(item.bytes);")
           p.write_text(s, encoding="utf-8")
           PY
           mcs -langversion:7 -out:Moonbeam.exe -r:System.Core.dll -r:System.Xml.dll -r:System.Xml.Linq.dll -r:System.Data.dll -r:System.Net.Http.dll MBM.cs Program.cs Properties/AssemblyInfo.cs
