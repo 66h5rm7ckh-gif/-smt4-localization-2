@@ -1,0 +1,23 @@
+{"file":"addon/aoc_msg.txt","id":"1","source":"Yes\nNo\n[END]","ru":"Да\nНет\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"2","source":"An Internet connection is required from\nhere on. Continue?\n[END]","ru":"Для продолжения требуется подключение к Интернету.\nПродолжить?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"3","source":"Quit viewing Add−On Content and\nreturn to the Title Menu?\n[END]","ru":"Выйти из просмотра дополнительного контента и\nвернуться в главное меню?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"4","source":"Purchase [Item 1]?\n[END]","ru":"Купить [Item 1]?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"5","source":"Delete [Item 1]?\n[END]","ru":"Удалить [Item 1]?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"6","source":"Download [Item 1] again?\n[END]","ru":"Загрузить [Item 1] ещё раз?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"7","source":"Please do not remove the SD Card.\n[END]","ru":"Не извлекайте SD-карту.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"8","source":"Deletion complete.\n[END]","ru":"Удаление завершено.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"9","source":"Enter the password?\n[END]","ru":"Ввести пароль?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"10","source":"The password is wrong.\n[END]","ru":"Неверный пароль.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"11","source":"Redeem Download Code\n[END]","ru":"Погасить код загрузки\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"13","source":"Enter a download code?\n[END]","ru":"Ввести код загрузки?\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"100","source":"CAUTION:\nAdd−on content for Shin Megami Tensei IV\ncan be purchased here. Some content can\nonly be played by progressing the main\nstory, so please review the details of each\nadd−on ","ru":"ВНИМАНИЕ:\nЗдесь можно приобрести дополнительный контент для Shin Megami Tensei IV.\nНекоторые материалы доступны только по мере прохождения основной истории,\nпоэтому ознакомьтесь с описанием каждого дополнения.","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"101","source":"Make selections by touching the\nlower screen from this point on.\n[END]","ru":"Теперь выбирайте пункты, касаясь\nнижнего экрана.\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"102","source":"Not Use\n[END]","ru":"Не использовать\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"103","source":"This service will begin in the near\nfuture. Please look forward to it!\n[END]","ru":"Эта служба начнёт работу в ближайшее\nвремя. Пожалуйста, подождите!\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"104","source":"Blocks\n[END]","ru":"Блоки\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"105","source":"Free\n[END]","ru":"Бесплатно\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"110","source":"Connecting...\n[END]","ru":"Подключение...\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"111","source":"Please wait...\n[END]","ru":"Пожалуйста, подождите...\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"112","source":"Preparing...\n[END]","ru":"Подготовка...\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"113","source":"Deleting...\n[END]","ru":"Удаление...\n[END]","status":"translated"}
+{"file":"addon/aoc_msg.txt","id":"190","source":"Loading the add−on content.\nDo not remove the SD Card.\n[END]","ru":"Загрузка дополнительного контента.\nНе извлекайте SD-карту.\n[END]","status":"translated"}
