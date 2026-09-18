@@ -119,13 +119,23 @@ jobs:
           size = max(8, cell_h - 2)
           font = ImageFont.truetype(font_path, size=size)
 
+          # The packer derives sheet names from the output basename, so mirror
+          # every original sheet under the new rodin_12_12_ru_* names first.
+          for sheet_no in range(old_count):
+              src = root / f"rodin_12_12_sheet{sheet_no}.png"
+              dst = root / f"rodin_12_12_ru_sheet{sheet_no}.png"
+              shutil.copy2(src, dst)
+
+          # New glyph indices are appended after the original glyph table.
+          # The new sheets start at local position 0; they must NOT be addressed
+          # using the absolute sheet number because the original glyph table is
+          # not necessarily a full multiple of sheet capacity.
           for sheet_no in range(old_count, new_count):
               img = Image.new("RGBA", (sheet_w, sheet_h), (0,0,0,0))
               draw = ImageDraw.Draw(img)
               for local in range(capacity):
-                  pos = sheet_no * capacity + local
-                  n = pos - (max_idx + 1)
-                  if n < 0 or n >= len(missing):
+                  n = (sheet_no - old_count) * capacity + local
+                  if n >= len(missing):
                       continue
                   ch = missing[n]
                   idx = max_idx + 1 + n
