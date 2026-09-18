@@ -85,27 +85,25 @@ jobs:
               entries = 0
               current_id = ""
               current = []
-              def flush():
-                  nonlocal current, current_id
-                  if current_id != "":
-                      source = "\n".join(current).strip()
+              def flush(cur, cur_id):
+                  if cur_id != "":
+                      source = "\n".join(cur).strip()
                       codes = sorted(set(re.findall(r'\[[^\]]+\]', source)))
                       manifest.append({
-                          "file": rel, "category": c, "id": current_id,
+                          "file": rel, "category": c, "id": cur_id,
                           "source": source, "control_codes": codes
                       })
                       if source:
                           normalized = re.sub(r'\s+', ' ', source).strip().lower()
                           normalized = re.sub(r'\[[^\]]+\]', '', normalized).strip()
                           if normalized:
-                              duplicate[normalized].append((rel, current_id))
-                  current = []
-                  current_id = ""
+                              duplicate[normalized].append((rel, cur_id))
+                  return [], ""
 
               for line in lines:
                   m = re.match(r'^\s*(\d+)\s*:\s?(.*)$', line)
                   if m:
-                      flush()
+                      current, current_id = flush(current, current_id)
                       current_id = m.group(1)
                       current = [m.group(2)]
                       entries += 1
@@ -117,7 +115,7 @@ jobs:
                       current.append(line)
                   for tag in re.findall(r'\[[^\]]+\]', line):
                       controls[tag] += 1
-              flush()
+              current, current_id = flush(current, current_id)
               cat_entries[c] += entries
 
           with (report/"category_summary.tsv").open("w", newline="", encoding="utf-8") as out:
