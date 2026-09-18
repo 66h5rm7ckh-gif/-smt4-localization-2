@@ -1,0 +1,135 @@
+name: Extract SMT IV CCI
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "GitHub Release tag containing the CCI"
+        required: true
+        default: "v0.1"
+        type: string
+
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  extract:
+    name: Extract CCI to RomFS
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake \
+            build-essential \
+            libssl-dev \
+            libcurl4-openssl-dev \
+            xxd
+
+      - name: Select release tag
+        id: release
+        env:
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.release_tag }}
+        run: |
+          if [ -n "$EVENT_TAG" ]; then
+            echo "tag=$EVENT_TAG" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=$INPUT_TAG" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download CCI from GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+          REPO: ${{ github.repository }}
+        run: |
+          mkdir -p work/input
+
+          gh release download "$TAG" \
+            --repo "$REPO" \
+            --pattern 'Shin.Megami.Tensei.IV.Eng.cci' \
+            --dir work/input
+
+          test -s work/input/Shin.Megami.Tensei.IV.Eng.cci
+
+      - name: Verify CCI
+        run: |
+          echo "CCI size:"
+          stat -c '%s bytes' \
+            work/input/Shin.Megami.Tensei.IV.Eng.cci
+
+          echo "CCI SHA256:"
+          sha256sum \
+            work/input/Shin.Megami.Tensei.IV.Eng.cci \
+            | tee work/cci.sha256
+
+      - name: Make extractor executable
+        run: |
+          chmod +x tools/extract_cci.sh
+
+      - name: Extract CCI
+        run: |
+          mkdir -p work/extracted
+
+          tools/extract_cci.sh \
+            work/input/Shin.Megami.Tensei.IV.Eng.cci \
+            work/extracted
+
+      - name: Create diagnostic report
+        if: always()
+        run: |
+          mkdir -p work/report
+
+          cp -f work/cci.sha256 \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/input-info.txt \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/cci-extract.log \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/cxi-extract.log \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/romfs-extract.log \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/romfs-files.tsv \
+            work/report/ 2>/dev/null || true
+
+          cp -f work/extracted/3dstool-help.txt \
+            work/report/ 2>/dev/null || true
+
+          tar -czf \
+            work/smt4-extraction-report.tar.gz \
+            -C work/report .
+
+      - name: Upload extraction report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-extraction-report
+          path: work/smt4-extraction-report.tar.gz
+          retention-days: 7
+
+      - name: Upload extracted RomFS
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-romfs
+          path: work/extracted/romfs
+          retention-days: 7
+          compression-level: 6
