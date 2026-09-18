@@ -1,0 +1,258 @@
+name: Analyze SMT IV RomFS
+
+on:
+  workflow_dispatch:
+
+  workflow_run:
+    workflows:
+      - Extract SMT IV CCI
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze extracted RomFS
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+
+      - name: Check triggering workflow
+        if: github.event_name == 'workflow_run'
+        run: |
+          echo "Previous workflow conclusion:"
+          echo "${{ github.event.workflow_run.conclusion }}"
+
+          if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
+            echo "Previous extraction workflow was not successful."
+            exit 1
+          fi
+
+      - name: Download RomFS artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: smt4-romfs
+          path: work/romfs
+          run-id: ${{ github.event.workflow_run.id || github.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show downloaded structure
+        run: |
+          echo "Downloaded RomFS:"
+          du -sh work/romfs || true
+
+          echo
+          echo "Top-level entries:"
+          find work/romfs -maxdepth 2 -type d | sort | head -200
+
+      - name: Create analysis directory
+        run: |
+          mkdir -p work/report
+
+      - name: Analyze files
+        run: |
+          echo "=== SMT IV RomFS analysis ===" \
+            | tee work/report/summary.txt
+
+          echo
+          echo "Total files:" \
+            | tee -a work/report/summary.txt
+
+          find work/romfs \
+            -type f \
+            | wc -l \
+            | tee -a work/report/summary.txt
+
+          echo
+          echo "Total size:" \
+            | tee -a work/report/summary.txt
+
+          du -sh work/romfs \
+            | tee -a work/report/summary.txt
+
+          echo
+          echo "=== File extensions ===" \
+            | tee work/report/extensions.txt
+
+          find work/romfs \
+            -type f \
+            -printf '%f\n' \
+            | awk '
+              {
+                n=$0
+                sub(/^.*\./, ".", n)
+                if (n == $0) n="[no_extension]"
+                count[n]++
+              }
+              END {
+                for (ext in count)
+                  print count[ext], ext
+              }
+            ' \
+            | sort -nr \
+            | tee -a work/report/extensions.txt
+
+          echo
+          echo "=== Largest files ===" \
+            | tee work/report/largest-files.txt
+
+          find work/romfs \
+            -type f \
+            -printf '%s\t%p\n' \
+            | sort -nr \
+            | head -200 \
+            | tee -a work/report/largest-files.txt
+
+          echo
+          echo "=== Directory tree ===" \
+            | tee work/report/directories.txt
+
+          find work/romfs \
+            -type d \
+            | sort \
+            | tee -a work/report/directories.txt
+
+          echo
+          echo "=== All files ===" \
+            | tee work/report/all-files.txt
+
+          find work/romfs \
+            -type f \
+            -printf '%s\t%p\n' \
+            | sort -nr \
+            | tee -a work/report/all-files.txt
+
+      - name: Detect text-like files
+        run: |
+          echo "=== Text-like files ===" \
+            | tee work/report/text-candidates.txt
+
+          while IFS= read -r file; do
+
+            mime=$(file -b --mime-type "$file" 2>/dev/null || true)
+
+            case "$mime" in
+              text/*)
+                echo "$file"
+                ;;
+
+              application/json)
+                echo "$file"
+                ;;
+
+              application/xml)
+                echo "$file"
+                ;;
+
+              application/javascript)
+                echo "$file"
+                ;;
+            esac
+
+          done < <(
+            find work/romfs -type f
+          ) \
+          | tee -a work/report/text-candidates.txt
+
+      - name: Search for Japanese text
+        run: |
+          echo "=== Japanese text candidates ===" \
+            | tee work/report/japanese-candidates.txt
+
+          while IFS= read -r file; do
+
+            if grep -Iq . "$file" 2>/dev/null; then
+
+              if grep -a -q \
+                -E \
+                '[ぁ-んァ-ン一-龯]' \
+                "$file" \
+                2>/dev/null; then
+
+                echo "$file"
+
+              fi
+
+            fi
+
+          done < <(
+            find work/romfs -type f
+          ) \
+          | tee -a work/report/japanese-candidates.txt
+
+      - name: Search common text keywords
+        run: |
+          echo "=== Keyword candidates ===" \
+            | tee work/report/keyword-candidates.txt
+
+          KEYWORDS='
+          message
+          msg
+          text
+          dialog
+          dialogue
+          talk
+          event
+          script
+          string
+          text
+          font
+          lang
+          language
+          jp
+          japanese
+          '
+
+          while IFS= read -r file; do
+
+            lower=$(printf '%s' "$file" | tr '[:upper:]' '[:lower:]')
+
+            for keyword in $KEYWORDS; do
+
+              if printf '%s\n' "$lower" \
+                | grep -q "$keyword"; then
+
+                echo "$file"
+                break
+
+              fi
+
+            done
+
+          done < <(
+            find work/romfs -type f
+          ) \
+          | sort -u \
+          | tee -a work/report/keyword-candidates.txt
+
+      - name: Generate checksums
+        run: |
+          echo "=== SHA256 ===" \
+            > work/report/checksums.txt
+
+          find work/romfs \
+            -type f \
+            -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            >> work/report/checksums.txt
+
+      - name: Package analysis report
+        if: always()
+        run: |
+          tar -czf \
+            work/smt4-romfs-analysis.tar.gz \
+            -C work/report .
+
+      - name: Upload analysis report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-romfs-analysis
+          path: work/smt4-romfs-analysis.tar.gz
+          retention-days: 14
+          compression-level: 9
