@@ -2,6 +2,12 @@ name: Analyze SMT IV RomFS
 
 on:
   workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Extract SMT IV CCI workflow run ID"
+        required: true
+        default: "35303156446"
+        type: string
 
   workflow_run:
     workflows:
@@ -32,21 +38,42 @@ jobs:
             exit 1
           fi
 
+      - name: Select source workflow run
+        id: source
+        env:
+          EVENT_RUN_ID: ${{ github.event.workflow_run.id }}
+          INPUT_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          if [ -n "$EVENT_RUN_ID" ]; then
+            echo "Using workflow_run ID: $EVENT_RUN_ID"
+            echo "run_id=$EVENT_RUN_ID" >> "$GITHUB_OUTPUT"
+          else
+            echo "Using manual source run ID: $INPUT_RUN_ID"
+            echo "run_id=$INPUT_RUN_ID" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Download RomFS artifact
         uses: actions/download-artifact@v5
         with:
           name: smt4-romfs
           path: work/romfs
-          run-id: ${{ github.event.workflow_run.id || github.run_id }}
+          run-id: ${{ steps.source.outputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Show downloaded structure
+      - name: Verify downloaded RomFS
         run: |
-          echo "Downloaded RomFS:"
-          du -sh work/romfs || true
+          echo "RomFS successfully downloaded."
 
           echo
-          echo "Top-level entries:"
+          echo "Size:"
+          du -sh work/romfs
+
+          echo
+          echo "File count:"
+          find work/romfs -type f | wc -l
+
+          echo
+          echo "Top-level structure:"
           find work/romfs -maxdepth 2 -type d | sort | head -200
 
       - name: Create analysis directory
@@ -199,7 +226,6 @@ jobs:
           event
           script
           string
-          text
           font
           lang
           language
