@@ -271,7 +271,19 @@ jobs:
           aliases="ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをん"
           alias=dict(zip(ru,aliases))
 
-          def sj(s): return s.encode("shift_jis")
+          def sj(s):
+    # SMT IV uses a restricted Shift-JIS-compatible table. Normalize common
+    # Unicode punctuation that Python's strict Shift-JIS codec cannot encode.
+    s = s.translate(str.maketrans({
+      "\u2014": "-", "\u2013": "-", "\u2212": "-",
+      "\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"',
+      "\u2026": "...", "\u00a0": " "
+    }))
+    try:
+      return s.encode("shift_jis")
+    except UnicodeEncodeError as e:
+      bad = sorted(set(s[e.start:e.end]))
+      raise ValueError("Unencodable characters after normalization: " + repr(bad))
           def enc(t):
             o=bytearray(); i=0
             while i<len(t):
