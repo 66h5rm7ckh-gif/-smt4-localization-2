@@ -4,9 +4,6 @@ on:
   push:
     paths:
       - ".github/workflows/build-test-cci-russian-font.yml"
-  workflow_run:
-    workflows: ["Analyze and build Russian Rodin 12x12 font"]
-    types: [completed]
   workflow_dispatch:
     inputs:
       release_tag:
@@ -46,10 +43,23 @@ jobs:
       - name: Download Russian font
         env:
           GH_TOKEN: ${{ github.token }}
+          INPUT_FONT_RUN_ID: ${{ inputs.font_run_id }}
         run: |
           set -e
           mkdir -p work/font
-          gh run download "${{ inputs.font_run_id }}" -n smt4-rodin-12-12-russian-font -D work/font
+          FONT_RUN_ID="$INPUT_FONT_RUN_ID"
+          if [ -z "$FONT_RUN_ID" ]; then
+            FONT_WORKFLOW_SHA="$(git log -1 --format='%H' -- .github/workflows/build-russian-rodin-font.yml)"
+            echo "Waiting for successful Russian-font build at $FONT_WORKFLOW_SHA"
+            for i in $(seq 1 60); do
+              FONT_RUN_ID="$(gh run list --workflow build-russian-rodin-font.yml --commit "$FONT_WORKFLOW_SHA" --status success --limit 1 --json databaseId --jq '.[0].databaseId')"
+              if [ -n "$FONT_RUN_ID" ]; then break; fi
+              sleep 10
+            done
+          fi
+          test -n "$FONT_RUN_ID"
+          echo "Using Russian font workflow run: $FONT_RUN_ID"
+          gh run download "$FONT_RUN_ID" -n smt4-rodin-12-12-russian-font -D work/font
           FONT="$(find work/font -type f -name 'rodin_12_12_ru.bcfnt' -print -quit)"
           test -n "$FONT"
           if [ "$FONT" != "work/font/rodin_12_12_ru.bcfnt" ]; then cp "$FONT" work/font/rodin_12_12_ru.bcfnt; fi
