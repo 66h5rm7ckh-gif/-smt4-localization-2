@@ -1,0 +1,159 @@
+name: Extract SMT IV English Text
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Successful SMT IV CCI extraction run ID"
+        required: true
+        default: "35303156446"
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  extract-text:
+    name: Build English text corpus
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download extracted RomFS
+        uses: actions/download-artifact@v5
+        with:
+          name: smt4-romfs
+          path: work/romfs
+          run-id: ${{ inputs.source_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clone SMT IV script decoder
+        run: |
+          git clone --depth 1 https://github.com/GilderBairn/SMTIV-script-decode.git work/decoder
+
+      - name: Build matched English corpus
+        run: |
+          set -euo pipefail
+
+          mkdir -p work/corpus work/report
+
+          : > work/report/mapping.tsv
+          : > work/report/missing.txt
+          : > work/report/ambiguous.txt
+
+          count=0
+          copied=0
+          missing=0
+          ambiguous=0
+
+          while IFS= read -r mbm; do
+            base="${mbm%.mbm}"
+            filename="$(basename "$base")"
+
+            candidates=()
+
+            if [ -f "work/decoder/SMTIV/${base}.txt" ]; then
+              candidates+=("work/decoder/SMTIV/${base}.txt")
+            fi
+
+            if [ -f "work/decoder/${base}.txt" ]; then
+              candidates+=("work/decoder/${base}.txt")
+            fi
+
+            while IFS= read -r f; do
+              [ -n "$f" ] && candidates+=("$f")
+            done < <(
+              find work/decoder/SMTIV                 -type f                 -iname "${filename}.txt"                 2>/dev/null                 | sort
+            )
+
+            mapfile -t candidates < <(printf '%s\n' "${candidates[@]}" | awk 'NF && !seen[$0]++')
+
+            if [ "${#candidates[@]}" -eq 0 ]; then
+              echo "$mbm" >> work/report/missing.txt
+              missing=$((missing + 1))
+              continue
+            fi
+
+            if [ "${#candidates[@]}" -gt 1 ]; then
+              printf '%s -> %s\n' "$mbm" "${candidates[*]}" >> work/report/ambiguous.txt
+              ambiguous=$((ambiguous + 1))
+              continue
+            fi
+
+            src="${candidates[0]}"
+            rel="${mbm%.mbm}.txt"
+            dest="work/corpus/$rel"
+
+            mkdir -p "$(dirname "$dest")"
+            cp "$src" "$dest"
+
+            printf '%s\t%s\n' "$mbm" "${src#work/decoder/}" >> work/report/mapping.tsv
+
+            copied=$((copied + 1))
+            count=$((count + 1))
+          done < <(
+            find work/romfs               -type f               -iname '*.mbm'               -printf '%p\n'               | sed 's#^work/romfs/##'               | sort
+          )
+
+          {
+            echo "SMT IV ENGLISH TEXT EXTRACTION"
+            echo
+            echo "ROM MBM files: $(find work/romfs -type f -iname '*.mbm' | wc -l)"
+            echo "English TXT copied: $copied"
+            echo "Missing: $missing"
+            echo "Ambiguous: $ambiguous"
+            echo
+            echo "Corpus root: corpus/"
+          } | tee work/report/summary.txt
+
+      - name: Create combined text index
+        run: |
+          set -euo pipefail
+
+          {
+            echo "SMT IV ENGLISH TEXT CORPUS"
+            echo "================================"
+            echo
+
+            while IFS= read -r f; do
+              echo "===== $f ====="
+              cat "work/corpus/$f"
+              echo
+            done < <(
+              find work/corpus                 -type f                 -iname '*.txt'                 -printf '%p\n'                 | sed 's#^work/corpus/##'                 | sort
+            )
+          } > work/report/SMTIV_English_All_Text.txt
+
+      - name: Validate corpus
+        run: |
+          set -euo pipefail
+
+          txt_count=$(find work/corpus -type f -iname '*.txt' | wc -l)
+          bytes=$(du -sb work/corpus | cut -f1)
+          lines=$(find work/corpus -type f -iname '*.txt' -print0 | xargs -0 cat | wc -l)
+
+          {
+            echo "Corpus TXT files: $txt_count"
+            echo "Corpus bytes: $bytes"
+            echo "Corpus lines: $lines"
+          } >> work/report/summary.txt
+
+          cat work/report/summary.txt
+
+      - name: Package corpus
+        if: always()
+        run: |
+          tar -czf work/smt4-english-text-corpus.tar.gz -C work corpus report
+
+      - name: Upload English corpus
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-english-text-corpus
+          path: work/smt4-english-text-corpus.tar.gz
+          retention-days: 14
+          compression-level: 9
