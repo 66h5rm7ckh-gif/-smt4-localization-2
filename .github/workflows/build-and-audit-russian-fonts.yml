@@ -1,0 +1,155 @@
+name: Build and audit all six Russian SMT IV fonts
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Run containing smt4-romfs"
+        required: true
+        default: "35303156446"
+
+jobs:
+  build-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download original ROMFS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          mkdir -p work/romfs
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name smt4-romfs --dir work/romfs
+
+      - name: Install font tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip fonts-dejavu fonts-liberation
+          python3 -m pip install --upgrade pillow pypng
+          git clone --depth 1 https://github.com/ObsidianX/3dstools.git work/3dstools
+
+      - name: Build six fonts and audit compatibility
+        run: |
+          python3 - <<'PY'
+          import json, math, shutil, subprocess, struct, hashlib
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+
+          ROMFS = Path("work/romfs")
+          OUT = Path("work/russian-fonts")
+          OUT.mkdir(parents=True, exist_ok=True)
+          BCFNT = str(Path.cwd() / "work/3dstools/bcfnt.py")
+          names = ["demo_font","gmaru_9_9","rodin_6_6","rodin_12_12","rodin_14_14","rodin_16_16"]
+          ru = "".join(dict.fromkeys("ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяё"))
+          ttf = next((p for p in [
+              "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+              "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"
+          ] if Path(p).exists()), None)
+          if not ttf:
+              raise SystemExit("No Cyrillic-capable TTF found")
+
+          def load_manifest(d, base):
+              return json.loads((d / f"{base}_manifest.json").read_text(encoding="utf-8"))
+
+          def file_sha(p):
+              return hashlib.sha256(p.read_bytes()).hexdigest()
+
+          report = []
+          for name in names:
+              src = ROMFS / "font" / f"{name}.bcfnt"
+              if not src.exists():
+                  raise SystemExit(f"Missing source font: {src}")
+              d = OUT / name
+              d.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, d / src.name)
+              subprocess.run(["python3", BCFNT, "-x", "-y", "-f", src.name], cwd=d, check=True)
+              m = load_manifest(d, name)
+              gm0, gw0, ti0 = m["glyphMap"], m["glyphWidths"], m["textureInfo"]
+              cols, rows = int(ti0["sheetInfo"]["cols"]), int(ti0["sheetInfo"]["rows"])
+              cell_w, cell_h = int(ti0["glyph"]["width"]), int(ti0["glyph"]["height"])
+              sheet_w, sheet_h = int(ti0["sheetInfo"]["width"]), int(ti0["sheetInfo"]["height"])
+              old_sheets = int(ti0["sheetCount"])
+              missing = [c for c in ru if c not in gm0]
+              first_new = max((int(k) for k in gw0), default=-1) + 1
+              required = max(old_sheets, math.ceil((first_new + len(missing)) / (cols*rows)))
+
+              for i in range(old_sheets):
+                  shutil.copy2(d / f"{name}_sheet{i}.png", d / f"{name}_ru_sheet{i}.png")
+              for i in range(old_sheets, required):
+                  Image.new("RGBA",(sheet_w,sheet_h),(0,0,0,0)).save(d/f"{name}_ru_sheet{i}.png")
+
+              touched = {}
+              for n,ch in enumerate(missing):
+                  idx=first_new+n; sn=idx//(cols*rows); local=idx%(cols*rows)
+                  p=d/f"{name}_ru_sheet{sn}.png"
+                  if sn not in touched: touched[sn]=Image.open(p).convert("RGBA")
+                  img=touched[sn]; draw=ImageDraw.Draw(img)
+                  font=ImageFont.truetype(ttf,size=max(5,int(cell_h*0.88)))
+                  box=draw.textbbox((0,0),ch,font=font); tw,th=box[2]-box[0],box[3]-box[1]
+                  x0=(local%cols)*cell_w; y0=(local//cols)*cell_h
+                  x=x0+max(0,(cell_w-tw)//2)-box[0]; y=y0+max(0,(cell_h-th)//2)-box[1]
+                  draw.text((x,y),font=font,fill=(255,255,255,255))
+                  gw0[str(idx)]={"left":0,"glyph":min(cell_w,max(1,tw)),"char":min(cell_w,max(1,tw+1))}
+                  gm0[ch]=idx
+              for sn,img in touched.items(): img.save(d/f"{name}_ru_sheet{sn}.png")
+
+              m["glyphMap"],m["glyphWidths"],m["textureInfo"]["sheetCount"]=gm0,gw0,required
+              (d/f"{name}_ru_manifest.json").write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding="utf-8")
+              subprocess.run(["python3",BCFNT,"-c","-y","-f",f"{name}_ru.bcfnt"],cwd=d,check=True)
+
+              v=d/"verify"; v.mkdir()
+              subprocess.run(["python3",BCFNT,"-x","-y","-f",f"{name}_ru.bcfnt"],cwd=v,check=True)
+              mr=load_manifest(v,f"{name}_ru")
+              data=(d/f"{name}_ru.bcfnt").read_bytes()
+              if data[:4]!=b"CFNT": raise SystemExit(f"{name}: bad CFNT magic")
+              declared=struct.unpack_from("<I",data,0x0C)[0]
+              if declared!=len(data): raise SystemExit(f"{name}: bad declared size")
+              if int(mr["textureInfo"]["glyph"]["width"])!=cell_w or int(mr["textureInfo"]["glyph"]["height"])!=cell_h:
+                  raise SystemExit(f"{name}: glyph cell dimensions changed")
+              if int(mr["textureInfo"]["sheetInfo"]["cols"])!=cols or int(mr["textureInfo"]["sheetInfo"]["rows"])!=rows:
+                  raise SystemExit(f"{name}: sheet grid changed")
+              for ch in ru:
+                  if ch not in mr["glyphMap"]: raise SystemExit(f"{name}: missing Cyrillic {ch!r}")
+              for ch,idx in gm0.items():
+                  if ch in ru: continue
+                  if mr["glyphMap"].get(ch)!=idx:
+                      raise SystemExit(f"{name}: existing glyph index changed for {ch!r}")
+              if int(mr["textureInfo"]["sheetCount"]) < old_sheets:
+                  raise SystemExit(f"{name}: sheet count decreased")
+
+              # The replacement must keep the exact in-ROMFS filename/path.
+              package = Path("work/font-package/font"); package.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(d/f"{name}_ru.bcfnt",package/f"{name}.bcfnt")
+
+              report.append({
+                  "font":name,"source_sha256":file_sha(src),
+                  "replacement_sha256":file_sha(d/f"{name}_ru.bcfnt"),
+                  "source_size":src.stat().st_size,
+                  "replacement_size":(d/f"{name}_ru.bcfnt").stat().st_size,
+                  "cell":[cell_w,cell_h],"grid":[cols,rows],
+                  "source_sheets":old_sheets,"replacement_sheets":int(mr["textureInfo"]["sheetCount"]),
+                  "added_cyrillic":len(missing),"status":"PASS"
+              })
+
+          # Check that every replacement path exactly matches an original game font path.
+          original={p.name for p in (ROMFS/"font").glob("*.bcfnt")}
+          produced={p.name for p in Path("work/font-package/font").glob("*.bcfnt")}
+          expected={n+".bcfnt" for n in names}
+          if not expected.issubset(original): raise SystemExit("Not all expected original font paths exist")
+          if produced != expected: raise SystemExit(f"Replacement set mismatch: {sorted(produced)}")
+
+          Path("work/font-compatibility-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          print("ALL SIX FONTS: BUILD + STRUCTURAL COMPATIBILITY AUDIT PASSED")
+          PY
+
+      - name: Upload fonts and compatibility report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-russian-fonts-compatibility-audit
+          path: |
+            work/font-package/font/*.bcfnt
+            work/font-compatibility-report.json
+          retention-days: 14
