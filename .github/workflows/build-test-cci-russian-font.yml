@@ -84,7 +84,20 @@ jobs:
       - name: Build CXI
         run: |
           set -e
-          .3dstool/3dstool -ctf cxi work/game-russian.cxi --header work/extracted/ncchheader.bin --exh work/extracted/exheader.bin --exefs work/extracted/exefs.bin --romfs work/romfs-russian.bin --plain work/extracted/plain.bin --logo work/extracted/logo.bin
+          CXI_ARGS=(
+  -ctf cxi work/game-russian.cxi
+  --header work/extracted/ncchheader.bin
+  --exh work/extracted/exheader.bin
+  --exefs work/extracted/exefs.bin
+  --romfs work/romfs-russian.bin
+  --plain work/extracted/plain.bin
+)
+if [ -s work/extracted/logo.bin ]; then
+  CXI_ARGS+=(--logo work/extracted/logo.bin)
+else
+  echo "No logo region extracted; creating CXI without --logo."
+fi
+.3dstool/3dstool "${CXI_ARGS[@]}"
           test -s work/game-russian.cxi
 
       - name: Rebuild CCI
