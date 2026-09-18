@@ -158,7 +158,7 @@ jobs:
               verify = d / "verify"
               verify.mkdir()
               subprocess.run(
-                  ["python3", str(Path.cwd() / "../../3dstools/bcfnt.py"), "-x", "-y", "-f", f"{name}_ru.bcfnt"],
+                  ["python3", str(Path.cwd() / "work/3dstools/bcfnt.py"), "-x", "-y", "-f", f"{name}_ru.bcfnt"],
                   cwd=verify, check=True
               )
               rebuilt = json.loads((verify / f"{name}_ru_manifest.json").read_text(encoding="utf-8"))
