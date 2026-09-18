@@ -103,6 +103,26 @@ jobs:
           .3dstool/3dstool "${CXI_ARGS[@]}"
           test -s work/game-russian.cxi
 
+      - name: Install MakeROM
+        run: |
+          set -e
+          mkdir -p .makerom
+          curl -L --fail --retry 3 -o .makerom/makerom.zip https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.19.0/makerom-v0.19.0-ubuntu_x86_64.zip
+          unzip -q .makerom/makerom.zip -d .makerom
+          MAKEROM="$(find .makerom -type f -name makerom -print -quit)"
+          test -n "$MAKEROM"
+          if [ "$MAKEROM" != ".makerom/makerom" ]; then cp "$MAKEROM" .makerom/makerom; fi
+          chmod +x .makerom/makerom
+          .makerom/makerom -help | head -30
+
+      - name: Build CIA for real 3DS installation
+        run: |
+          set -e
+          .makerom/makerom -f cia -o work/Shin.Megami.Tensei.IV.Russian.Test.cia -target t -ignoresign -i work/game-russian.cxi:0:0
+          test -s work/Shin.Megami.Tensei.IV.Russian.Test.cia
+          stat -c '%s bytes' work/Shin.Megami.Tensei.IV.Russian.Test.cia
+          sha256sum work/Shin.Megami.Tensei.IV.Russian.Test.cia | tee work/cia.sha256
+
       - name: Rebuild CCI
         run: |
           set -e
@@ -144,5 +164,7 @@ jobs:
             work/game-russian.cxi
             work/romfs-russian.bin
             work/cci.sha256
+            work/Shin.Megami.Tensei.IV.Russian.Test.cia
+            work/cia.sha256
           retention-days: 14
           compression-level: 0
