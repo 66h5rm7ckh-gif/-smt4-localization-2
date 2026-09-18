@@ -210,3 +210,35 @@
 {"file":"battle/SkillInfoMess.txt","id":"223","source":"All stats decreased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики снижены!\n[END]","status":"translated"}
 {"file":"battle/SkillInfoMess.txt","id":"226","source":"Stat enhancements are removed!\n[END]","control_codes":["[END]"],"translation":"Усиления характеристик сняты!\n[END]","status":"translated"}
 {"file":"battle/SkillInfoMess.txt","id":"233","source":"HP regeneration added for the next turn!\n[END]","control_codes":["[END]"],"translation":"На следующий ход добавлена регенерация ОЗ!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"234","source":"Recovered from the status ailment!\n[END]","control_codes":["[END]"],"translation":"Негативное состояние снято!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"235","source":"MAX HP increased!\n[END]","control_codes":["[END]"],"translation":"МАКС. ОЗ повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"236","source":"MP cost temporarily removed!\n[END]","control_codes":["[END]"],"translation":"Затраты ОМ временно отменены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"237","source":"MP cost temporarily removed!\n[END]","control_codes":["[END]"],"translation":"Затраты ОМ временно отменены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"238","source":"Damage temporarily nullified!\n[END]","control_codes":["[END]"],"translation":"Урон временно нейтрализован!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"239","source":"Damage temporarily nullified!\n[END]","control_codes":["[END]"],"translation":"Урон временно нейтрализован!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"240","source":"Attack temporarily greatly increased!\n[END]","control_codes":["[END]"],"translation":"Атака временно значительно повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"254","source":"All stats increased!\n[END]","control_codes":["[END]"],"translation":"Все характеристики повышены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"255","source":"Its aura has greatly changed...\n[END]","control_codes":["[END]"],"translation":"Его аура сильно изменилась...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"256","source":"Attack decreased!\n[END]","control_codes":["[END]"],"translation":"Атака снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"264","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"266","source":"The demon was returned to your stock...\n[END]","control_codes":["[END]"],"translation":"Демон возвращён в запас...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"268","source":"Hit/evasion rate decreased!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"269","source":"Defense decreased!\n[END]","control_codes":["[END]"],"translation":"Защита снижена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"272","source":"A protective wall appeared before you!\n[END]","control_codes":["[END]"],"translation":"Перед вами появилась защитная стена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"273","source":"A protective wall appeared before you!\n[END]","control_codes":["[END]"],"translation":"Перед вами появилась защитная стена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"274","source":"A protective wall appeared before you!\n[END]","control_codes":["[END]"],"translation":"Перед вами появилась защитная стена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"275","source":"A protective wall appeared before you!\n[END]","control_codes":["[END]"],"translation":"Перед вами появилась защитная стена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"303","source":"Tetrakarn's effect was nullified!\n[END]","control_codes":["[END]"],"translation":"Эффект Тетракарна нейтрализован!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"309","source":"Makarakarn's effect was nullified!\n[END]","control_codes":["[END]"],"translation":"Эффект Маракакарна нейтрализован!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"310","source":"[Demon name 6] smirks...\n[END]","control_codes":["[Demon name 6]","[END]"],"translation":"[Demon name 6] ухмыляется...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"318","source":"All your stats up and all the opponent's stats down!\n[END]","control_codes":["[END]"],"translation":"Все ваши характеристики повышены, а характеристики противника снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"319","source":"Hit/evasion rate down!\n[END]","control_codes":["[END]"],"translation":"Точность и уклонение снижены!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"320","source":"Created a weakness!\n[END]","control_codes":["[END]"],"translation":"Создана уязвимость!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"321","source":"Gained a Press Turn Icon!\n[END]","control_codes":["[END]"],"translation":"Получен значок Press Turn!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"322","source":"Time rewinds...\n[END]","control_codes":["[END]"],"translation":"Время отматывается назад...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"325","source":"Magic temporarily greatly increased!\n[END]","control_codes":["[END]"],"translation":"Магия временно значительно повышена!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"328","source":"Phys/gun temporarily greatly increases!\n[END]","control_codes":["[END]"],"translation":"Физический и оружейный урон временно значительно повышен!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"355","source":"The portable cannon began loading shells...\n[END]","control_codes":["[END]"],"translation":"Портативная пушка начала заряжаться...\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"356","source":"The portable cannon began its bombardment!\n[END]","control_codes":["[END]"],"translation":"Портативная пушка начала обстрел!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"358","source":"The smirk disappeared!\n[END]","control_codes":["[END]"],"translation":"Ухмылка исчезла!\n[END]","status":"translated"}
+{"file":"battle/SkillInfoMess.txt","id":"388","source":"A StreetPass Demon makes an assist!\n[END]","control_codes":["[END]"],"translation":"Демон StreetPass оказывает поддержку!\n[END]","status":"translated"}
