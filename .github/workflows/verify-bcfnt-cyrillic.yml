@@ -1,0 +1,119 @@
+name: Verify BCFNT Cyrillic
+
+on:
+  push:
+    paths:
+      - ".github/workflows/verify-bcfnt-cyrillic.yml"
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "ROMFS extraction workflow run ID"
+        required: true
+        default: "35303156446"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download extracted ROMFS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id || '35303156446' }}
+        run: |
+          rm -rf romfs
+          mkdir -p romfs
+          gh run download "$SOURCE_RUN_ID" -n smt4-romfs -D romfs
+          find romfs -type f -name '*.bcfnt' -print
+
+      - name: Verify CMAP mappings
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+
+          targets = set(range(0x0400, 0x0500))
+          required = set(range(0x0410,0x0430)) | set(range(0x0430,0x0450))
+          # Russian alphabet specifically, excluding Ё/ё for a separate check.
+          russian = set(map(ord, "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"))
+          russian |= {ord("Ё"), ord("ё")}
+
+          def u16(data, off):
+              return struct.unpack_from("<H", data, off)[0]
+
+          def u32(data, off):
+              return struct.unpack_from("<I", data, off)[0]
+
+          def parse_cmap(data, off, seen):
+              maps = {}
+              while off and off < len(data) and off not in seen:
+                  seen.add(off)
+                  if data[off:off+4] != b"CMAP":
+                      break
+                  size = u32(data, off+4)
+                  begin, end, method = struct.unpack_from("<3H", data, off+8)
+                  nxt = u32(data, off+0x10)
+                  pos = off + 0x14
+                  if method == 0:
+                      idx = u16(data, pos)
+                      for code in range(begin, end+1):
+                          maps[code] = idx + (code-begin)
+                  elif method == 1:
+                      for i, code in enumerate(range(begin, end+1)):
+                          if pos+2*i+2 <= len(data):
+                              maps[code] = u16(data, pos+2*i)
+                  elif method == 2:
+                      count = u16(data, pos)
+                      pos += 2
+                      for _ in range(count):
+                          code = u16(data, pos)
+                          idx = u16(data, pos+2)
+                          maps[code] = idx
+                          pos += 4
+                  off = nxt
+              return maps
+
+          lines = ["SMT IV BCFNT CYRILLIC CMAP VERIFICATION", ""]
+          for p in sorted(Path("romfs").rglob("*.bcfnt")):
+              data = p.read_bytes()
+              if data[:4] not in (b"CFNT", b"CFNU"):
+                  continue
+              finf = data.find(b"FINF")
+              if finf < 0:
+                  continue
+              cmap_off = u32(data, finf+0x18)
+              cmap = parse_cmap(data, cmap_off, set())
+              present = sorted(c for c in russian if c in cmap)
+              missing = sorted(c for c in russian if c not in cmap)
+              russian_names = "".join(chr(c) for c in present)
+              lines += [
+                  f"FILE: {p.relative_to('romfs')}",
+                  f"SIZE: {len(data)}",
+                  f"CMAP_OFFSET: 0x{cmap_off:X}",
+                  f"CMAP_ENTRIES: {len(cmap)}",
+                  f"RUSSIAN_PRESENT: {len(present)}/{len(russian)}",
+                  f"RUSSIAN_MISSING: {''.join(chr(c) for c in missing) if missing else '-'}",
+                  f"RUSSIAN_GLYPH_INDEXES: " + ", ".join(f"U+{c:04X}->{cmap[c]}" for c in present),
+                  "",
+              ]
+
+          Path("research/smt4-bcfnt-cyrillic.txt").write_text("\n".join(lines), encoding="utf-8")
+          print("\n".join(lines))
+          PY
+
+      - name: Commit verification report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/smt4-bcfnt-cyrillic.txt
+          git diff --cached --quiet || git commit -m "research: record BCFNT Cyrillic CMAP verification"
+          git push
+
+      - name: Upload verification report
+        uses: actions/upload-artifact@v4
+        with:
+          name: smt4-bcfnt-cyrillic
+          path: research/smt4-bcfnt-cyrillic.txt
+          retention-days: 14
