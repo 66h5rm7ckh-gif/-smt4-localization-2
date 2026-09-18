@@ -1,4 +1,4 @@
-name: Translate next 900 SMT IV records
+name: Translate next 1000 SMT IV records
 
 on:
   push:
@@ -30,7 +30,8 @@ jobs:
           import json, re, time
           from pathlib import Path
           from deep_translator import GoogleTranslator
-          src = [json.loads(x) for x in Path("work/source/menu_system_candidates.jsonl").read_text(encoding="utf8").splitlines()][2123:3023]
+          src_all = [json.loads(x) for x in Path("work/source/menu_system_candidates.jsonl").read_text(encoding="utf8").splitlines()]
+          src = [x for x in src_all if (x["file"], str(x["id"])) not in keys][:1000]
           out = Path("translation/ru_manifest.jsonl")
           existing = [json.loads(x) for x in out.read_text(encoding="utf8").splitlines() if x.strip()]
           keys = {(x["file"], str(x["id"])) for x in existing}
@@ -68,7 +69,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add translation/ru_manifest.jsonl
-          git diff --cached --quiet || git commit -m "Translate SMT IV records 2124-3023"
+          git diff --cached --quiet || git commit -m "Translate next 1000 SMT IV records"
           git push
 
 # trigger
