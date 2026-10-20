@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/translate-next-900.yml"
+      - "translation/ru_manifest.jsonl"
   workflow_dispatch:
 
 permissions:
@@ -104,6 +105,7 @@ jobs:
               return ru
 
           changed=0
+          processed=0
           for x in existing:
               s=str(x.get("source",""))
               old=str(x.get("ru",""))
@@ -127,6 +129,9 @@ jobs:
                   if any(len(w)>=2 and (w.islower() or not w.isupper()) for w in words):
                       needs=True
               if needs:
+                  if processed >= 900:
+                      continue
+                  processed += 1
                   ru=translate(s)
               if ru != old:
                   x["ru"]=ru
