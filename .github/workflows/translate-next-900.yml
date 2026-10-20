@@ -16,13 +16,30 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - name: Download English source
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Validate translation manifest
         run: |
-          mkdir -p work/source
-          gh run download 35366977861 --repo "${{ github.repository }}" -n smt4-menu-system-candidates -D work/source
-          tar -xzf work/source/smt4-menu-system-candidates.tar.gz -C work/source
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("translation/ru_manifest.jsonl")
+          if not p.exists():
+              raise SystemExit("Missing translation/ru_manifest.jsonl")
+          rows = [line for line in p.read_text(encoding="utf-8").splitlines() if line.strip()]
+          if not rows:
+              raise SystemExit("Translation manifest is empty")
+          bad = []
+          for n, line in enumerate(rows, 1):
+              try:
+                  row = json.loads(line)
+              except Exception as exc:
+                  bad.append((n, str(exc)))
+                  continue
+              if not isinstance(row, dict) or "source" not in row or "ru" not in row:
+                  bad.append((n, "record must be an object containing source and ru"))
+          if bad:
+              raise SystemExit(f"Manifest validation failed ({len(bad)} errors): {bad[:10]}")
+          print(f"Validated {len(rows)} JSONL records; translating directly from the repository manifest.")
+          PY
       - name: Translate and repair untranslated records
         run: |
           python3 -m pip install --quiet deep-translator
@@ -66,10 +83,18 @@ jobs:
                   tags.append(m.group(0))
                   return f"ZZTAG{i}ZZ"
               masked=tag_re.sub(mask,s)
-              try:
-                  ru=translator.translate(masked)
-              except Exception as e:
-                  print("translate error:", repr(s[:120]), repr(e))
+              ru = None
+              last_error = None
+              for attempt in range(4):
+                  try:
+                      ru = translator.translate(masked)
+                      if ru:
+                          break
+                  except Exception as e:
+                      last_error = e
+                  time.sleep(1.5 * (attempt + 1))
+              if not ru:
+                  print("translate failed after retries:", repr(s[:120]), repr(last_error))
                   return s
               for i,t in enumerate(tags):
                   ru=ru.replace(f"ZZTAG{i}ZZ",t)
