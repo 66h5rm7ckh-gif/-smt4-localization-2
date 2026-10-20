@@ -3,9 +3,14 @@ name: Translate and repair SMT IV Russian manifest
 on:
   push:
     paths:
-      - ".github/workflows/translate-next-900.yml"
       - "translation/ru_manifest.jsonl"
   workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+concurrency:
+  group: smt4-translation-manifest
+  cancel-in-progress: false
 
 permissions:
   contents: write
