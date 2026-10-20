@@ -4020,3 +4020,903 @@
 {"file":"battle/talk/TalkToneBoss01.txt","id":"65","source":"[71 1]...Surely you did not come to the depths\nof Naraku solely to raise funds.\n[->]What would possess you to do this...?\n[->][END]","control_codes":["[->]","[71 1]","[END]"],"ru":"[71 1]...Surely you did not come to the depths\nof Naraku solely to raise funds.\n[->]What would possess you to do this...?\n[->][END]","status":"translated"}
 {"file":"battle/talk/TalkToneBoss01.txt","id":"66","source":"NOT USED\n[END]","control_codes":["[END]"],"ru":"NOT USED\n[END]","status":"translated"}
 {"file":"battle/talk/TalkToneBoss01.txt","id":"67","source":"[71 1]Ah, then you wish to negotiate...?\nVery well. If you can pay the price,\nthat is.\n[->][END]","control_codes":["[->]","[71 1]","[END]"],"ru":"[71 1]Ah, then you wish to negotiate...?\nVery well. If you can pay the price,\nthat is.\n[->][END]","status":"translated"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"0","source":"[71 1]ME NEW SKILL! ME HUNT MORE!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"1","source":"[71 1]GRRRR...! MORE SKILL, MORE KILL,\nMORE BLOOD SPILL...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"2","source":"[71 1]ME MORE WILD WITH NEW SKILL!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"3","source":"[71 1]ME STRONGEST! ME BITE WHOLE WORLD!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"4","source":"[71 1]ME SKILL FULL! YOU THROW ONE AWAY!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"5","source":"[71 1][Color:0x5][Skill 1][Color:0x0] BECOME\n[Color:0x5][Skill 2].[Color:0x0] HOW THAT?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"6","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nME CHANGE TO BETTER SKILL...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"7","source":"[71 1]AWOOOOOOOOOO!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"8","source":"[71 1]ME TOLD TO WAIT...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]![Color:0x0]\nTHIS LOOK TASTY!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"10","source":"[71 1]OOH...! SOUL BURNING...!\nME FINALLY TRANSFORM!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"11","source":"[71 1]A... A... AWOOOOOOOOO!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"12","source":"[71 1]ME TOLD TO WAIT...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"13","source":"[71 1]ME NOW WILD!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"14","source":"[71 1]ME SOUL SHAKING...\n[Color:0x5]TRANSFORM[Color:0x0] NEAR...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"15","source":"[71 1][Color:0x5][Item 1]![Color:0x0] EAT!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"16","source":"[71 1][Color:0x5][Item 1]![Color:0x0] IT TASTY!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"17","source":"[71 1][Color:0x5][Item 1]![Color:0x0] IT SMELL!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"18","source":"[71 1]ME DEMON WHISPER...\nCHANGE YOUR EXISTENCE...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"19","source":"[71 1]YOU FULL OF DEMON WHISPER?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"20","source":"[71 1]ME [Color:0x5][Demon race 1] [Demon name 1]![Color:0x0]\nNICE MEET YOU!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_beast.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"0","source":"[71 1]Samurai... You must master this\nnew power.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"1","source":"[71 1]Samurai... You must master this\nnew power.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"2","source":"[71 1]Samurai... You must master this\nnew power.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"3","source":"[71 1]This is the true power of a demon...\nFollow me, Samurai!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"4","source":"[71 1]I cannot hold any more skills. If you\nwish me to gain a new one, then you\nmust choose one to discard...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"5","source":"[71 1]My [Color:0x5][Skill 1][Color:0x0] shall be changed\nto [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"6","source":"[71 1]My [Color:0x5][Skill 1][Color:0x0] shall be changed\ninto a dreadful skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"7","source":"[71 1]Now there is the Samurai spirit!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"8","source":"[71 1]Hmm... That is one way to proceed.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"9","source":"[71 1]Tremble in fear at this\n[Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"15","source":"[71 1]This [Color:0x5][Item 1][Color:0x0] is for you.\nMake good use of it, Samurai.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"16","source":"[71 1]Well fought as usual, Samurai.\nTake this [Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"17","source":"[71 1]I shall give you this [Color:0x5][Item 1]...[Color:0x0]\nIt is a mere token of my gratitude.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"18","source":"[71 1]Samurai! The time has come for me to\nteach you the secrets of my strength.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"19","source":"[71 1]Have you learned the secrets of my\nstrength to your heart's content?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"20","source":"[71 1]In honor of my pact with old Aquila,\nI shall form a new one here...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1]...[Color:0x0]\nThis soul will be with you, Samurai...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss01.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"0","source":"[71 1]My beauty will be even more radiant\nwith this new skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"1","source":"[71 1]My beauty will be even more radiant\nwith this new skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"2","source":"[71 1]My beauty will be even more radiant\nwith this new skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"3","source":"[71 1]There is no end to the beauty I'll\npursue...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"4","source":"[71 1]My, so many skills. I need to discard\none and sort through these.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"5","source":"[71 1]I shall change my [Color:0x5][Skill 1][Color:0x0]\nto [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"6","source":"[71 1]I shall change my [Color:0x5][Skill 1][Color:0x0]\ninto a beautiful skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"7","source":"[71 1]Such a beautiful, captivating change...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"8","source":"[71 1]Was it not too beautiful?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"9","source":"[71 1]Here's [Color:0x5][Skill 1].[Color:0x0]\nMy, what a beautiful skill.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"15","source":"[71 1]I'll give you a gift. The beautiful\n[Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"16","source":"[71 1]You fight with such beauty and grace...\nHere, have this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"17","source":"[71 1]Use this [Color:0x5][Item 1][Color:0x0] to bring\nout your beauty even further.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"18","source":"[71 1]Take this devilish beauty, and no\nhuman will be able endure it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"19","source":"[71 1]Were you satisfied with my gift of\ndevilish beauty?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"20","source":"[71 1]Who has been lured by my unforgettable\nbeauty and wishes to be turned to stone?\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0] And you are\nanother one for my collection, I see...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss02.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss03.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"0","source":"[71 1]This power forged of knowledge and\nwisdom... Use it as you see fit.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"1","source":"[71 1]This power forged of knowledge and\nwisdom... Use it as you see fit.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"2","source":"[71 1]This power forged of knowledge and\nwisdom... Use it as you see fit.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"3","source":"[71 1]As long as humans harbor desire, I shall\nderive strength from their yearning...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"4","source":"[71 1]More skills only cause confusion. You\nmust prune away the lesser skills to\nmake the most of your power.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"5","source":"[71 1][Color:0x5][Skill 1][Color:0x0] to [Color:0x5][Skill 2]...[Color:0x0]\nLet it grow in power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"6","source":"[71 1]I'll change this [Color:0x5][Skill 1][Color:0x0]\nas I see fit...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"7","source":"[71 1]Now, what shape will this desire take...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"8","source":"[71 1]Are you saying you're satisfied with\nmy current powers?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0] That's the power\ngranted by your desire.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"15","source":"[71 1]Well done in fighting through that\nbattle. Take this [Color:0x5][Item 1][Color:0x0] as\nyour reward.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"16","source":"[71 1]This [Color:0x5][Item 1][Color:0x0] is yours.\nIt, too, is also a form of wisdom\nand power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1][Color:0x0] and\ncontinue to fight on.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"18","source":"[71 1]The fruits of knowledge and wisdom...\nEat of them to your heart's content.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"19","source":"[71 1]Have your desires been fulfilled?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"20","source":"[71 1]The mother with the secrets of life comes\nwith knowledge and wisdom in hand...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nAll life shall gather before me...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss04.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"0","source":"[71 1]Ohoho... A new skill. I shall devour\nthe world with this...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"1","source":"[71 1]Ohoho... A new skill. I shall devour\nthe world with this...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"2","source":"[71 1]Ohoho... A new skill. I shall devour\nthe world with this...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"3","source":"[71 1]I will not stop. I shall continue\nuntil all is devoured...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"4","source":"[71 1]Oh, I have a surfeit of skills. It seems\na waste, but one must be discarded.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"5","source":"[71 1]I shall devour [Color:0x5][Skill 1][Color:0x0] and\nchange it to [Color:0x5][Skill 2].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"6","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto a scrumptious skill.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"7","source":"[71 1]Delicacies, gather to me...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"8","source":"[71 1]...Is it necessary at times to hold\none's appetite?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"9","source":"[71 1]Ah, [Color:0x5][Skill 1]...[Color:0x0]\nNow this is a true delicacy.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"15","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nDevour it with gusto.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"16","source":"[71 1]A splendid battle! That was quite a\nspectacle. I present you with this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0] Put it\nto use in your tireless struggle.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"18","source":"[71 1]Hohoho... 'Tis a feast of demonic power.\nPartake of any of these as you like.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"19","source":"[71 1]Ohohoho... You could devour more,\nsurely? No?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"20","source":"[71 1]Humans who starve themselves pointlessly\nhave summoned me without learning from\ntheir mistakes...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us begin the frenzied feast...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss05.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"0","source":"[71 1]I offer this skill to my country...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"1","source":"[71 1]This skill shall pave the way for this\ncountry's future...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"2","source":"[71 1]Will this skill protect the country or\nbring carnage to it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"3","source":"[71 1]The road to mastery of the power to\nprotect this country is endless...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"4","source":"[71 1]It seems I can hold no more skills.\nYou must make a decision on which\nto discard.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"5","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"6","source":"[71 1]I shall leave [Color:0x5][Skill 1][Color:0x0]\nto the fates and change it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"7","source":"[71 1]Now is the time for change...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"8","source":"[71 1]It seems the time has not yet come...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nA skill brought to me by heaven's will.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"15","source":"[71 1]I present you with this [Color:0x5][Item 1].[Color:0x0]\nMay it be of use.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"16","source":"[71 1]What a magnificent fight! Have this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"17","source":"[71 1]The battles will continue... Use this\n[Color:0x5][Item 1][Color:0x0] to your advantage.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"18","source":"[71 1]Now is the time to teach you the secrets\nof we National Defense Divinities...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"19","source":"[71 1]Have you enshrined the secrets of power\nin your heart?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"20","source":"[71 1]I grieve over how much time has passed\nin my absence... This National Defense\nDivinity is at your service.\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us move forward for the sake of this\ncountry.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss06.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"0","source":"[71 1]I offer this skill to my country...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"1","source":"[71 1]This skill shall pave the way for this\ncountry's future...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"2","source":"[71 1]Will this skill protect the country or\nbring carnage to it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"3","source":"[71 1]The road to mastery of the power to\nprotect this country is endless...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"4","source":"[71 1]It seems I can hold no more skills.\nYou must make a decision on which\nto discard.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"5","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"6","source":"[71 1]I shall leave [Color:0x5][Skill 1][Color:0x0]\nto the fates and change it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"7","source":"[71 1]Now is the time for change...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"8","source":"[71 1]It seems the time has not yet come...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nA skill brought to me by heaven's will.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"15","source":"[71 1]I present you with this [Color:0x5][Item 1].[Color:0x0]\nMay it be of use.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"16","source":"[71 1]What a magnificent fight! Have this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"17","source":"[71 1]The battles will continue... Use this\n[Color:0x5][Item 1][Color:0x0] to your advantage.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"18","source":"[71 1]Now is the time to teach you the secrets\nof we National Defense Divinities...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"19","source":"[71 1]Have you enshrined the secrets of power\nin your heart?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"20","source":"[71 1]I grieve over how much time has passed\nin my absence... This National Defense\nDivinity is at your service.\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us move forward for the sake of this\ncountry.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss07.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"0","source":"[71 1]I offer this skill to my country...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"1","source":"[71 1]This skill shall pave the way for this\ncountry's future...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"2","source":"[71 1]Will this skill protect the country or\nbring carnage to it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"3","source":"[71 1]The road to mastery of the power to\nprotect this country is endless...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"4","source":"[71 1]It seems I can hold no more skills.\nYou must make a decision on which\nto discard.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"5","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"6","source":"[71 1]I shall leave [Color:0x5][Skill 1][Color:0x0]\nto the fates and change it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"7","source":"[71 1]Now is the time for change...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"8","source":"[71 1]It seems the time has not yet come...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nA skill brought to me by heaven's will.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"15","source":"[71 1]I present you with this [Color:0x5][Item 1].[Color:0x0]\nMay it be of use.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"16","source":"[71 1]What a magnificent fight! Have this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"17","source":"[71 1]The battles will continue... Use this\n[Color:0x5][Item 1][Color:0x0] to your advantage.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"18","source":"[71 1]Now is the time to teach you the secrets\nof we National Defense Divinities...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"19","source":"[71 1]Have you enshrined the secrets of power\nin your heart?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"20","source":"[71 1]I grieve over how much time has passed\nin my absence... This National Defense\nDivinity is at your service.\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us move forward for the sake of this\ncountry.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss08.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"0","source":"[71 1]I offer this skill to my country...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"1","source":"[71 1]This skill shall pave the way for this\ncountry's future...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"2","source":"[71 1]Will this skill protect the country or\nbring carnage to it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"3","source":"[71 1]The road to mastery of the power to\nprotect this country is endless...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"4","source":"[71 1]It seems I can hold no more skills.\nYou must make a decision on which\nto discard.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"5","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"6","source":"[71 1]I shall leave [Color:0x5][Skill 1][Color:0x0]\nto the fates and change it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"7","source":"[71 1]Now is the time for change...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"8","source":"[71 1]It seems the time has not yet come...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nA skill brought to me by heaven's will.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"15","source":"[71 1]I present you with this [Color:0x5][Item 1].[Color:0x0]\nMay it be of use.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"16","source":"[71 1]What a magnificent fight! Have this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"17","source":"[71 1]The battles will continue... Use this\n[Color:0x5][Item 1][Color:0x0] to your advantage.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"18","source":"[71 1]Now is the time to teach you the secrets\nof we National Defense Divinities...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"19","source":"[71 1]Have you enshrined the secrets of power\nin your heart?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"20","source":"[71 1]I grieve over how much time has passed\nin my absence... This National Defense\nDivinity is at your service.\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us move forward for the sake of this\ncountry.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss09.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"0","source":"[71 1]I offer this skill to my country...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"1","source":"[71 1]This skill shall pave the way for this\ncountry's future...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"2","source":"[71 1]Will this skill protect the country or\nbring carnage to it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"3","source":"[71 1]The road to mastery of the power to\nprotect this country is endless...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"4","source":"[71 1]It seems I can hold no more skills.\nYou must make a decision on which\nto discard.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"5","source":"[71 1]I shall change this [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"6","source":"[71 1]I shall leave [Color:0x5][Skill 1][Color:0x0]\nto the fates and change it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"7","source":"[71 1]Now is the time for change...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"8","source":"[71 1]It seems the time has not yet come...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nA skill brought to me by heaven's will.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"15","source":"[71 1]I present you with this [Color:0x5][Item 1].[Color:0x0]\nMay it be of use.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"16","source":"[71 1]What a magnificent fight! Have this\n[Color:0x5][Item 1][Color:0x0] in its honor.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"17","source":"[71 1]The battles will continue... Use this\n[Color:0x5][Item 1][Color:0x0] to your advantage.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"18","source":"[71 1]Now is the time to teach you the secrets\nof we National Defense Divinities...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"19","source":"[71 1]Have you enshrined the secrets of power\nin your heart?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"20","source":"[71 1]I grieve over how much time has passed\nin my absence... This National Defense\nDivinity is at your service.\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us move forward for the sake of this\ncountry.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss10.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss11.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss12.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss13.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss14.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"0","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"1","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"2","source":"[71 1](仮)スキル習得メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"3","source":"[71 1](仮)スキルコンプリート時メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"4","source":"[71 1](仮)スキル入れ替えメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"5","source":"[71 1](仮)スキル変化選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"6","source":"[71 1](仮)スキル変化選択(ルーレット)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"7","source":"[71 1](仮)スキル変化OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"8","source":"[71 1](仮)スキル変化NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"9","source":"[71 1](仮)スキル変化完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"15","source":"[71 1](仮)ギフトイベントメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"16","source":"[71 1](仮)ギフトイベントメッセージ2\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"17","source":"[71 1](仮)ギフトイベントメッセージ3\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"18","source":"[71 1](仮)ウィスパースキルメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"19","source":"[71 1](仮)ウィスパースキル終了確認\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"20","source":"[71 1](仮)合体後よろしくメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss15.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"0","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"1","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"2","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"3","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"4","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"5","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"6","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"7","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"8","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"9","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"15","source":"[71 1]Yaso Magatsuhi...!\n[Color:0x5][Item 1]...![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"16","source":"[71 1]Yaso Magatsuhi...!\n[Color:0x5][Item 1]...![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"17","source":"[71 1]Yaso Magatsuhi...!\n[Color:0x5][Item 1]...![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"18","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"19","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"20","source":"[71 1]Yaso Magatsuhi...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss16.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"0","source":"[71 1]Behold the new light that coalesces\nin my hands...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"1","source":"[71 1]A new light is granted unto me by\nthe heavens...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"2","source":"[71 1]Rejoice in the welcome awakening of\na slumbering light...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"3","source":"[71 1]Our light will spread far and wide for\nall eternity...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"4","source":"[71 1]It seems I cannot hold any more skills.\nYou must offer one up unto the Lord.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"5","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nLord and change it to [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"6","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nheavens and receive it as a new light...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"7","source":"[71 1]May the heavens and bring the blessings\nof light upon us...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"8","source":"[71 1]Then it is still time to remain on\nthe earth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nTreasure this new light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"15","source":"[71 1]I grant you this [Color:0x5][Item 1]...[Color:0x0]\nIt is a blessing born from light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"16","source":"[71 1]I praise your spirit and grant you\nthis [Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nSee that it is used, our warrior.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"18","source":"[71 1]This light that dwells within me...\nI shall whisper the Word that it\nmight live within you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"19","source":"[71 1]You have accepted my light, no...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"20","source":"[71 1]The great guardian descends from the\nheavens with a triumphant cry...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nMy fate is intertwined with yours.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss17.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"0","source":"[71 1]Behold the new light that coalesces\nin my hands...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"1","source":"[71 1]A new light is granted unto me by\nthe heavens...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"2","source":"[71 1]Rejoice in the welcome awakening of\na slumbering light...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"3","source":"[71 1]Our light will spread far and wide for\nall eternity...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"4","source":"[71 1]It seems I cannot hold any more skills.\nYou must offer one up unto the Lord.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"5","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nLord and change it to [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"6","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nheavens and receive it as a new light...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"7","source":"[71 1]May the heavens and bring the blessings\nof light upon us...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"8","source":"[71 1]Then it is still time to remain on\nthe earth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nTreasure this new light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"15","source":"[71 1]I grant you this [Color:0x5][Item 1]...[Color:0x0]\nIt is a blessing born from light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"16","source":"[71 1]I praise your spirit and grant you\nthis [Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nSee that it is used, our warrior.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"18","source":"[71 1]This light that dwells within me...\nI shall whisper the Word that it\nmight live within you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"19","source":"[71 1]You have accepted my light, no...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"20","source":"[71 1]The great guardian descends from the\nheavens with a triumphant cry...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nMy fate is intertwined with yours.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss18.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"0","source":"[71 1]Behold the new light that coalesces\nin my hands...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"1","source":"[71 1]A new light is granted unto me by\nthe heavens...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"2","source":"[71 1]Rejoice in the welcome awakening of\na slumbering light...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"3","source":"[71 1]Our light will spread far and wide for\nall eternity...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"4","source":"[71 1]It seems I cannot hold any more skills.\nYou must offer one up unto the Lord.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"5","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nLord and change it to [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"6","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nheavens and receive it as a new light...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"7","source":"[71 1]May the heavens and bring the blessings\nof light upon us...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"8","source":"[71 1]Then it is still time to remain on\nthe earth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nTreasure this new light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"15","source":"[71 1]I grant you this [Color:0x5][Item 1]...[Color:0x0]\nIt is a blessing born from light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"16","source":"[71 1]I praise your spirit and grant you\nthis [Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nSee that it is used, our warrior.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"18","source":"[71 1]This light that dwells within me...\nI shall whisper the Word that it\nmight live within you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"19","source":"[71 1]You have accepted my light, no...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"20","source":"[71 1]The great guardian descends from the\nheavens with a triumphant cry...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nMy fate is intertwined with yours.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss19.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"0","source":"[71 1]Behold the new light that coalesces\nin my hands...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"1","source":"[71 1]A new light is granted unto me by\nthe heavens...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"2","source":"[71 1]Rejoice in the welcome awakening of\na slumbering light...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"3","source":"[71 1]Our light will spread far and wide for\nall eternity...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"4","source":"[71 1]It seems I cannot hold any more skills.\nYou must offer one up unto the Lord.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"5","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nLord and change it to [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"6","source":"[71 1]I shall return [Color:0x5][Skill 1][Color:0x0] to the\nheavens and receive it as a new light...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"7","source":"[71 1]May the heavens and bring the blessings\nof light upon us...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"8","source":"[71 1]Then it is still time to remain on\nthe earth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nTreasure this new light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"15","source":"[71 1]I grant you this [Color:0x5][Item 1]...[Color:0x0]\nIt is a blessing born from light.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"16","source":"[71 1]I praise your spirit and grant you\nthis [Color:0x5][Item 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nSee that it is used, our warrior.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"18","source":"[71 1]This light that dwells within me...\nI shall whisper the Word that it\nmight live within you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"19","source":"[71 1]You have accepted my light, no...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"20","source":"[71 1]The great guardian descends from the\nheavens with a triumphant cry...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nMy fate is intertwined with yours.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boss20.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"0","source":"[71 1]I learned a new skill!\nI'm strong now!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"1","source":"[71 1]Look! It's my new super skill!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"2","source":"[71 1]Check out my new skill!\nI'm so awesome!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"3","source":"[71 1]Look how strong I am now!\nI'm the best!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"4","source":"[71 1]Why can't I hold all these skills?\nI have to drop one...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"5","source":"[71 1]All right! I'll change\n[Color:0x5][Skill 1][Color:0x0] into\n[Color:0x5][Skill 2]![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"6","source":"[71 1]All right! I'll change\n[Color:0x5][Skill 1][Color:0x0] into\nsomething cool!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"7","source":"[71 1]Don't blame me if anything goes wrong!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"8","source":"[71 1]Urgh... Fine then!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"9","source":"[71 1]It became [Color:0x5][Skill 1]![Color:0x0]\nIsn't that cool?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"10","source":"[71 1]All right, time to transform!\nI'll show you who I really am!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"11","source":"[71 1]Here I go! Transsss...form!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"12","source":"[71 1]Aw... I really wanted to show you\nhow awesome I really am...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"13","source":"[71 1]Yayyy! I'm done!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"14","source":"[71 1]I think I might be able to\n[Color:0x5]transform[Color:0x0] soon...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"15","source":"[71 1]Hey, I found a [Color:0x5][Item 1][Color:0x0]\nover there! You can have it.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"16","source":"[71 1]Here, have a [Color:0x5][Item 1],[Color:0x0]\nMister... Because you're always\nfighting.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"17","source":"[71 1]Have this [Color:0x5][Item 1]![Color:0x0]\nIt's my favorite!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"18","source":"[71 1]Hehehehehe! I'll teach you the power\nof demons!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"19","source":"[71 1]I still can teach you more!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"20","source":"[71 1]I'm [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nNice to meet you!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_boy.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"0","source":"[71 1]Look, I have a brand new skill.\nUse it wisely, okay?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"1","source":"[71 1]What do you think of this new skill?\nNow you'll never be able to let me\ngo!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"2","source":"[71 1]Take a look at my new skill!\nIt looks really good on me, huh?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"3","source":"[71 1]Is this crazy, or what?\nI'm totally strong now.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"4","source":"[71 1]Oh, my... Was I being too greedy?\nI have to throw one of my skills\naway!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"5","source":"[71 1]You know, my [Color:0x5][Skill 1]...[Color:0x0]\nI was thinking of changing it to\n[Color:0x5][Skill 2].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"6","source":"[71 1]My [Color:0x5][Skill 1]...[Color:0x0]\nDon't you think it'd be much better\nif it was something else?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"7","source":"[71 1]There's no stopping me now!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"8","source":"[71 1]I thought I'd be totally cool with\nthat skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"9","source":"[71 1]It's done! [Color:0x5][Skill 1]![Color:0x0]\nThis is sooo me, huh?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"10","source":"[71 1]My heart is pounding... I feel\nlike I could just transform\nright now...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"11","source":"[71 1]Here I go! Whatever happens,\nhappens!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"12","source":"[71 1]Don't make me wait...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"13","source":"[71 1]Wow, I'm so cool now!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"14","source":"[71 1]What's this feeling...? I think I\nmight be ready to [Color:0x5]transform![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"15","source":"[71 1]Here, I have an extra\n[Color:0x5][Item 1]...[Color:0x0]\nSo...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"16","source":"[71 1]Here you go, have this\n[Color:0x5][Item 1].[Color:0x0]\nIt makes you feel good!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"17","source":"[71 1]You can have this [Color:0x5][Item 1].[Color:0x0]\nI'd feel real bad if you died.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"18","source":"[71 1]I'll teach you a demon's moves...\nBut just you!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"19","source":"[71 1]Come on, I can teach you more,\ny'know!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"20","source":"[71 1]I'm [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nI am totally happy to meet you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gal.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"0","source":"[71 1]I devote this newfound power to\nyou...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"1","source":"[71 1]With this new skill, I will\nenchant you...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"2","source":"[71 1]I have learned yet another\ninteresting technique...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"3","source":"[71 1]My strength is virtually sinful...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"4","source":"[71 1]It seems I am absolutely full of\nskills. I shall allow you to choose\nwhich of them I shall relinquish.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"5","source":"[71 1]What would you say if I changed my\n[Color:0x5][Skill 1][Color:0x0] to \n[Color:0x5][Skill 2]?[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"6","source":"[71 1]Would you allow me to alter my\nskill [Color:0x5][Skill 1][Color:0x0] into\na more wonderful skill?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"7","source":"[71 1]...Bear witness.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"8","source":"[71 1]It was not to your liking...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"9","source":"[71 1][Color:0x5][Skill 1].[Color:0x0]\nHmhmhm. I impress myself...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"10","source":"[71 1]I can sense my body yearning for a\nchange...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"11","source":"[71 1]I shall transform... Burn this\nscene of accomplishment into your\neyes...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"12","source":"[71 1]Very well. I shall make due with\nthis body...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"13","source":"[71 1]...I have obtained an excellent new\nbody.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"14","source":"[71 1]Ho ho... This feeling... It is a\npremonition of [Color:0x5]evolution...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"15","source":"[71 1]Take this [Color:0x5][Item 1].[Color:0x0]\nA gift from me to you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"16","source":"[71 1]I give you [Color:0x5][Item 1]...[Color:0x0]\nIt is quite becoming of you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"17","source":"[71 1]Your work must be praised. I present\nyou with this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"18","source":"[71 1]Now, take this... The forbidden\npower of demons...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"19","source":"[71 1]You can have more if you like.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"20","source":"[71 1]My name is [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nIt is a pleasure to meet you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_gentle.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"0","source":"[71 1]Ooh, a new skill! Now I can kill\neven more!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"1","source":"[71 1]Yay, a new skill! Let's try to use\nit a lot, Mister!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"2","source":"[71 1]I've got a new skill, Mister!\nDon't wear it out!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"3","source":"[71 1]What should I do, Mister? I think\nI might be too strong now!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"4","source":"[71 1]I have too many skills...\nI need to get rid of one!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"5","source":"[71 1]Hey, Mister, can I change my\n[Color:0x5][Skill 1][Color:0x0] into\n[Color:0x5][Skill 2]?[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"6","source":"[71 1]Hey, Mister, can I change my\n[Color:0x5][Skill 1][Color:0x0] into\na really nice new skill?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"7","source":"[71 1]Hee hee hee! Yay!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"8","source":"[71 1]Awwwww... Let me do it next time!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"9","source":"[71 1]It became [Color:0x5][Skill 1]![Color:0x0]\nIsn't that nice?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"10","source":"[71 1]I feel so tickly...!\nAm I going to transform?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"11","source":"[71 1]Wh−What's happening to me?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"12","source":"[71 1]Awwww...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"13","source":"[71 1]Yay! I've become a cute demon!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"14","source":"[71 1]I'm starting to feel tickly...\nAm I going to [Color:0x5]transform[Color:0x0] soon,\nMister?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"15","source":"[71 1]Here you go! [Color:0x5][Item 1]![Color:0x0]\nDon't lose it!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"16","source":"[71 1]Want a snack, Mister?\nHere, [Color:0x5][Item 1]![Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"17","source":"[71 1][Color:0x5][Item 1]![Color:0x0] Grown−ups say\nit's dangerous, so be careful.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"18","source":"[71 1]Heehee! You're going to have the\npower of demons inside you!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"19","source":"[71 1]Do you want more, Mister?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"20","source":"[71 1]I'm [Color:0x5][Demon race 1] [Demon name 1]![Color:0x0]\nNice meeting you, Mister!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_girl.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"0","source":"[71 1]A new skill, ho!\nNow I'm the hero, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"1","source":"[71 1]I got a new skill, ho! Stay tuned\nfor my further adventures, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"2","source":"[71 1]Yet another skill, ho!\nLooks like I'm the MVP, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"3","source":"[71 1]I'm hee−ven stronger now, ho!\nIf this keeps up, the next chapter\nwill be about me!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"4","source":"[71 1]I can't hold any more skills, ho.\nI need to toss one of them, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"5","source":"[71 1]Hee ho ho! I'll change [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 2],[Color:0x0] ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"6","source":"[71 1]Hee ho ho! I'll change [Color:0x5][Skill 1][Color:0x0]\ninto a better hee−hoing skill, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"7","source":"[71 1]Away we ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"8","source":"[71 1]I'll let you off this time, ho.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"9","source":"[71 1]It became [Color:0x5][Skill 1]![Color:0x0]\nWonderho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"10","source":"[71 1]Here comes the transformation you've\nall been waiting for, ho! Watch,\nand be amazed, hee ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"11","source":"[71 1]Heeeeeeeeeeeeeee hooooooooo!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"12","source":"[71 1]I wanted to show off some stock\nfootage for my transformation, ho...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"13","source":"[71 1]Transformation message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"14","source":"[71 1]I feel like I'm gonna [Color:0x5]transform,[Color:0x0]\nho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"15","source":"[71 1][Color:0x5][Item 1],[Color:0x0] ho!\nIt's a hee−ho present, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"16","source":"[71 1][Color:0x5][Item 1],[Color:0x0] ho!\nThis is from me, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"17","source":"[71 1]Here, ho! [Color:0x5][Item 1]![Color:0x0] It's a special one, ho.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"18","source":"[71 1]Hee ho ho ho! I'll teach you the\npower of demons, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"19","source":"[71 1]I still have more to teach you, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"20","source":"[71 1]I'm [Color:0x5][Demon race 1] [Demon name 1]![Color:0x0]\nNice to meet you, ho!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_heehaw.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"0","source":"[71 1]I devote this technique to my\ncountry...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"1","source":"[71 1]Let this technique blaze a trail for\nthe future of our nation...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"2","source":"[71 1]Will this ability protect this land?\n...Or destroy it?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"3","source":"[71 1]The path to mastering this power for\ndefending one's home is a never−\nending one...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"4","source":"[71 1]I cannot hold this many skills...\nDecide which I must abandon.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"5","source":"[71 1]I shall change this skill,\n[Color:0x5][Skill 1],[Color:0x0] to\n[Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"6","source":"[71 1]I shall change this skill,\n[Color:0x5][Skill 1],[Color:0x0]\nto another...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"7","source":"[71 1]Transform...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"8","source":"[71 1]So, now is not the time...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"9","source":"[71 1]This is [Color:0x5][Skill 1]...[Color:0x0]\nThe skill the heavens bestowed on us.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"15","source":"[71 1]I give you this [Color:0x5][Item 1].[Color:0x0]\nLet it assist you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"16","source":"[71 1]You have fought well.\nTake this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"17","source":"[71 1]There are many battles ahead...\nUse this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"18","source":"[71 1]I am one of the deadly National Defense\nDivinities... And I shall instruct you\nof the essence of our power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"19","source":"[71 1]Have you engraved the essence of my\npower into your mind?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"20","source":"[71 1]I answer my oath to protect this nation\nmade in days long past...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nLet us seek the battlefield...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human03.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"0","source":"[71 1]I devote this technique to my\ncountry...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"1","source":"[71 1]Let this technique blaze a trail for\nthe future of our nation...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"2","source":"[71 1]Will this ability protect this land?\nOr destroy it...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"3","source":"[71 1]The path to mastering this power for\ndefending one's home is a never−\nending one...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"4","source":"[71 1]I cannot hold this many skills...\nDecide which I must abandon.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"5","source":"[71 1]I shall change this skill,\n[Color:0x5][Skill 1],[Color:0x0] to\n[Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"6","source":"[71 1]Skill change (random) message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"7","source":"[71 1]Transform...!\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"8","source":"[71 1]So, now is not the time...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"9","source":"[71 1]Skill change done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"15","source":"[71 1]I give you this [Color:0x5][Item 1].[Color:0x0]\nLet it assist you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"16","source":"[71 1]You have fought well.\nTake this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"17","source":"[71 1]There are many battles ahead...\nUse this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"18","source":"[71 1]I shall instruct you in the essence\nof shadow techniques.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"19","source":"[71 1]Have you engraved the essence of\nthe shadow into your mind?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"20","source":"[71 1]Answering your call, this shadow of\nsteel is here...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1]...[Color:0x0]\nI shall become your shield to\npenetrate enemy lines...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human04.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"0","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"1","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"2","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"3","source":"[71 1]Skill completion message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"4","source":"[71 1]Skill full message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"5","source":"[71 1]Skill change message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"6","source":"[71 1]Skill change (random) message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"7","source":"[71 1]Skill change OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"8","source":"[71 1]Skill change cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"9","source":"[71 1]Skill change done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"15","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"16","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"17","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"18","source":"[71 1]Whisper message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"19","source":"[71 1]Whisper done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"20","source":"[71 1]Fusion greeting  message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_human05.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"0","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"1","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"2","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"3","source":"[71 1]Skill completion message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"4","source":"[71 1]Skill full message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"5","source":"[71 1]Skill change message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"6","source":"[71 1]Skill change (random) message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"7","source":"[71 1]Skill change OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"8","source":"[71 1]Skill change cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"9","source":"[71 1]Skill change done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"15","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"16","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"17","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"18","source":"[71 1]Whisper message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"19","source":"[71 1]Whisper done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"20","source":"[71 1]Fusion greeting  message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanfemale.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"0","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"1","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"2","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"3","source":"[71 1]Skill completion message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"4","source":"[71 1]Skill full message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"5","source":"[71 1]Skill change message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"6","source":"[71 1]Skill change (random) message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"7","source":"[71 1]Skill change OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"8","source":"[71 1]Skill change cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"9","source":"[71 1]Skill change done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"15","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"16","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"17","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"18","source":"[71 1]Whisper message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"19","source":"[71 1]Whisper done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"20","source":"[71 1]Fusion greeting  message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_humanmale.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"0","source":"[71 1]My hidden power hath come forth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"1","source":"[71 1]...Come, o new power of mine.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"2","source":"[71 1]Awaken, ancient skill of demons...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"3","source":"[71 1]This is the infinite power of\ndemons...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"4","source":"[71 1]I have no more room in my soul for\nskills. I command thee to discard\none of them...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"5","source":"[71 1]I shall make [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"6","source":"[71 1]I shall make [Color:0x5][Skill 1][Color:0x0]\ninto a terrifying skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"7","source":"[71 1]Observe, and be amazed...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"8","source":"[71 1]Let it be so...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"9","source":"[71 1]Fear the wrath of [Color:0x5][Skill 1]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"10","source":"[71 1]This undulation within my body...\nThe change is upon me.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"11","source":"[71 1]Bear witness, human...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"12","source":"[71 1]The undulation hath passed... \nI must wait for the next time...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"13","source":"[71 1]Tremble in fear at my figure...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"14","source":"[71 1]I feel the breath of undulation...\nThe time of [Color:0x5]change[Color:0x0] neareth...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"15","source":"[71 1]Let this [Color:0x5][Item 1][Color:0x0] be\nof use to thee.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"16","source":"[71 1]Thou hast served me well.\nTake this [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"17","source":"[71 1]I reward thee with this\n[Color:0x5][Item 1].[Color:0x0] 'Tis a fine item.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"18","source":"[71 1]Taint thyself with the power of\ndemons...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"19","source":"[71 1]Hast thou had enough?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"20","source":"[71 1]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nIt is a pleasure to meet thee.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_ijin.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"0","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"1","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"2","source":"[71 1]Learn Skill message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"3","source":"[71 1]Skill completion message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"4","source":"[71 1]Skill full message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"5","source":"[71 1]Skill change message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"6","source":"[71 1]Skill change (random) message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"7","source":"[71 1]Skill change OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"8","source":"[71 1]Skill change cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"9","source":"[71 1]Skill change done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"10","source":"[71 1]Transformation selection message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"11","source":"[71 1]Transformation OK message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"12","source":"[71 1]Transformation cancel message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"13","source":"[71 1]Transformation complete message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"14","source":"[71 1]Transformation omen message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"15","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"16","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"17","source":"[71 1]Gift message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"18","source":"[71 1]Whisper message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"19","source":"[71 1]Whisper done message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"20","source":"[71 1]Fusion greeting  message (provisional)\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_info.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"0","source":"[71 1]I have awakened to yet another\ndevilish aspect of myself...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"1","source":"[71 1]Another technique that I have been\nkeeping secret has been exposed...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"2","source":"[71 1]This new skill transforms me into\nthe heroine of this play...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"3","source":"[71 1]Strong, yet beautiful...\nExactly my ideal form.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"4","source":"[71 1]My, I have too many skills...\nI must rid myself of one.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"5","source":"[71 1]I will change my [Color:0x5][Skill 1][Color:0x0]\ninto [Color:0x5][Skill 2]...[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"6","source":"[71 1]I will change my [Color:0x5][Skill 1][Color:0x0]\ninto another lovely skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"7","source":"[71 1]It will be quite the experience...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"8","source":"[71 1]Don't you like the chance to be a\nlittle risque?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nQuite lovely, do you not agree?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"10","source":"[71 1]My body is so hot... I cannot bear\nit any longer! May I transform?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"11","source":"[71 1]Will I become something even more\nbeautiful...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"12","source":"[71 1]Now look what you have done...\nMy passion is gone.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"13","source":"[71 1]...Do you still recognize me?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"14","source":"[71 1]I can feel the heat building up\nwithin me... As if I'm about to\n[Color:0x5]transform[Color:0x0] soon...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"15","source":"[71 1]I give you this [Color:0x5][Item 1].[Color:0x0]\nTreasure it as if it were me.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"16","source":"[71 1]You are quite a hard worker.\nYou may have a [Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"17","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nIt is my favorite.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"18","source":"[71 1]My devilish powers are overflowing...\nDon't hesitate, just accept it...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"19","source":"[71 1]Over so soon? A bit premature...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"20","source":"[71 1]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nIt is a pleasure meeting you.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_lady.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"0","source":"[71 1]Death will howl once more...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"1","source":"[71 1]Let death come bearing a new power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"2","source":"[71 1]How many lives can be taken with this\nskill, I wonder...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"3","source":"[71 1]Death predominates... May the world\ntremble at its steps.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"4","source":"[71 1]A skill has been born and now overflows\nwith life. Another must be laid to rest.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"5","source":"[71 1]I shall lay to rest [Color:0x5][Skill 1][Color:0x0]\nand let [Color:0x5][Skill 2][Color:0x0] be born...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"6","source":"[71 1]I shall lay to rest [Color:0x5][Skill 1][Color:0x0]\nand give birth to a deadly skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"7","source":"[71 1]Die and be born...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"8","source":"[71 1]I shall leave this moment be...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nA skill born after death...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"15","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nA gift of death, from the Black Rider.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"16","source":"[71 1]This [Color:0x5][Item 1][Color:0x0] shall\nkeep you clinging to life...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"17","source":"[71 1]Samurai who lives on the border of\nlife and death... I grant you this\n[Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"18","source":"[71 1]The whisper of a Fiend that spins\ndeath... Accept it into yourself and\nlet it become power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"19","source":"[71 1]Will you be going, stained with death\nas you are...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"20","source":"[71 1]When the Black Rider gallops, the world\nwill be stained in ravenous pitch...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nSamurai, let us meet death gladly.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majinblack.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"0","source":"[71 1]Death will howl once more...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"1","source":"[71 1]Let death come bearing a new power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"2","source":"[71 1]How many lives can be taken with this\nskill, I wonder...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"3","source":"[71 1]Death predominates... May the world\ntremble at its steps.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"4","source":"[71 1]A skill has been born and now overflows\nwith life. Another must be laid to rest.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"5","source":"[71 1]I shall lay to rest [Color:0x5][Skill 1][Color:0x0]\nand let [Color:0x5][Skill 2][Color:0x0] be born...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"6","source":"[71 1]I shall lay to rest [Color:0x5][Skill 1][Color:0x0]\nand give birth to a deadly skill...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"7","source":"[71 1]Die and be born...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"8","source":"[71 1]I shall leave this moment be...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"9","source":"[71 1][Color:0x5][Skill 1]...[Color:0x0]\nA skill born after death...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"10","source":"[71 1](仮)変異選択メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"11","source":"[71 1](仮)変異OKメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"12","source":"[71 1](仮)変異NGメッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"13","source":"[71 1](仮)変異完了メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"14","source":"[71 1](仮)変異レベル未達メッセージ\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"15","source":"[71 1]Take this [Color:0x5][Item 1]...[Color:0x0]\nA gift of death from a Fiend.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"16","source":"[71 1]This [Color:0x5][Item 1][Color:0x0] shall\nkeep you clinging to life...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"17","source":"[71 1]Samurai who lives on the border of\nlife and death... I grant you this\n[Color:0x5][Item 1].[Color:0x0]\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"18","source":"[71 1]The whisper of a Fiend that spins\ndeath... Accept it into yourself and\nlet it become power...\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"19","source":"[71 1]Will you be going, stained with death\nas you are...?\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"20","source":"[71 1]Traveler who wanders the wasteland,\nyour mad heart beats a bewitching\nrhythm...\n[->]I am [Color:0x5][Demon race 1] [Demon name 1].[Color:0x0]\nSamurai, let us meet death gladly.\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"21","source":"[71 1]Let the skill mutate\nDon't let it change\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"22","source":"Allow the demon to transform\nDon't do it\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"23","source":"”I'm satisfied.”\n”Let me think...”\n[->][END]","ru":"","status":"pending"}
+{"file":"battle/devilmsg/dmsg_majindavid.txt","id":"24","source":"(Mido) [7a 1]...It seems there was an error in\nyour fusion. A different demon than\nthe planned result has been created.\n[->][END]","ru":"","status":"pending"}
