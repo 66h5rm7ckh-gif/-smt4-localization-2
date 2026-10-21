@@ -52,7 +52,15 @@ jobs:
           python3 - <<'PY'
           import json, re, time
           from pathlib import Path
+          import requests
           from deep_translator import GoogleTranslator
+
+          # Bound network calls so a stalled translation request cannot occupy a runner indefinitely.
+          _requests_get = requests.get
+          def _bounded_get(*args, **kwargs):
+              kwargs.setdefault("timeout", 15)
+              return _requests_get(*args, **kwargs)
+          requests.get = _bounded_get
 
           out = Path("translation/ru_manifest.jsonl")
           existing = [json.loads(x) for x in out.read_text(encoding="utf8").splitlines() if x.strip()]
@@ -91,17 +99,20 @@ jobs:
               masked=tag_re.sub(mask,s)
               ru = None
               last_error = None
-              for attempt in range(4):
+              for attempt in range(2):
                   try:
                       ru = translator.translate(masked)
                       if ru:
                           break
                   except Exception as e:
                       last_error = e
-                  time.sleep(1.5 * (attempt + 1))
+                  time.sleep(1.0 * (attempt + 1))
               if not ru:
                   print("translate failed after retries:", repr(s[:120]), repr(last_error))
-                  return s
+                  return None
+              if ru.strip() == s.strip() and not cyr_re.search(ru):
+                  print("translation returned unchanged source; leaving pending:", repr(s[:120]))
+                  return None
               for i,t in enumerate(tags):
                   ru=ru.replace(f"ZZTAG{i}ZZ",t)
               ru=restore_tags(s,ru)
@@ -134,10 +145,13 @@ jobs:
                   if any(len(w)>=2 and (w.islower() or not w.isupper()) for w in words):
                       needs=True
               if needs:
-                  if processed >= 900:
-                      continue
+                  if processed >= 50:
+                      break
                   processed += 1
-                  ru=translate(s)
+                  translated = translate(s)
+                  if translated is None:
+                      continue
+                  ru=translated
               if ru != old:
                   x["ru"]=ru
                   x["status"]="translated"
